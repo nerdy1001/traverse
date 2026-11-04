@@ -2,12 +2,10 @@
 // derived from the parser's file and edge lists like everything else on the map.
 
 import type { Edge, FileNode } from "../../parser/types.ts";
+import { categoryOf, UNIDENTIFIED } from "./categories.ts";
 
 /** A ranking, not a listing: past this it stops saying what the repository leans on. */
 const MOST_IMPORTED_SHOWN = 10;
-
-/** What the parser's adapters give a file when no convention identified it. */
-const UNIDENTIFIED_ROLE = "generic";
 
 export interface RepositorySummary {
   mostImported: FileNode[];
@@ -37,7 +35,7 @@ export function summariseRepository(files: readonly FileNode[]): RepositorySumma
     nothingImports: files
       .filter(({ fanIn }) => fanIn === 0)
       .sort((a, b) => b.fanOut - a.fanOut || compare(a.path, b.path)),
-    unidentifiedCount: files.filter(({ role }) => role === UNIDENTIFIED_ROLE).length,
+    unidentifiedCount: files.filter(({ path }) => categoryOf(path) === UNIDENTIFIED).length,
   };
 }
 
@@ -61,10 +59,4 @@ export function indexNeighbours(
     dependents.sort(compare);
   }
   return index;
-}
-
-export function countByRole(files: readonly FileNode[]): [role: string, count: number][] {
-  const counts = new Map<string, number>();
-  for (const { role } of files) counts.set(role, (counts.get(role) ?? 0) + 1);
-  return [...counts].sort(([a, aCount], [b, bCount]) => bCount - aCount || compare(a, b));
 }
