@@ -16,12 +16,12 @@ export function InviteForm() {
         required
         placeholder="email to invite"
         aria-label="Email to invite"
-        className="w-40 border border-border bg-background px-1.5 py-0.5 placeholder:text-muted"
+        className="w-40 rounded border border-border bg-background px-2 py-1 placeholder:text-muted"
       />
       <button
         type="submit"
         disabled={pending}
-        className="cursor-pointer border border-border px-1.5 py-0.5 disabled:text-muted"
+        className="cursor-pointer rounded border border-border px-2 py-1 disabled:text-muted"
       >
         Invite
       </button>

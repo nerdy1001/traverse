@@ -31,14 +31,14 @@ export function ThemeControl() {
   );
 
   return (
-    <div role="group" aria-label="Theme" className="flex border border-border">
+    <div role="group" aria-label="Theme" className="flex overflow-hidden rounded border border-border">
       {THEMES.map((theme) => (
         <button
           key={theme}
           type="button"
           aria-pressed={current === theme}
           onClick={() => choose(theme)}
-          className={`cursor-pointer px-1.5 py-0.5 capitalize ${
+          className={`cursor-pointer px-2 py-1 capitalize ${
             current === theme ? "bg-surface text-foreground" : "text-muted"
           }`}
         >

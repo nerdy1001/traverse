@@ -9,6 +9,14 @@
   --muted: #6b6b6b;
   --border: #e2e2e2;
   --surface: #f4f4f4;
+  --status-running: #a16207;
+  --status-complete: #15803d;
+  --status-failed: #b91c1c;
+  --accent: #2563eb;
+  --incoming: #15803d;
+  --outgoing: #b45309;
+  --edge: #bdbdbd;
+  --role-generic: #8a8a8a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +27,14 @@
     --muted: #979797;
     --border: #2a2a2a;
     --surface: #1a1a1a;
+    --status-running: #facc15;
+    --status-complete: #4ade80;
+    --status-failed: #f87171;
+    --accent: #60a5fa;
+    --incoming: #4ade80;
+    --outgoing: #fbbf24;
+    --edge: #4a4a4a;
+    --role-generic: #8a8a8a;
   }
 }
 
@@ -29,6 +45,14 @@
   --muted: #979797;
   --border: #2a2a2a;
   --surface: #1a1a1a;
+  --status-running: #facc15;
+  --status-complete: #4ade80;
+  --status-failed: #f87171;
+  --accent: #60a5fa;
+  --incoming: #4ade80;
+  --outgoing: #fbbf24;
+  --edge: #4a4a4a;
+  --role-generic: #8a8a8a;
 }
 
 @theme inline {
@@ -37,6 +61,13 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-surface: var(--surface);
+  --color-status-running: var(--status-running);
+  --color-status-complete: var(--status-complete);
+  --color-status-failed: var(--status-failed);
+  --color-accent: var(--accent);
+  --color-incoming: var(--incoming);
+  --color-outgoing: var(--outgoing);
+  --color-role-generic: var(--role-generic);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -45,4 +76,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* React Flow's credit stays, in the app's own greys rather than its light theme. */
+.react-flow__attribution {
+  background: transparent;
+}
+
+.react-flow__attribution a {
+  color: var(--muted);
 }
