@@ -1,6 +1,8 @@
 // The parser's output. Everything built after the parser reads this shape, so
 // it is a contract: derive what you need from it rather than reshaping it.
 
+import type { Role } from "../lib/map/taxonomy.ts";
+
 export type ImportKind = "import" | "re-export" | "dynamic";
 
 export type SkipReason =
@@ -30,8 +32,8 @@ export interface FileNode {
   path: string;
   /** Directory holding the file, repository-relative. "." for the root. */
   folder: string;
-  /** Given by the adapter. The fallback adapter gives every file "generic". */
-  role: string;
+  /** Given by the adapter. "generic" means no convention identified the file. */
+  role: Role;
   lines: number;
   /** SHA-256 of the file's bytes, hex. */
   hash: string;
@@ -46,6 +48,15 @@ export interface Edge {
   from: string;
   to: string;
   kinds: ImportKind[];
+}
+
+/** Only ever exact. A route whose method or pattern would need guessing isn't one. */
+export interface Route {
+  method: string;
+  pattern: string;
+  /** The file it was read from. */
+  path: string;
+  line: number;
 }
 
 // The coverage report is stored as JSON. These are type aliases rather than
@@ -88,6 +99,13 @@ export type ConfigProblem = {
   message: string;
 };
 
+/** Looks like a route, but its method or pattern can't be read exactly. */
+export type OmittedRoute = {
+  path: string;
+  line: number;
+  reason: string;
+};
+
 export type Coverage = {
   /** Always found = parsed + skipped. */
   files: {
@@ -104,6 +122,7 @@ export type Coverage = {
   unresolvedExamples: Record<UnresolvedReason, ImportExample[]>;
   /** A broken tsconfig or package.json loses aliases, so it has to be visible. */
   configProblems: ConfigProblem[];
+  omittedRoutes: OmittedRoute[];
 };
 
 export interface ParseResult {
@@ -112,5 +131,6 @@ export interface ParseResult {
   adapter: string;
   files: FileNode[];
   edges: Edge[];
+  routes: Route[];
   coverage: Coverage;
 }

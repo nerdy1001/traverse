@@ -38,6 +38,7 @@ import {
   VISIBLE_ROWS,
 } from "@/lib/map/view";
 import type { Edge, FileNode } from "@/parser/types";
+import { ImportCount } from "./import-count";
 import type { MapActions, MapState } from "./use-map-state";
 
 const MIN_ZOOM = 0.1;
@@ -112,7 +113,7 @@ function FolderNodeView({ data: { box, highlight } }: NodeProps<FolderNode>) {
       ) : (
         <span className="flex gap-2 text-[10px] leading-3 whitespace-nowrap text-muted">
           <span>{box.fileCount} files</span>
-          <span>in {box.fanIn}</span>
+          <ImportCount direction="incoming" count={box.fanIn} subject="folder" />
         </span>
       )}
       <Handle
@@ -224,8 +225,8 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
           ) : (
             <span className="flex gap-2 text-[10px] leading-3 whitespace-nowrap text-muted">
               <span>{box.fileCount} files</span>
-              <span>in {box.fanIn}</span>
-              <span>out {box.fanOut}</span>
+              <ImportCount direction="incoming" count={box.fanIn} subject="folder" />
+              <ImportCount direction="outgoing" count={box.fanOut} subject="folder" />
             </span>
           )}
         </button>
@@ -262,8 +263,8 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
                     className={`flex h-full w-full cursor-pointer items-center gap-2 px-3 text-left hover:bg-background ${rowDimClass(isKept(handle) && inCategory)} ${selected || isLit(handle) ? rowLitClass : ""}`}
                   >
                     <span className="min-w-0 flex-1 truncate font-mono text-xs">{label}</span>
-                    <span className="w-5 text-right text-[10px] text-incoming tabular-nums">{fanIn}</span>
-                    <span className="w-5 text-right text-[10px] text-outgoing tabular-nums">{fanOut}</span>
+                    <ImportCount direction="incoming" count={fanIn} className="w-8 shrink-0 text-[10px]" />
+                    <ImportCount direction="outgoing" count={fanOut} className="w-8 shrink-0 text-[10px]" />
                   </button>
                   <RowHandles handle={handle} />
                 </div>

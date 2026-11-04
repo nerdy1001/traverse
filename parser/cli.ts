@@ -68,6 +68,24 @@ function printResult(result: ParseResult): void {
     for (const { path, message } of coverage.configProblems) console.log(`  ${path}  ${message}`);
   }
 
+  const roles = new Map<string, number>();
+  for (const { role } of files) roles.set(role, (roles.get(role) ?? 0) + 1);
+  console.log(`\nRoles: ${[...roles].map(([role, count]) => `${role} ${count}`).join(", ")}`);
+
+  console.log(`\nRoutes: ${result.routes.length}`);
+  for (const { method, pattern, path, line } of result.routes.slice(0, 40)) {
+    console.log(`  ${method.padEnd(7)} ${pattern}  ${path}:${line}`);
+  }
+  if (result.routes.length > 40) console.log(`  and ${result.routes.length - 40} more, all listed in --out`);
+
+  console.log(`\nRoutes omitted: ${coverage.omittedRoutes.length}`);
+  for (const { path, line, reason } of coverage.omittedRoutes.slice(0, 15)) {
+    console.log(`  ${path}:${line}  ${reason}`);
+  }
+  if (coverage.omittedRoutes.length > 15) {
+    console.log(`  and ${coverage.omittedRoutes.length - 15} more, all listed in --out`);
+  }
+
   const violations = findViolations(result);
   if (violations.length > 0) fail(`\nInvalid result:\n  ${violations.join("\n  ")}`);
 }

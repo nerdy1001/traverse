@@ -27,7 +27,10 @@ export function isCoverage(value: unknown): value is Coverage {
     typeof field(imports, "unresolvedBy") === "object" &&
     typeof field(value, "unresolvedExamples") === "object" &&
     Array.isArray(field(value, "skippedFiles")) &&
-    Array.isArray(field(value, "configProblems"))
+    Array.isArray(field(value, "configProblems")) &&
+    // Missing from a run before adapters, whose stored roles and routes aren't there
+    // either. Failing here sends it to a re-run rather than drawing it all as generic.
+    Array.isArray(field(value, "omittedRoutes"))
   );
 }
 

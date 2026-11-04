@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { CategoryName } from "@/lib/map/categories";
 import { foldRepository, type Folding } from "@/lib/map/fold";
+import type { Role } from "@/lib/map/taxonomy";
 import type { Selection } from "@/lib/map/view";
 import type { Edge, FileNode } from "@/parser/types";
 
@@ -17,7 +17,7 @@ export interface MapActions {
   scrollTo(directory: string, offset: number): void;
   hover(target: Selection | null): void;
   /** Clicking the category that's already on turns it off. */
-  toggleCategory(category: CategoryName): void;
+  toggleCategory(category: Role): void;
   toggleRail(): void;
   toggleDetail(): void;
 }
@@ -32,7 +32,7 @@ export interface MapState {
   /** The file a panel should scroll to, until the next thing the user does on the map. */
   reveal: string | null;
   /** The rail's choice. Independent of the selection, so each survives the other changing. */
-  category: CategoryName | null;
+  category: Role | null;
   railOpen: boolean;
   detailOpen: boolean;
   actions: MapActions;
@@ -46,7 +46,7 @@ export function useMapState(files: readonly FileNode[], edges: readonly Edge[]):
   const [selection, setSelection] = useState<Selection | null>(null);
   const [hovered, setHovered] = useState<Selection | null>(null);
   const [reveal, setReveal] = useState<string | null>(null);
-  const [category, setCategory] = useState<CategoryName | null>(null);
+  const [category, setCategory] = useState<Role | null>(null);
   // Not saved anywhere: a reload starts with both open. Only the rail's own toggle
   // changes the rail. A click on the map opens the pane, because that's what shows it.
   const [railOpen, setRailOpen] = useState(true);

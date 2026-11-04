@@ -1,5 +1,6 @@
 import { computeFan, dedupeEdges } from "../parser/graph.ts";
-import type { Edge, FileNode, ImportKind } from "../parser/types.ts";
+import type { Edge, FileNode, ImportKind, Route } from "../parser/types.ts";
+import { isRole, type Role } from "../lib/map/taxonomy.ts";
 import type { DatabaseClient } from "./writer.ts";
 
 const PAGE = 1000;
@@ -8,6 +9,17 @@ function importKind(kind: string): ImportKind {
   if (kind === "import" || kind === "re-export") return kind;
   if (kind === "dynamic-import") return "dynamic";
   throw new Error(`Stored edge has a kind the map doesn't know: ${kind}`);
+}
+
+function compare(a: string, b: string): number {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+
+/** No row means nothing identified the file. */
+function storedRole(role: string | undefined): Role {
+  if (role === undefined) return "generic";
+  if (!isRole(role)) throw new Error(`Stored file has a role the map doesn't know: ${role}`);
+  return role;
 }
 
 // The API returns at most a fixed number of rows per request and says nothing when it
@@ -36,13 +48,21 @@ async function readAll<T>(
 export async function readStoredMap(
   client: DatabaseClient,
   analysisId: string,
-): Promise<{ files: FileNode[]; edges: Edge[] }> {
+): Promise<{ files: FileNode[]; edges: Edge[]; routes: Route[] }> {
   const fileRows = await readAll("files", (from, to) =>
     client
       .from("files")
-      .select("id, path, folder, line_count, content_hash", { count: "exact" })
+      .select("id, path, folder, line_count, content_hash, file_roles(role)", { count: "exact" })
       .eq("analysis_id", analysisId)
       .order("path")
+      .range(from, to),
+  );
+  const routeRows = await readAll("routes", (from, to) =>
+    client
+      .from("routes")
+      .select("method, pattern, line, files(path)", { count: "exact" })
+      .eq("analysis_id", analysisId)
+      .order("id")
       .range(from, to),
   );
   const edgeRows = await readAll("connections", (from, to) =>
@@ -70,7 +90,7 @@ export async function readStoredMap(
   );
 
   // Sorted the parser's way, not the database's: collation order isn't byte order.
-  const paths = fileRows.map((file) => file.path).sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  const paths = fileRows.map((file) => file.path).sort(compare);
   const fan = computeFan(paths, edges);
   const byPath = new Map(fileRows.map((file) => [file.path, file]));
   const files = paths.flatMap((filePath): FileNode[] => {
@@ -80,8 +100,7 @@ export async function readStoredMap(
       {
         path: row.path,
         folder: row.folder,
-        // Every file is generic until adapters give real roles, so none are stored yet.
-        role: "generic",
+        role: storedRole(row.file_roles[0]?.role),
         lines: row.line_count,
         hash: row.content_hash,
         fanIn: fan.get(filePath)?.fanIn ?? 0,
@@ -90,5 +109,10 @@ export async function readStoredMap(
     ];
   });
 
-  return { files, edges };
+  // In the parser's order, for the same reason as the files.
+  const routes = routeRows
+    .map(({ method, pattern, line, files: file }) => ({ method, pattern, line, path: file.path }))
+    .sort((a, b) => compare(a.pattern, b.pattern) || compare(a.method, b.method) || compare(a.path, b.path));
+
+  return { files, edges, routes };
 }

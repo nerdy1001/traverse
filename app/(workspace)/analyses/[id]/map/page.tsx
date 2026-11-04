@@ -58,7 +58,7 @@ async function StoredMap({ params }: { params: Promise<{ id: string }> }) {
     );
   }
 
-  const { files, edges } = await readStoredMap(client, analysis.id);
+  const { files, edges, routes } = await readStoredMap(client, analysis.id);
 
   // A short read would draw a confidently wrong graph, so it fails instead.
   if (files.length !== analysis.coverage.files.parsed) {
@@ -73,10 +73,14 @@ async function StoredMap({ params }: { params: Promise<{ id: string }> }) {
         <MapWorkspace
           files={files}
           edges={edges}
+          routes={routes}
+          omittedRoutes={analysis.coverage.omittedRoutes}
+          sourceBase={analysis.commit_sha && `https://github.com/${owner}/${name}/blob/${analysis.commit_sha}`}
           facts={{
             name: `${owner}/${name}`,
             framework: analysis.adapter ?? "none",
             skippedCount: analysis.coverage.files.skipped,
+            routeCount: routes.length,
           }}
         />
       </div>

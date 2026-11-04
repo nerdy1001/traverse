@@ -1,4 +1,5 @@
 import { posix } from "node:path";
+import { rolesFor } from "../lib/map/taxonomy.ts";
 import { computeFan } from "./graph.ts";
 import type { ImportCounts, ParseResult } from "./types.ts";
 
@@ -42,6 +43,21 @@ export function findViolations(result: ParseResult): string[] {
       const expected = fan.get(path);
       if (expected?.fanIn !== fanIn || expected?.fanOut !== fanOut) problems.push(`wrong fan counts on ${path}`);
     }
+  }
+
+  const allowedRoles = rolesFor(result.adapter);
+  for (const { path, role } of files) {
+    if (!allowedRoles.includes(role)) problems.push(`${path} has a role ${result.adapter} doesn't list: ${role}`);
+  }
+
+  const routeKeys = new Set<string>();
+  for (const { path, method, pattern, line } of result.routes) {
+    const label = `${method} ${pattern} in ${path}:${line}`;
+    if (!nodes.has(path)) problems.push(`route read from a file off the map: ${label}`);
+    if (!method || !pattern.startsWith("/")) problems.push(`route without a full method and pattern: ${label}`);
+    const key = `${path}\0${method}\0${pattern}`;
+    if (routeKeys.has(key)) problems.push(`duplicate route: ${label}`);
+    routeKeys.add(key);
   }
 
   checkCounts("imports", coverage.imports, problems);
