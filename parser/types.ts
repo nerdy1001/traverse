@@ -3,7 +3,7 @@
 
 import type { Role } from "../lib/map/taxonomy.ts";
 
-export type ImportKind = "import" | "re-export" | "dynamic";
+export type ImportKind = "import" | "re-export" | "dynamic" | "require";
 
 export type SkipReason =
   | "not-source"
@@ -48,6 +48,14 @@ export interface Edge {
   from: string;
   to: string;
   kinds: ImportKind[];
+}
+
+/** What a CommonJS module exports, for a file that exports that way. */
+export interface CommonJsExports {
+  path: string;
+  names: string[];
+  /** False when it also exports something whose names the syntax doesn't state. */
+  complete: boolean;
 }
 
 /** Only ever exact. A route whose method or pattern would need guessing isn't one. */
@@ -131,6 +139,7 @@ export interface ParseResult {
   adapter: string;
   files: FileNode[];
   edges: Edge[];
+  commonJsExports: CommonJsExports[];
   routes: Route[];
   coverage: Coverage;
 }

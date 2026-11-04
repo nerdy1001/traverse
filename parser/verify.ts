@@ -60,6 +60,10 @@ export function findViolations(result: ParseResult): string[] {
     routeKeys.add(key);
   }
 
+  for (const { path } of result.commonJsExports) {
+    if (!nodes.has(path)) problems.push(`exports read from a file off the map: ${path}`);
+  }
+
   checkCounts("imports", coverage.imports, problems);
   for (const [kind, counts] of Object.entries(coverage.importsByKind)) checkCounts(kind, counts, problems);
   return problems;

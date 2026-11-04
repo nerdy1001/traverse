@@ -3,6 +3,7 @@ import { readFileSync, realpathSync, statSync } from "node:fs";
 import { basename, posix } from "node:path";
 import { Project, type SourceFile } from "ts-morph";
 import { selectAdapter } from "./adapters/index.ts";
+import { readCommonJsExports } from "./commonjs.ts";
 import { computeFan, dedupeEdges } from "./graph.ts";
 import { readImports } from "./imports.ts";
 import { createResolver } from "./resolve.ts";
@@ -131,6 +132,7 @@ export function parseSelection({ root, walk }: Selection): ParseResult {
     import: emptyCounts(),
     "re-export": emptyCounts(),
     dynamic: emptyCounts(),
+    require: emptyCounts(),
   };
   const examples: Record<UnresolvedReason, ImportExample[]> = {
     "file-not-found": [],
@@ -150,6 +152,7 @@ export function parseSelection({ root, walk }: Selection): ParseResult {
           ? ({
               status: "unresolved",
               reason: "non-literal-dynamic-import",
+              // Shared with require: the same failure, and the example records which kind.
               detail: "the target is computed at runtime, so it can't be read from the code",
             } as const)
           : resolver.resolve(site.specifier, path);
@@ -228,6 +231,10 @@ export function parseSelection({ root, walk }: Selection): ParseResult {
     adapter: adapter.name,
     files,
     edges,
+    commonJsExports: parsed.flatMap(({ path, source }) => {
+      const read = readCommonJsExports(source.compilerNode);
+      return read ? [{ path, ...read }] : [];
+    }),
     routes: routes.sort((a, b) => compare(a.pattern, b.pattern) || compare(a.method, b.method) || byPath(a, b)),
     coverage,
   };
