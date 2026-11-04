@@ -4568,7 +4568,7 @@ export const parseResult: ParseResult = {
       "role": "generic",
       "lines": 19,
       "hash": "d0f7db5ad70de7cea60b09880f815b4d0eb0af927eabb4c38f4fb76252affac8",
-      "fanIn": 0,
+      "fanIn": 1,
       "fanOut": 0
     },
     {
@@ -6396,7 +6396,7 @@ export const parseResult: ParseResult = {
       "lines": 129,
       "hash": "d3b7de27de7718bb119f9cfa5798d90e04db05378f0b957cab3633fbdc1eeaf6",
       "fanIn": 0,
-      "fanOut": 0
+      "fanOut": 1
     },
     {
       "path": "scripts/buildUtils.js",
@@ -6405,7 +6405,7 @@ export const parseResult: ParseResult = {
       "lines": 66,
       "hash": "003c5bd8fd40771664b2d447e757b4dfe766eef6a8c3a725e0d5fe5e3e9af18d",
       "fanIn": 0,
-      "fanOut": 0
+      "fanOut": 1
     },
     {
       "path": "scripts/buildWasm.js",
@@ -6432,7 +6432,7 @@ export const parseResult: ParseResult = {
       "lines": 245,
       "hash": "3f06199124869ebff5e56a1fe131823c747e8b7a2e0cc5e53e89b6a0c6675fe2",
       "fanIn": 0,
-      "fanOut": 0
+      "fanOut": 1
     },
     {
       "path": "scripts/stats/bundle-stats-plugin.mts",
@@ -6476,7 +6476,7 @@ export const parseResult: ParseResult = {
       "role": "generic",
       "lines": 106,
       "hash": "60bbb7d9f05d27d9d652ccceff9553b5ea2323206169ec1bda2585cad685fb60",
-      "fanIn": 0,
+      "fanIn": 1,
       "fanOut": 0
     },
     {
@@ -6485,7 +6485,7 @@ export const parseResult: ParseResult = {
       "role": "generic",
       "lines": 252,
       "hash": "61bde450a1b9342894a8d38649d286bedf6dca028bdbc5e9ef4479723b488a89",
-      "fanIn": 0,
+      "fanIn": 1,
       "fanOut": 0
     },
     {
@@ -32873,6 +32873,27 @@ export const parseResult: ParseResult = {
       ]
     },
     {
+      "from": "scripts/buildPackage.js",
+      "to": "packages/excalidraw/env.cjs",
+      "kinds": [
+        "require"
+      ]
+    },
+    {
+      "from": "scripts/buildUtils.js",
+      "to": "scripts/woff2/woff2-esbuild-plugins.js",
+      "kinds": [
+        "require"
+      ]
+    },
+    {
+      "from": "scripts/release.js",
+      "to": "scripts/updateChangelog.js",
+      "kinds": [
+        "require"
+      ]
+    },
+    {
       "from": "scripts/stats/vite.config.mts",
       "to": "excalidraw-app/vite.config.mts",
       "kinds": [
@@ -32927,6 +32948,64 @@ export const parseResult: ParseResult = {
       "kinds": [
         "import"
       ]
+    }
+  ],
+  "commonJsExports": [
+    {
+      "path": ".lintstagedrc.js",
+      "names": [
+        "*.{css,scss,json,md,html,yml}",
+        "*.{js,ts,tsx}"
+      ],
+      "complete": true
+    },
+    {
+      "path": "dev-docs/babel.config.js",
+      "names": [
+        "presets"
+      ],
+      "complete": true
+    },
+    {
+      "path": "dev-docs/docusaurus.config.js",
+      "names": [],
+      "complete": false
+    },
+    {
+      "path": "dev-docs/sidebars.js",
+      "names": [],
+      "complete": false
+    },
+    {
+      "path": "examples/with-nextjs/next.config.js",
+      "names": [],
+      "complete": false
+    },
+    {
+      "path": "packages/excalidraw/env.cjs",
+      "names": [
+        "parseEnvVariables"
+      ],
+      "complete": true
+    },
+    {
+      "path": "scripts/updateChangelog.js",
+      "names": [],
+      "complete": false
+    },
+    {
+      "path": "scripts/woff2/woff2-esbuild-plugins.js",
+      "names": [
+        "woff2ServerPlugin"
+      ],
+      "complete": true
+    },
+    {
+      "path": "scripts/woff2/woff2-vite-plugins.js",
+      "names": [
+        "woff2BrowserPlugin"
+      ],
+      "complete": true
     }
   ],
   "routes": [],
@@ -35866,6 +35945,10 @@ export const parseResult: ParseResult = {
         "reason": "hidden directory"
       },
       {
+        "path": ".git",
+        "reason": "hidden directory"
+      },
+      {
         "path": ".github",
         "reason": "hidden directory"
       },
@@ -35879,13 +35962,13 @@ export const parseResult: ParseResult = {
       }
     ],
     "imports": {
-      "seen": 5204,
-      "resolved": 4276,
-      "external": 553,
-      "excluded": 322,
-      "unresolved": 53,
+      "seen": 5263,
+      "resolved": 4279,
+      "external": 584,
+      "excluded": 323,
+      "unresolved": 77,
       "excludedBy": {
-        "non-source-target": 322,
+        "non-source-target": 323,
         "skipped-target": 0,
         "excluded-directory-target": 0
       },
@@ -35894,9 +35977,9 @@ export const parseResult: ParseResult = {
         "case-mismatch": 0,
         "alias-target-not-found": 0,
         "unknown-alias": 0,
-        "undeclared-package": 38,
+        "undeclared-package": 55,
         "workspace-entry-not-found": 14,
-        "non-literal-dynamic-import": 1
+        "non-literal-dynamic-import": 8
       }
     },
     "importsByKind": {
@@ -35962,6 +36045,27 @@ export const parseResult: ParseResult = {
           "workspace-entry-not-found": 0,
           "non-literal-dynamic-import": 1
         }
+      },
+      "require": {
+        "seen": 59,
+        "resolved": 3,
+        "external": 31,
+        "excluded": 1,
+        "unresolved": 24,
+        "excludedBy": {
+          "non-source-target": 1,
+          "skipped-target": 0,
+          "excluded-directory-target": 0
+        },
+        "unresolvedBy": {
+          "file-not-found": 0,
+          "case-mismatch": 0,
+          "alias-target-not-found": 0,
+          "unknown-alias": 0,
+          "undeclared-package": 17,
+          "workspace-entry-not-found": 0,
+          "non-literal-dynamic-import": 7
+        }
       }
     },
     "unresolvedExamples": {
@@ -35970,6 +36074,62 @@ export const parseResult: ParseResult = {
       "alias-target-not-found": [],
       "unknown-alias": [],
       "undeclared-package": [
+        {
+          "from": ".lintstagedrc.js",
+          "line": 1,
+          "kind": "require",
+          "specifier": "eslint",
+          "reason": "undeclared-package",
+          "detail": "no package.json from here to the repository root declares eslint, and no tsconfig paths entry matches it"
+        },
+        {
+          "from": "dev-docs/src/components/Homepage/index.js",
+          "line": 9,
+          "kind": "require",
+          "specifier": "@site/static/img/undraw_innovative.svg",
+          "reason": "undeclared-package",
+          "detail": "no package.json from here to the repository root declares @site/static, and no tsconfig paths entry matches it"
+        },
+        {
+          "from": "dev-docs/src/components/Homepage/index.js",
+          "line": 16,
+          "kind": "require",
+          "specifier": "@site/static/img/undraw_blank_canvas.svg",
+          "reason": "undeclared-package",
+          "detail": "no package.json from here to the repository root declares @site/static, and no tsconfig paths entry matches it"
+        },
+        {
+          "from": "dev-docs/src/components/Homepage/index.js",
+          "line": 26,
+          "kind": "require",
+          "specifier": "@site/static/img/undraw_add_files.svg",
+          "reason": "undeclared-package",
+          "detail": "no package.json from here to the repository root declares @site/static, and no tsconfig paths entry matches it"
+        },
+        {
+          "from": "dev-docs/src/components/Homepage/index.tsx",
+          "line": 15,
+          "kind": "require",
+          "specifier": "@site/static/img/undraw_docusaurus_mountain.svg",
+          "reason": "undeclared-package",
+          "detail": "no package.json from here to the repository root declares @site/static, and no tsconfig paths entry matches it"
+        },
+        {
+          "from": "dev-docs/src/components/Homepage/index.tsx",
+          "line": 25,
+          "kind": "require",
+          "specifier": "@site/static/img/undraw_docusaurus_tree.svg",
+          "reason": "undeclared-package",
+          "detail": "no package.json from here to the repository root declares @site/static, and no tsconfig paths entry matches it"
+        },
+        {
+          "from": "dev-docs/src/components/Homepage/index.tsx",
+          "line": 35,
+          "kind": "require",
+          "specifier": "@site/static/img/undraw_docusaurus_react.svg",
+          "reason": "undeclared-package",
+          "detail": "no package.json from here to the repository root declares @site/static, and no tsconfig paths entry matches it"
+        },
         {
           "from": "dev-docs/src/pages/index.tsx",
           "line": 1,
@@ -36073,62 +36233,6 @@ export const parseResult: ParseResult = {
           "specifier": "nanoid",
           "reason": "undeclared-package",
           "detail": "no package.json from here to the repository root declares nanoid, and no tsconfig paths entry matches it"
-        },
-        {
-          "from": "packages/common/src/promise-pool.ts",
-          "line": 1,
-          "kind": "import",
-          "specifier": "es6-promise-pool",
-          "reason": "undeclared-package",
-          "detail": "no package.json from here to the repository root declares es6-promise-pool, and no tsconfig paths entry matches it"
-        },
-        {
-          "from": "packages/common/src/random.ts",
-          "line": 1,
-          "kind": "import",
-          "specifier": "nanoid",
-          "reason": "undeclared-package",
-          "detail": "no package.json from here to the repository root declares nanoid, and no tsconfig paths entry matches it"
-        },
-        {
-          "from": "packages/common/src/random.ts",
-          "line": 2,
-          "kind": "import",
-          "specifier": "roughjs/bin/math",
-          "reason": "undeclared-package",
-          "detail": "no package.json from here to the repository root declares roughjs, and no tsconfig paths entry matches it"
-        },
-        {
-          "from": "packages/common/src/url.ts",
-          "line": 1,
-          "kind": "import",
-          "specifier": "@braintree/sanitize-url",
-          "reason": "undeclared-package",
-          "detail": "no package.json from here to the repository root declares @braintree/sanitize-url, and no tsconfig paths entry matches it"
-        },
-        {
-          "from": "packages/element/src/bounds.ts",
-          "line": 1,
-          "kind": "import",
-          "specifier": "roughjs/bin/rough",
-          "reason": "undeclared-package",
-          "detail": "no package.json from here to the repository root declares roughjs, and no tsconfig paths entry matches it"
-        },
-        {
-          "from": "packages/element/src/bounds.ts",
-          "line": 21,
-          "kind": "import",
-          "specifier": "points-on-curve",
-          "reason": "undeclared-package",
-          "detail": "no package.json from here to the repository root declares points-on-curve, and no tsconfig paths entry matches it"
-        },
-        {
-          "from": "packages/element/src/bounds.ts",
-          "line": 61,
-          "kind": "import",
-          "specifier": "roughjs/bin/core",
-          "reason": "undeclared-package",
-          "detail": "no package.json from here to the repository root declares roughjs, and no tsconfig paths entry matches it"
         }
       ],
       "workspace-entry-not-found": [
@@ -36251,6 +36355,62 @@ export const parseResult: ParseResult = {
           "line": 101,
           "kind": "dynamic",
           "specifier": "`./locales/${currentLang.code}.json`",
+          "reason": "non-literal-dynamic-import",
+          "detail": "the target is computed at runtime, so it can't be read from the code"
+        },
+        {
+          "from": "packages/excalidraw/subset/woff2/woff2-bindings.ts",
+          "line": 94,
+          "kind": "require",
+          "specifier": "[\"fs\"].join()",
+          "reason": "non-literal-dynamic-import",
+          "detail": "the target is computed at runtime, so it can't be read from the code"
+        },
+        {
+          "from": "packages/excalidraw/subset/woff2/woff2-bindings.ts",
+          "line": 97,
+          "kind": "require",
+          "specifier": "[\"path\"].join()",
+          "reason": "non-literal-dynamic-import",
+          "detail": "the target is computed at runtime, so it can't be read from the code"
+        },
+        {
+          "from": "scripts/build-locales-coverage.js",
+          "line": 24,
+          "kind": "require",
+          "specifier": "`${__dirname}/../packages/excalidraw/locales/${currentLocale}`",
+          "reason": "non-literal-dynamic-import",
+          "detail": "the target is computed at runtime, so it can't be read from the code"
+        },
+        {
+          "from": "scripts/buildWasm.js",
+          "line": 33,
+          "kind": "require",
+          "specifier": "packagePath",
+          "reason": "non-literal-dynamic-import",
+          "detail": "the target is computed at runtime, so it can't be read from the code"
+        },
+        {
+          "from": "scripts/release.js",
+          "line": 78,
+          "kind": "require",
+          "specifier": "getPackageJsonPath(\n      \"excalidraw\",\n    )",
+          "reason": "non-literal-dynamic-import",
+          "detail": "the target is computed at runtime, so it can't be read from the code"
+        },
+        {
+          "from": "scripts/release.js",
+          "line": 113,
+          "kind": "require",
+          "specifier": "getPackageJsonPath(packageName)",
+          "reason": "non-literal-dynamic-import",
+          "detail": "the target is computed at runtime, so it can't be read from the code"
+        },
+        {
+          "from": "scripts/updateChangelog.js",
+          "line": 7,
+          "kind": "require",
+          "specifier": "excalidrawPackage",
           "reason": "non-literal-dynamic-import",
           "detail": "the target is computed at runtime, so it can't be read from the code"
         }

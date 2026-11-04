@@ -72,6 +72,14 @@ function printResult(result: ParseResult): void {
   for (const { role } of files) roles.set(role, (roles.get(role) ?? 0) + 1);
   console.log(`\nRoles: ${[...roles].map(([role, count]) => `${role} ${count}`).join(", ")}`);
 
+  console.log(`\nCommonJS exports: ${result.commonJsExports.length} files`);
+  for (const { path, names, complete } of result.commonJsExports.slice(0, 15)) {
+    console.log(`  ${path}  ${names.join(", ") || "(no names stated)"}${complete ? "" : "  (and more the syntax doesn't state)"}`);
+  }
+  if (result.commonJsExports.length > 15) {
+    console.log(`  and ${result.commonJsExports.length - 15} more, all listed in --out`);
+  }
+
   console.log(`\nRoutes: ${result.routes.length}`);
   for (const { method, pattern, path, line } of result.routes.slice(0, 40)) {
     console.log(`  ${method.padEnd(7)} ${pattern}  ${path}:${line}`);

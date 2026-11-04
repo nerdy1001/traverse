@@ -6,7 +6,7 @@ import type { DatabaseClient } from "./writer.ts";
 const PAGE = 1000;
 
 function importKind(kind: string): ImportKind {
-  if (kind === "import" || kind === "re-export") return kind;
+  if (kind === "import" || kind === "re-export" || kind === "require") return kind;
   if (kind === "dynamic-import") return "dynamic";
   throw new Error(`Stored edge has a kind the map doesn't know: ${kind}`);
 }

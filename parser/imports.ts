@@ -1,9 +1,10 @@
 import { ts } from "ts-morph";
+import { enterScope, isRequireCall, NOTHING_BOUND } from "./commonjs.ts";
 import type { ImportKind } from "./types.ts";
 
 export interface ImportSite {
   kind: ImportKind;
-  /** Undefined when a dynamic import's argument isn't a literal string. */
+  /** Undefined when a dynamic import's or require's argument isn't a literal string. */
   specifier: string | undefined;
   /** The source text of the import, kept so a failure can quote it. */
   text: string;
@@ -17,7 +18,8 @@ export function readImports(file: ts.SourceFile): ImportSite[] {
     sites.push({ kind, specifier, text: node.getText(file), line: line + 1 });
   };
 
-  const visit = (node: ts.Node) => {
+  const visit = (node: ts.Node, outer: ReadonlySet<string>) => {
+    const bound = enterScope(node, outer);
     if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
       add("import", node.moduleSpecifier.text, node.moduleSpecifier);
     } else if (
@@ -41,9 +43,12 @@ export function readImports(file: ts.SourceFile): ImportSite[] {
         argument && ts.isStringLiteralLike(argument) ? argument.text : undefined,
         argument ?? node,
       );
+    } else if (isRequireCall(node, bound)) {
+      const [argument] = node.arguments;
+      add("require", ts.isStringLiteralLike(argument) ? argument.text : undefined, argument);
     }
-    ts.forEachChild(node, visit);
+    ts.forEachChild(node, (child) => visit(child, bound));
   };
-  visit(file);
+  visit(file, NOTHING_BOUND);
   return sites;
 }

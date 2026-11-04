@@ -9,6 +9,7 @@ const EDGE_KIND = {
   import: "import",
   "re-export": "re-export",
   dynamic: "dynamic-import",
+  require: "require",
 } as const satisfies Record<ImportKind, string>;
 
 async function insertInChunks<T>(rows: readonly T[], insert: (chunk: T[]) => PromiseLike<{ error: { message: string } | null }>) {

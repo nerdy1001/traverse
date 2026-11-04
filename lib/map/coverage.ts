@@ -62,7 +62,7 @@ export const UNRESOLVED_LABELS: readonly (readonly [UnresolvedReason, string])[]
   ["unknown-alias", "Path alias not recognised"],
   ["undeclared-package", "Package not declared in package.json"],
   ["workspace-entry-not-found", "Workspace package has no entry file"],
-  ["non-literal-dynamic-import", "Dynamic import computed at runtime"],
+  ["non-literal-dynamic-import", "Dynamic import or require computed at runtime"],
 ];
 
 export const SKIP_LABELS: readonly (readonly [SkipReason, string])[] = [
