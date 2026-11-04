@@ -18,6 +18,8 @@ export interface MapActions {
   hover(target: Selection | null): void;
   /** Clicking the category that's already on turns it off. */
   toggleCategory(category: CategoryName): void;
+  toggleRail(): void;
+  toggleDetail(): void;
 }
 
 export interface MapState {
@@ -31,6 +33,8 @@ export interface MapState {
   reveal: string | null;
   /** The rail's choice. Independent of the selection, so each survives the other changing. */
   category: CategoryName | null;
+  railOpen: boolean;
+  detailOpen: boolean;
   actions: MapActions;
 }
 
@@ -43,6 +47,10 @@ export function useMapState(files: readonly FileNode[], edges: readonly Edge[]):
   const [hovered, setHovered] = useState<Selection | null>(null);
   const [reveal, setReveal] = useState<string | null>(null);
   const [category, setCategory] = useState<CategoryName | null>(null);
+  // Not saved anywhere: a reload starts with both open. Only the rail's own toggle
+  // changes the rail. A click on the map opens the pane, because that's what shows it.
+  const [railOpen, setRailOpen] = useState(true);
+  const [detailOpen, setDetailOpen] = useState(true);
 
   const folding = useMemo(() => foldRepository(files, edges), [files, edges]);
 
@@ -55,6 +63,7 @@ export function useMapState(files: readonly FileNode[], edges: readonly Edge[]):
         setSelection({ kind: "folder", directory });
         setReveal(null);
         setHovered(null);
+        setDetailOpen(true);
       },
       close(directory) {
         setOpened((current) => {
@@ -79,10 +88,13 @@ export function useMapState(files: readonly FileNode[], edges: readonly Edge[]):
         setHovered(null);
       },
       selectFile(path) {
+        // With the pane hidden, clicking the selected file means "show me this", so
+        // it mustn't deselect the very thing the pane is opening to describe.
         setSelection((current) =>
-          current?.kind === "file" && current.path === path ? null : { kind: "file", path },
+          detailOpen && current?.kind === "file" && current.path === path ? null : { kind: "file", path },
         );
         setReveal(null);
+        setDetailOpen(true);
       },
       revealFile(path) {
         // A row only exists once its folder is open, so a file in a folded folder
@@ -110,9 +122,15 @@ export function useMapState(files: readonly FileNode[], edges: readonly Edge[]):
       toggleCategory(next) {
         setCategory((current) => (current === next ? null : next));
       },
+      toggleRail() {
+        setRailOpen((current) => !current);
+      },
+      toggleDetail() {
+        setDetailOpen((current) => !current);
+      },
     }),
-    [folding],
+    [folding, detailOpen],
   );
 
-  return { folding, opened, offsets, selection, hovered, reveal, category, actions };
+  return { folding, opened, offsets, selection, hovered, reveal, category, railOpen, detailOpen, actions };
 }

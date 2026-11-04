@@ -13,7 +13,7 @@ async function AdminInvite() {
 export default function WorkspaceLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex h-screen flex-col">
-      <header className="flex h-9 shrink-0 items-center gap-3 border-b border-border px-3">
+      <header className="flex h-14 shrink-0 items-center gap-3 border-b border-border px-5">
         <span className="font-mono font-medium">traverse</span>
         <OrganizationSwitcher
           hidePersonal

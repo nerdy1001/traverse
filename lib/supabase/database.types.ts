@@ -17,30 +17,48 @@ export type Database = {
     Tables: {
       analyses: {
         Row: {
+          adapter: string | null
           commit_sha: string | null
+          completed_at: string | null
+          coverage: Json | null
           created_at: string
           error_message: string | null
+          failed_stage: string | null
           id: string
           organization_id: string
           project_id: string
+          stage_message: string | null
+          started_at: string
           status: string
         }
         Insert: {
+          adapter?: string | null
           commit_sha?: string | null
+          completed_at?: string | null
+          coverage?: Json | null
           created_at?: string
           error_message?: string | null
+          failed_stage?: string | null
           id?: string
           organization_id: string
           project_id: string
+          stage_message?: string | null
+          started_at?: string
           status?: string
         }
         Update: {
+          adapter?: string | null
           commit_sha?: string | null
+          completed_at?: string | null
+          coverage?: Json | null
           created_at?: string
           error_message?: string | null
+          failed_stage?: string | null
           id?: string
           organization_id?: string
           project_id?: string
+          stage_message?: string | null
+          started_at?: string
           status?: string
         }
         Relationships: [

@@ -10,14 +10,14 @@ export function CategoryRail({
   map: MapState;
 }) {
   return (
-    <ul className="py-2">
+    <ul className="py-3">
       {countByCategory(files).map(({ name, swatch, count }) => (
         <li key={name}>
           <button
             type="button"
             aria-pressed={category === name}
             onClick={() => actions.toggleCategory(name)}
-            className={`flex h-6 w-full cursor-pointer items-center gap-2 px-3 text-left hover:bg-background ${category === name ? "bg-background outline outline-accent -outline-offset-1" : ""}`}
+            className={`flex h-8 w-full cursor-pointer items-center gap-2.5 px-4 text-left hover:bg-background ${category === name ? "bg-background outline outline-accent -outline-offset-1" : ""}`}
           >
             <span aria-hidden className={`size-2 shrink-0 rounded-[1px] ${swatch}`} />
             <span className="min-w-0 flex-1 truncate">{name}</span>

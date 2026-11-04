@@ -11,6 +11,7 @@ function read(name: string): string {
 export const env = {
   supabaseUrl: read("NEXT_PUBLIC_SUPABASE_URL"),
   supabasePublishableKey: read("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"),
+  supabaseSecretKey: read("SUPABASE_SECRET_KEY"),
   // Clerk reads these itself. They're listed so that a blank one fails here.
   clerkPublishableKey: read("NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"),
   clerkSecretKey: read("CLERK_SECRET_KEY"),
