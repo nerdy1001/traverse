@@ -17,6 +17,12 @@
   --outgoing: #b45309;
   --edge: #bdbdbd;
   --role-generic: #8a8a8a;
+  --role-page: #7c3aed;
+  --role-layout: #db2777;
+  --role-middleware: #0891b2;
+  --role-config: #9a3412;
+  --role-test: #65a30d;
+  --role-declaration: #475569;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +41,12 @@
     --outgoing: #fbbf24;
     --edge: #4a4a4a;
     --role-generic: #8a8a8a;
+    --role-page: #a78bfa;
+    --role-layout: #f472b6;
+    --role-middleware: #22d3ee;
+    --role-config: #fb923c;
+    --role-test: #a3e635;
+    --role-declaration: #cbd5e1;
   }
 }
 
@@ -53,6 +65,12 @@
   --outgoing: #fbbf24;
   --edge: #4a4a4a;
   --role-generic: #8a8a8a;
+  --role-page: #a78bfa;
+  --role-layout: #f472b6;
+  --role-middleware: #22d3ee;
+  --role-config: #fb923c;
+  --role-test: #a3e635;
+  --role-declaration: #cbd5e1;
 }
 
 @theme inline {
@@ -68,6 +86,12 @@
   --color-incoming: var(--incoming);
   --color-outgoing: var(--outgoing);
   --color-role-generic: var(--role-generic);
+  --color-role-page: var(--role-page);
+  --color-role-layout: var(--role-layout);
+  --color-role-middleware: var(--role-middleware);
+  --color-role-config: var(--role-config);
+  --color-role-test: var(--role-test);
+  --color-role-declaration: var(--role-declaration);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

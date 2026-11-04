@@ -16,6 +16,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/base.css";
 import { createContext, use, useEffect, useMemo, useRef } from "react";
+import { type CategoryMatch, matchCategory } from "@/lib/map/categories";
 import { placeBoxes, type PlacedView } from "@/lib/map/layout";
 import {
   ABOVE_HANDLE,
@@ -60,6 +61,10 @@ const MapActionsContext = createContext<MapActions | null>(null);
 // pointer moving only re-renders the boxes and never rebuilds the nodes or edges.
 const LitEndContext = createContext<string | null>(null);
 
+// The rail's choice. In context for the same reason, and because no box changes
+// size or place for it: dimming must never move the map.
+const CategoryMatchContext = createContext<CategoryMatch | null>(null);
+
 function useMapActions(): MapActions {
   const actions = use(MapActionsContext);
   if (!actions) throw new Error("Map nodes must render inside MapCanvas");
@@ -72,7 +77,12 @@ const handleClass = "!pointer-events-none !opacity-0";
 function FolderNodeView({ data: { box, highlight } }: NodeProps<FolderNode>) {
   const { open, hover } = useMapActions();
   const lit = use(LitEndContext) === endKey(box.id, FOLDER_HANDLE);
-  const dimmed = highlight !== null && !lit && !highlight.ends.has(endKey(box.id, FOLDER_HANDLE));
+  const match = use(CategoryMatchContext);
+  const matched = match?.countByFolder.get(box.directory) ?? 0;
+  const dimmed =
+    !lit &&
+    ((highlight !== null && !highlight.ends.has(endKey(box.id, FOLDER_HANDLE))) ||
+      (match !== null && matched === 0));
 
   return (
     // React Flow turns pointer events off on a node that is neither draggable
@@ -94,10 +104,17 @@ function FolderNodeView({ data: { box, highlight } }: NodeProps<FolderNode>) {
         className={handleClass}
       />
       <span className="font-mono text-xs leading-4 whitespace-nowrap">{box.label}</span>
-      <span className="flex gap-2 text-[10px] leading-3 whitespace-nowrap text-muted">
-        <span>{box.fileCount} files</span>
-        <span>in {box.fanIn}</span>
-      </span>
+      {/* Takes the count line's place, so the box's width holds it and nothing moves. */}
+      {match ? (
+        <span className="text-[10px] leading-3 whitespace-nowrap tabular-nums">
+          {matched} of {box.fileCount} match
+        </span>
+      ) : (
+        <span className="flex gap-2 text-[10px] leading-3 whitespace-nowrap text-muted">
+          <span>{box.fileCount} files</span>
+          <span>in {box.fanIn}</span>
+        </span>
+      )}
       <Handle
         type="source"
         id={sourceHandleId(FOLDER_HANDLE)}
@@ -140,6 +157,7 @@ function RowHandles({ handle }: { handle: string }) {
 function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<PanelNode>) {
   const { close, selectFile, scrollTo, hover } = useMapActions();
   const litEnd = use(LitEndContext);
+  const match = use(CategoryMatchContext);
   const scroller = useRef<HTMLDivElement>(null);
 
   // Moves the real scroller and lets its scroll event update the offset, the same
@@ -165,14 +183,28 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
     [...highlight.ends].some((end) => end.startsWith(`${box.id}|`));
   const rowLitClass = "bg-background outline outline-accent -outline-offset-1";
 
+  const matched = match?.countByFolder.get(box.directory) ?? 0;
+  // What's selected or pointed at stays readable, whatever the rail has chosen.
+  const holdsFocus =
+    wholeBoxKept ||
+    litEnd?.startsWith(`${box.id}|`) ||
+    box.rows.some(({ path }) => path === highlight?.selectedPath);
+  const panelDimmed = !anyKept || (match !== null && matched === 0 && !holdsFocus);
+
   const overflows = box.rows.length > VISIBLE_ROWS;
   const windowHeight = Math.min(box.rows.length, VISIBLE_ROWS) * ROW_HEIGHT;
   const shown = box.rows.slice(offset, offset + VISIBLE_ROWS);
   const below = box.rows.length - offset - shown.length;
+  const matchesBelow =
+    match === null || box.rows.slice(offset + VISIBLE_ROWS).some(({ path }) => match.files.has(path));
+
+  // A dimmed panel already dims its contents. Dimming a row inside it as well would
+  // multiply the two and lose the row altogether.
+  const rowDimClass = (kept: boolean) => (kept || panelDimmed ? "" : "opacity-25");
 
   return (
     <div
-      className={`pointer-events-auto h-full w-full rounded-sm border bg-surface ${wholeBoxKept ? "border-accent" : "border-muted"} ${anyKept ? "" : "opacity-25"}`}
+      className={`pointer-events-auto h-full w-full rounded-sm border bg-surface ${wholeBoxKept ? "border-accent" : "border-muted"} ${panelDimmed ? "opacity-25" : ""}`}
     >
       <div className="relative border-b border-border" style={{ height: PANEL_HEADER_HEIGHT - 1 }}>
         <button
@@ -185,11 +217,17 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
           className={`flex h-full w-full cursor-pointer flex-col justify-center px-3 text-left hover:bg-background ${isLit(ABOVE_HANDLE) ? rowLitClass : ""}`}
         >
           <span className="font-mono text-xs leading-4 font-medium whitespace-nowrap">{box.label}</span>
-          <span className="flex gap-2 text-[10px] leading-3 whitespace-nowrap text-muted">
-            <span>{box.fileCount} files</span>
-            <span>in {box.fanIn}</span>
-            <span>out {box.fanOut}</span>
-          </span>
+          {match ? (
+            <span className="text-[10px] leading-3 whitespace-nowrap tabular-nums">
+              {matched} of {box.fileCount} match
+            </span>
+          ) : (
+            <span className="flex gap-2 text-[10px] leading-3 whitespace-nowrap text-muted">
+              <span>{box.fileCount} files</span>
+              <span>in {box.fanIn}</span>
+              <span>out {box.fanOut}</span>
+            </span>
+          )}
         </button>
         <RowHandles handle={ABOVE_HANDLE} />
       </div>
@@ -211,6 +249,7 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
             {shown.map(({ path, label, fanIn, fanOut }, slot) => {
               const handle = slotHandle(slot);
               const selected = highlight?.selectedPath === path;
+              const inCategory = match === null || match.files.has(path) || selected || isLit(handle);
               return (
                 <div key={slot} className="relative" style={{ height: ROW_HEIGHT }}>
                   <button
@@ -220,7 +259,7 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
                     onClick={() => selectFile(path)}
                     onPointerEnter={() => hover({ kind: "file", path })}
                     onPointerLeave={() => hover(null)}
-                    className={`flex h-full w-full cursor-pointer items-center gap-2 px-3 text-left hover:bg-background ${isKept(handle) ? "" : "opacity-25"} ${selected || isLit(handle) ? rowLitClass : ""}`}
+                    className={`flex h-full w-full cursor-pointer items-center gap-2 px-3 text-left hover:bg-background ${rowDimClass(isKept(handle) && inCategory)} ${selected || isLit(handle) ? rowLitClass : ""}`}
                   >
                     <span className="min-w-0 flex-1 truncate font-mono text-xs">{label}</span>
                     <span className="w-5 text-right text-[10px] text-incoming tabular-nums">{fanIn}</span>
@@ -240,7 +279,7 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
             type="button"
             disabled={below === 0}
             onClick={() => scroller.current?.scrollBy({ top: windowHeight })}
-            className={`flex h-full w-full items-center justify-between px-3 text-left text-[10px] text-muted enabled:cursor-pointer enabled:hover:bg-background ${isKept(MORE_HANDLE) ? "" : "opacity-25"} ${isLit(MORE_HANDLE) ? rowLitClass : ""}`}
+            className={`flex h-full w-full items-center justify-between px-3 text-left text-[10px] text-muted enabled:cursor-pointer enabled:hover:bg-background ${rowDimClass(isKept(MORE_HANDLE) && (matchesBelow || isLit(MORE_HANDLE)))} ${isLit(MORE_HANDLE) ? rowLitClass : ""}`}
           >
             <span>{below} more</span>
             {offset > 0 && <span>{offset} above</span>}
@@ -287,7 +326,7 @@ interface MapCanvasProps {
 function Canvas({
   files,
   edges,
-  map: { folding, opened, offsets, selection, hovered, reveal, actions },
+  map: { folding, opened, offsets, selection, hovered, reveal, category, actions },
 }: MapCanvasProps) {
   const boxes = useMemo(() => buildBoxes(files, folding, opened), [files, folding, opened]);
   // Placed from the boxes alone, so scrolling can't move anything or trigger a refit.
@@ -298,6 +337,10 @@ function Canvas({
   );
   const highlight = useMemo(() => (selection ? highlightOf(view, selection) : null), [view, selection]);
   const litEnd = hovered?.kind === "file" ? (view.fileEnds.get(hovered.path) ?? null) : null;
+  const match = useMemo(
+    () => (category ? matchCategory(files, folding, category) : null),
+    [files, folding, category],
+  );
 
   const nodes = useMemo(
     () =>
@@ -338,6 +381,10 @@ function Canvas({
       if (link.internal && !direction) return [];
 
       const colour = direction ? `var(--${direction})` : "var(--edge)";
+      // Stays only if it joins two files of the category. A line with one matching
+      // end would mostly say something about the other, dimmed, file.
+      const inCategory =
+        match === null || link.pairs.some(({ from, to }) => match.files.has(from) && match.files.has(to));
       return [
         {
           id: link.id,
@@ -352,7 +399,7 @@ function Canvas({
           style: {
             stroke: colour,
             strokeWidth: direction ? 1 : 0.6,
-            opacity: highlight && !direction ? 0.1 : 1,
+            opacity: direction || (!highlight && inCategory) ? 1 : 0.1,
           },
         },
       ];
@@ -360,28 +407,30 @@ function Canvas({
     // Later edges paint on top, so what's selected isn't buried under the rest.
     const inFront = (edge: FlowEdge) => (highlight?.links.has(edge.id) ? 1 : 0);
     return drawn.sort((a, b) => inFront(a) - inFront(b));
-  }, [view, highlight]);
+  }, [view, highlight, match]);
 
   return (
     <MapActionsContext value={actions}>
       <LitEndContext value={litEnd}>
-        <ReactFlow<MapNode, FlowEdge>
-          nodes={nodes}
-          edges={flowEdges}
-          nodeTypes={nodeTypes}
-          onPaneClick={actions.clearSelection}
-          minZoom={MIN_ZOOM}
-          maxZoom={MAX_ZOOM}
-          nodesDraggable={false}
-          nodesConnectable={false}
-          nodesFocusable={false}
-          edgesFocusable={false}
-          elementsSelectable={false}
-          zoomOnDoubleClick={false}
-          className="h-full w-full"
-        >
-          <ViewportFit placed={placed} openCount={opened.size} />
-        </ReactFlow>
+        <CategoryMatchContext value={match}>
+          <ReactFlow<MapNode, FlowEdge>
+            nodes={nodes}
+            edges={flowEdges}
+            nodeTypes={nodeTypes}
+            onPaneClick={actions.clearSelection}
+            minZoom={MIN_ZOOM}
+            maxZoom={MAX_ZOOM}
+            nodesDraggable={false}
+            nodesConnectable={false}
+            nodesFocusable={false}
+            edgesFocusable={false}
+            elementsSelectable={false}
+            zoomOnDoubleClick={false}
+            className="h-full w-full"
+          >
+            <ViewportFit placed={placed} openCount={opened.size} />
+          </ReactFlow>
+        </CategoryMatchContext>
       </LitEndContext>
     </MapActionsContext>
   );

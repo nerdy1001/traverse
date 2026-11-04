@@ -19,7 +19,7 @@ export function MapWorkspace({
   const map = useMapState(files, edges);
   return (
     <MapShell
-      rail={<CategoryRail files={files} />}
+      rail={<CategoryRail files={files} map={map} />}
       map={<MapCanvas files={files} edges={edges} map={map} />}
       detail={<DetailPane files={files} edges={edges} facts={facts} map={map} />}
     />

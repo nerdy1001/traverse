@@ -1,8 +1,11 @@
 "use client";
 
 import { type ReactNode, useMemo, useState } from "react";
-import { countByRole, indexNeighbours, summariseRepository } from "@/lib/map/summary";
+import { categoryOf, countByCategory } from "@/lib/map/categories";
 import type { FoldedNode } from "@/lib/map/fold";
+import { walk, type WalkDirection } from "@/lib/map/graph";
+import { findInsights, INSIGHT_SENTENCES } from "@/lib/map/insights";
+import { indexNeighbours, summariseRepository } from "@/lib/map/summary";
 import type { Selection } from "@/lib/map/view";
 import type { Edge, FileNode } from "@/parser/types";
 import type { MapActions, MapState } from "./use-map-state";
@@ -135,27 +138,108 @@ function RepositoryView({
   );
 }
 
+const WALKS: Record<WalkDirection, { label: string; note: string; empty: string }> = {
+  dependents: {
+    label: "Blast radius",
+    note: "What imports this file, up to two levels out.",
+    empty: "Nothing imports this file.",
+  },
+  dependencies: {
+    label: "Dependency chain",
+    note: "What this file imports, up to two levels out.",
+    empty: "This file imports nothing in this repository.",
+  },
+};
+
+function WalkResult({
+  edges,
+  path,
+  direction,
+  isLit,
+  actions,
+}: {
+  edges: readonly Edge[];
+  path: string;
+  direction: WalkDirection;
+  isLit(path: string): boolean;
+  actions: MapActions;
+}) {
+  // Worked out here in the browser from the edge list, so no spinner has a reason to exist.
+  const reached = useMemo(() => walk(edges, path, direction), [edges, path, direction]);
+  const { note, empty } = WALKS[direction];
+  if (reached.length === 0) return <p className="mt-2 px-3 text-muted">{empty}</p>;
+
+  const depths = [...new Set(reached.map(({ depth }) => depth))];
+  return (
+    <>
+      <p className="mt-2 flex justify-between gap-2 px-3 text-muted">
+        <span>{note}</span>
+        <span className="tabular-nums">{reached.length}</span>
+      </p>
+      {depths.map((depth) => {
+        const rows = reached.filter((entry) => entry.depth === depth);
+        return (
+          <div key={depth}>
+            <SectionHeading
+              title={depth === 1 ? "1 level out" : `${depth} levels out`}
+              note={String(rows.length)}
+            />
+            <PathRows rows={rows.map(({ path: row }) => ({ path: row }))} isLit={isLit} actions={actions} />
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
 function FileStructure({
   file,
+  edges,
   dependsOn,
   dependents,
   isLit,
   actions,
 }: {
   file: FileNode;
+  edges: readonly Edge[];
   dependsOn: readonly string[];
   dependents: readonly string[];
   isLit(path: string): boolean;
   actions: MapActions;
 }) {
+  // Dropped with the selection: the pane's scroller is keyed by it, which remounts this.
+  const [walkShown, setWalkShown] = useState<WalkDirection | null>(null);
+  const directions: WalkDirection[] = ["dependents", "dependencies"];
   return (
     <>
       <Facts
         facts={[
-          ["Kind", file.role],
+          ["Kind", categoryOf(file.path)],
           ["Lines", file.lines],
         ]}
       />
+      <div className="mt-3 flex gap-1 px-3">
+        {directions.map((direction) => (
+          <button
+            key={direction}
+            type="button"
+            aria-pressed={walkShown === direction}
+            onClick={() => setWalkShown(walkShown === direction ? null : direction)}
+            className={`h-6 flex-1 cursor-pointer rounded-sm border px-2 hover:bg-background ${walkShown === direction ? "border-accent bg-background" : "border-border"}`}
+          >
+            {WALKS[direction].label}
+          </button>
+        ))}
+      </div>
+      {walkShown && (
+        <WalkResult
+          edges={edges}
+          path={file.path}
+          direction={walkShown}
+          isLit={isLit}
+          actions={actions}
+        />
+      )}
       {/* Counted from the rows below rather than read from elsewhere, so they can't disagree. */}
       <SectionHeading title="Depends on" note={String(dependsOn.length)} />
       <PathRows rows={dependsOn.map((path) => ({ path }))} isLit={isLit} actions={actions} />
@@ -177,10 +261,10 @@ function FolderStructure({ node, held }: { node: FoldedNode; held: readonly File
       />
       <SectionHeading title="Kinds of file" />
       <ul>
-        {countByRole(held).map(([role, count]) => (
-          <li key={role} className="flex h-5.5 items-center gap-2 px-3">
-            <span aria-hidden className="size-2 shrink-0 rounded-[1px] bg-role-generic" />
-            <span className="min-w-0 flex-1 truncate">{role}</span>
+        {countByCategory(held).map(({ name, swatch, count }) => (
+          <li key={name} className="flex h-5.5 items-center gap-2 px-3">
+            <span aria-hidden className={`size-2 shrink-0 rounded-[1px] ${swatch}`} />
+            <span className="min-w-0 flex-1 truncate">{name}</span>
             <span className="text-muted tabular-nums">{count}</span>
           </li>
         ))}
@@ -242,6 +326,122 @@ function Tabbed({
   );
 }
 
+function InsightGroup({
+  title,
+  count,
+  sentence,
+  children,
+}: {
+  title: string;
+  count: number;
+  sentence: string;
+  children: ReactNode;
+}) {
+  return (
+    <section>
+      <SectionHeading title={title} note={String(count)} />
+      <p className="mb-1 px-3 text-muted">{sentence}</p>
+      {children}
+    </section>
+  );
+}
+
+// Below whatever the pane is showing, and shut until asked for: this explains a
+// codebase, so its verdict-like facts are never the first thing on screen. There's
+// no total on the header either, since that would read as a count of problems.
+function InsightsPanel({
+  files,
+  edges,
+  isLit,
+  actions,
+}: {
+  files: readonly FileNode[];
+  edges: readonly Edge[];
+  isLit(path: string): boolean;
+  actions: MapActions;
+}) {
+  const [open, setOpen] = useState(false);
+  const insights = useMemo(() => findInsights(files, edges), [files, edges]);
+  return (
+    <section className={`flex shrink-0 flex-col border-t border-border ${open ? "h-1/2" : ""}`}>
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        className="flex h-7 shrink-0 cursor-pointer items-center justify-between px-3 font-medium hover:bg-background"
+      >
+        <span>Insights</span>
+        <span aria-hidden className="font-normal text-muted">
+          {open ? "−" : "+"}
+        </span>
+      </button>
+      {open && (
+        <div className="min-h-0 flex-1 overflow-y-auto border-t border-border pb-3">
+          <InsightGroup
+            title="Nothing imports"
+            count={insights.nothingImports.length}
+            sentence={INSIGHT_SENTENCES.nothingImports}
+          >
+            <PathRows
+              rows={insights.nothingImports.map(({ path }) => ({ path }))}
+              isLit={isLit}
+              actions={actions}
+            />
+            {insights.reachedAnotherWayCount > 0 && (
+              <p className="mt-1 px-3 text-muted">
+                Not listed: {insights.reachedAnotherWayCount} pages, routes, config, tests and other files
+                reached without an import.
+              </p>
+            )}
+          </InsightGroup>
+          <InsightGroup
+            title="Unusually imported"
+            count={insights.unusuallyImported.length}
+            sentence={INSIGHT_SENTENCES.unusuallyImported}
+          >
+            <PathRows
+              rows={insights.unusuallyImported.map(({ path, fanIn }) => ({ path, count: fanIn }))}
+              countClass="text-incoming"
+              isLit={isLit}
+              actions={actions}
+            />
+          </InsightGroup>
+          <InsightGroup
+            title="Import cycles"
+            count={insights.cycles.length}
+            sentence={INSIGHT_SENTENCES.cycles}
+          >
+            {insights.cycles.map(({ loop, groupSize }) => (
+              <div key={loop[0]} className="mt-1">
+                {/* The whole group can't be read through, so one real loop stands in for it. */}
+                {groupSize > loop.length && (
+                  <p className="px-3 text-muted tabular-nums">
+                    One loop among {groupSize} files that all reach each other.
+                  </p>
+                )}
+                <PathRows
+                  rows={loop.map((path, step) => ({ path, count: step + 1 }))}
+                  countClass="text-muted"
+                  isLit={isLit}
+                  actions={actions}
+                />
+              </div>
+            ))}
+          </InsightGroup>
+          <InsightGroup title="Long files" count={insights.long.length} sentence={INSIGHT_SENTENCES.long}>
+            <PathRows
+              rows={insights.long.map(({ path, lines }) => ({ path, count: lines }))}
+              countClass="text-muted"
+              isLit={isLit}
+              actions={actions}
+            />
+          </InsightGroup>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function selectionKeyOf(selection: Selection): string {
   return selection.kind === "file" ? `file:${selection.path}` : `folder:${selection.directory}`;
 }
@@ -273,39 +473,50 @@ export function DetailPane({
   const isLit = (path: string) =>
     (hovered?.kind === "file" && hovered.path === path) || (hoveredFolderFiles?.has(path) ?? false);
 
-  if (selection === null) {
-    return <RepositoryView files={files} edges={edges} facts={facts} isLit={isLit} actions={actions} />;
-  }
+  const selected = () => {
+    if (selection === null) {
+      return <RepositoryView files={files} edges={edges} facts={facts} isLit={isLit} actions={actions} />;
+    }
 
-  const shared = { tab, onTab: setTab, selectionKey: selectionKeyOf(selection) };
+    const shared = { tab, onTab: setTab, selectionKey: selectionKeyOf(selection) };
 
-  if (selection.kind === "file") {
-    const file = fileByPath.get(selection.path);
-    const links = neighbours.get(selection.path);
-    if (!file || !links) throw new Error(`Selected file ${selection.path} is not in the file list`);
+    if (selection.kind === "file") {
+      const file = fileByPath.get(selection.path);
+      const links = neighbours.get(selection.path);
+      if (!file || !links) throw new Error(`Selected file ${selection.path} is not in the file list`);
+      return (
+        <Tabbed title={file.path} isTitleLit={isLit(file.path)} {...shared}>
+          <FileStructure
+            file={file}
+            edges={edges}
+            dependsOn={links.dependsOn}
+            dependents={links.dependents}
+            isLit={isLit}
+            actions={actions}
+          />
+        </Tabbed>
+      );
+    }
+
+    const node = folding.nodes.find(({ directory }) => directory === selection.directory);
+    if (!node) throw new Error(`Selected folder ${selection.directory} is not on the map`);
+    const held = node.files.flatMap((path) => fileByPath.get(path) ?? []);
     return (
-      <Tabbed title={file.path} isTitleLit={isLit(file.path)} {...shared}>
-        <FileStructure
-          file={file}
-          dependsOn={links.dependsOn}
-          dependents={links.dependents}
-          isLit={isLit}
-          actions={actions}
-        />
+      <Tabbed
+        title={node.directory}
+        isTitleLit={hovered?.kind === "folder" && hovered.directory === node.directory}
+        {...shared}
+      >
+        <FolderStructure node={node} held={held} />
       </Tabbed>
     );
-  }
+  };
 
-  const node = folding.nodes.find(({ directory }) => directory === selection.directory);
-  if (!node) throw new Error(`Selected folder ${selection.directory} is not on the map`);
-  const held = node.files.flatMap((path) => fileByPath.get(path) ?? []);
   return (
-    <Tabbed
-      title={node.directory}
-      isTitleLit={hovered?.kind === "folder" && hovered.directory === node.directory}
-      {...shared}
-    >
-      <FolderStructure node={node} held={held} />
-    </Tabbed>
+    <div className="flex h-full flex-col">
+      <div className="min-h-0 flex-1">{selected()}</div>
+      {/* Stays mounted across selections: clicking a row to check it keeps the list open. */}
+      <InsightsPanel files={files} edges={edges} isLit={isLit} actions={actions} />
+    </div>
   );
 }

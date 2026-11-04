@@ -1,15 +1,28 @@
-import { countByRole } from "@/lib/map/summary";
+import { countByCategory } from "@/lib/map/categories";
 import type { FileNode } from "@/parser/types";
+import type { MapState } from "./use-map-state";
 
-export function CategoryRail({ files }: { files: readonly FileNode[] }) {
+export function CategoryRail({
+  files,
+  map: { category, actions },
+}: {
+  files: readonly FileNode[];
+  map: MapState;
+}) {
   return (
     <ul className="py-2">
-      {countByRole(files).map(([role, count]) => (
-        <li key={role} className="flex h-6 items-center gap-2 px-3">
-          {/* One colour until adapters give files real roles: the swatch says "no kind known". */}
-          <span aria-hidden className="size-2 shrink-0 rounded-[1px] bg-role-generic" />
-          <span className="min-w-0 flex-1 truncate">{role}</span>
-          <span className="text-muted tabular-nums">{count}</span>
+      {countByCategory(files).map(({ name, swatch, count }) => (
+        <li key={name}>
+          <button
+            type="button"
+            aria-pressed={category === name}
+            onClick={() => actions.toggleCategory(name)}
+            className={`flex h-6 w-full cursor-pointer items-center gap-2 px-3 text-left hover:bg-background ${category === name ? "bg-background outline outline-accent -outline-offset-1" : ""}`}
+          >
+            <span aria-hidden className={`size-2 shrink-0 rounded-[1px] ${swatch}`} />
+            <span className="min-w-0 flex-1 truncate">{name}</span>
+            <span className="text-muted tabular-nums">{count}</span>
+          </button>
         </li>
       ))}
     </ul>
