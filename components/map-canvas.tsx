@@ -233,7 +233,7 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
       </div>
 
       {/* A real scroller over a window of fixed slots. The browser handles wheel,
-          trackpad, scrollbar and keyboard, while the slots stay pinned in place so
+          trackpad and keyboard, while the slots stay pinned in place so
           edges always have a row to land on. nowheel and nopan stop the canvas
           from zooming or panning instead. */}
       <div
@@ -241,7 +241,7 @@ function PanelNodeView({ data: { box, offset, highlight, reveal } }: NodeProps<P
         onScroll={(event) =>
           scrollTo(box.directory, Math.round(event.currentTarget.scrollTop / ROW_HEIGHT))
         }
-        className={`scrollbar-thin ${overflows ? "nowheel nopan overflow-y-auto" : "overflow-hidden"}`}
+        className={overflows ? "nowheel nopan overflow-y-auto" : "overflow-hidden"}
         style={{ height: windowHeight }}
       >
         <div style={{ height: box.rows.length * ROW_HEIGHT }}>
@@ -297,22 +297,39 @@ const nodeTypes: NodeTypes = { folder: FolderNodeView, panel: PanelNodeView };
  * Opening may only zoom out: fitting to a bigger graph can otherwise zoom in and
  * lose the rest of the map. Reads bounds from the new layout it's handed, not from
  * React Flow's nodes, which still hold the state before the change at this point.
+ *
+ * A panel opening also refits, or the file just clicked could end up underneath it.
+ * That's only known once the canvas has actually changed width, which comes after the
+ * panel state does, so the two are waited on together. Resizing the window doesn't
+ * refit, so it can't throw away where someone had panned to.
  */
-function ViewportFit({ placed, openCount }: { placed: PlacedView; openCount: number }) {
+function ViewportFit({ placed, openCount, panels }: { placed: PlacedView; openCount: number; panels: string }) {
   const { getZoom, setViewport, viewportInitialized } = useReactFlow();
   const width = useStore((state) => state.width);
   const height = useStore((state) => state.height);
-  const fitted = useRef<{ placed: PlacedView; openCount: number } | null>(null);
+  const fitted = useRef<{ placed: PlacedView; openCount: number; width: number; panels: string } | null>(null);
 
   useEffect(() => {
     if (!viewportInitialized || width === 0 || height === 0) return;
-    if (fitted.current?.placed === placed) return;
 
-    const opening = fitted.current !== null && openCount > fitted.current.openCount;
-    const ceiling = opening ? Math.min(getZoom(), MAX_FIT_ZOOM) : MAX_FIT_ZOOM;
-    fitted.current = { placed, openCount };
+    const last = fitted.current;
+    const resizedByPanels = last !== null && last.panels !== panels && last.width !== width;
+    if (last?.placed === placed && !resizedByPanels) {
+      last.width = width;
+      return;
+    }
+
+    const opening = last !== null && openCount > last.openCount;
+    const ceiling = opening || resizedByPanels ? Math.min(getZoom(), MAX_FIT_ZOOM) : MAX_FIT_ZOOM;
+    fitted.current = {
+      placed,
+      openCount,
+      width,
+      // Left as it was if the width hasn't moved yet, so the resize still gets its refit.
+      panels: last === null || resizedByPanels ? panels : last.panels,
+    };
     void setViewport(getViewportForBounds(placed.bounds, width, height, MIN_ZOOM, ceiling, FIT_PADDING));
-  }, [getZoom, height, openCount, placed, setViewport, viewportInitialized, width]);
+  }, [getZoom, height, openCount, panels, placed, setViewport, viewportInitialized, width]);
 
   return null;
 }
@@ -326,7 +343,7 @@ interface MapCanvasProps {
 function Canvas({
   files,
   edges,
-  map: { folding, opened, offsets, selection, hovered, reveal, category, actions },
+  map: { folding, opened, offsets, selection, hovered, reveal, category, railOpen, detailOpen, actions },
 }: MapCanvasProps) {
   const boxes = useMemo(() => buildBoxes(files, folding, opened), [files, folding, opened]);
   // Placed from the boxes alone, so scrolling can't move anything or trigger a refit.
@@ -428,7 +445,7 @@ function Canvas({
             zoomOnDoubleClick={false}
             className="h-full w-full"
           >
-            <ViewportFit placed={placed} openCount={opened.size} />
+            <ViewportFit placed={placed} openCount={opened.size} panels={`${railOpen}:${detailOpen}`} />
           </ReactFlow>
         </CategoryMatchContext>
       </LitEndContext>

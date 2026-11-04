@@ -50,7 +50,7 @@ function PathRows({ rows, countClass, isLit, actions }: PathRowsProps) {
             onClick={() => actions.revealFile(path)}
             onPointerEnter={() => actions.hover({ kind: "file", path })}
             onPointerLeave={() => actions.hover(null)}
-            className={`flex h-5.5 w-full cursor-pointer items-center gap-2 px-3 text-left hover:bg-background ${isLit(path) ? litClass : ""}`}
+            className={`flex h-7 w-full cursor-pointer items-center gap-2 px-4 text-left hover:bg-background ${isLit(path) ? litClass : ""}`}
           >
             <FilePath path={path} />
             {count !== undefined && <span className={`text-[10px] tabular-nums ${countClass}`}>{count}</span>}
@@ -63,7 +63,7 @@ function PathRows({ rows, countClass, isLit, actions }: PathRowsProps) {
 
 function SectionHeading({ title, note }: { title: string; note?: string }) {
   return (
-    <h3 className="mt-3 mb-1 flex items-baseline justify-between gap-2 px-3 font-medium">
+    <h3 className="mt-4 mb-1.5 flex items-baseline justify-between gap-2 border-t border-border px-4 pt-3 font-medium">
       <span>{title}</span>
       {note && <span className="font-normal text-muted tabular-nums">{note}</span>}
     </h3>
@@ -74,7 +74,7 @@ type Fact = [label: string, value: string | number];
 
 function Facts({ facts }: { facts: readonly Fact[] }) {
   return (
-    <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 px-3">
+    <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 px-4">
       {facts.map(([label, value]) => (
         <div key={label} className="contents">
           <dt className="text-muted">{label}</dt>
@@ -102,8 +102,8 @@ function RepositoryView({
   // Only shown when true, and always counted rather than quietly dropped.
   const skipped: Fact[] = facts.skippedCount > 0 ? [["Files skipped", facts.skippedCount]] : [];
   return (
-    <div className="h-full overflow-y-auto pb-3">
-      <h2 className="truncate px-3 pt-3 pb-2 font-mono font-medium">{facts.name}</h2>
+    <div className="h-full overflow-y-auto pb-4">
+      <h2 className="truncate px-4 pt-4 pb-3 font-mono font-medium">{facts.name}</h2>
       <Facts
         facts={[
           ["Framework", facts.framework === "none" ? "none detected" : facts.framework],
@@ -127,7 +127,7 @@ function RepositoryView({
         actions={actions}
       />
       <SectionHeading title="Nothing imports these" note={String(summary.nothingImports.length)} />
-      <p className="mb-1 px-3 text-muted">Where reading starts. Ranked by how much each one imports.</p>
+      <p className="mb-2 px-4 text-muted">Where reading starts. Ranked by how much each one imports.</p>
       <PathRows
         rows={summary.nothingImports.map(({ path, fanOut }) => ({ path, count: fanOut }))}
         countClass="text-outgoing"
@@ -167,12 +167,12 @@ function WalkResult({
   // Worked out here in the browser from the edge list, so no spinner has a reason to exist.
   const reached = useMemo(() => walk(edges, path, direction), [edges, path, direction]);
   const { note, empty } = WALKS[direction];
-  if (reached.length === 0) return <p className="mt-2 px-3 text-muted">{empty}</p>;
+  if (reached.length === 0) return <p className="mt-3 px-4 text-muted">{empty}</p>;
 
   const depths = [...new Set(reached.map(({ depth }) => depth))];
   return (
     <>
-      <p className="mt-2 flex justify-between gap-2 px-3 text-muted">
+      <p className="mt-3 flex justify-between gap-2 px-4 text-muted">
         <span>{note}</span>
         <span className="tabular-nums">{reached.length}</span>
       </p>
@@ -218,14 +218,14 @@ function FileStructure({
           ["Lines", file.lines],
         ]}
       />
-      <div className="mt-3 flex gap-1 px-3">
+      <div className="mt-4 flex gap-2 px-4">
         {directions.map((direction) => (
           <button
             key={direction}
             type="button"
             aria-pressed={walkShown === direction}
             onClick={() => setWalkShown(walkShown === direction ? null : direction)}
-            className={`h-6 flex-1 cursor-pointer rounded-sm border px-2 hover:bg-background ${walkShown === direction ? "border-accent bg-background" : "border-border"}`}
+            className={`h-8 flex-1 cursor-pointer rounded-sm border px-2 hover:bg-background ${walkShown === direction ? "border-accent bg-background" : "border-border"}`}
           >
             {WALKS[direction].label}
           </button>
@@ -262,7 +262,7 @@ function FolderStructure({ node, held }: { node: FoldedNode; held: readonly File
       <SectionHeading title="Kinds of file" />
       <ul>
         {countByCategory(held).map(({ name, swatch, count }) => (
-          <li key={name} className="flex h-5.5 items-center gap-2 px-3">
+          <li key={name} className="flex h-7 items-center gap-2 px-4">
             <span aria-hidden className={`size-2 shrink-0 rounded-[1px] ${swatch}`} />
             <span className="min-w-0 flex-1 truncate">{name}</span>
             <span className="text-muted tabular-nums">{count}</span>
@@ -296,11 +296,11 @@ function Tabbed({
     <div className="flex h-full flex-col">
       <h2
         title={title}
-        className={`flex min-h-9 shrink-0 items-center px-3 py-2 font-medium ${isTitleLit ? litClass : ""}`}
+        className={`flex min-h-11 shrink-0 items-center px-4 py-3 font-medium ${isTitleLit ? litClass : ""}`}
       >
         <FilePath path={title} />
       </h2>
-      <div role="tablist" className="flex shrink-0 border-b border-border px-1">
+      <div role="tablist" className="flex shrink-0 border-b border-border px-2">
         {tabs.map(([id, label]) => (
           <button
             key={id}
@@ -308,18 +308,18 @@ function Tabbed({
             role="tab"
             aria-selected={tab === id}
             onClick={() => onTab(id)}
-            className={`-mb-px cursor-pointer border-b px-2 py-1 ${tab === id ? "border-accent" : "border-transparent text-muted hover:text-foreground"}`}
+            className={`-mb-px cursor-pointer border-b px-2 py-2 ${tab === id ? "border-accent" : "border-transparent text-muted hover:text-foreground"}`}
           >
             {label}
           </button>
         ))}
       </div>
       {/* Keyed by the selection so a new one starts at the top of its lists. */}
-      <div key={selectionKey} role="tabpanel" className="min-h-0 flex-1 overflow-y-auto py-3">
+      <div key={selectionKey} role="tabpanel" className="min-h-0 flex-1 overflow-y-auto py-4">
         {tab === "structure" ? (
           children
         ) : (
-          <p className="px-3 text-muted">No explanation yet.</p>
+          <p className="px-4 text-muted">No explanation yet.</p>
         )}
       </div>
     </div>
@@ -340,7 +340,7 @@ function InsightGroup({
   return (
     <section>
       <SectionHeading title={title} note={String(count)} />
-      <p className="mb-1 px-3 text-muted">{sentence}</p>
+      <p className="mb-2 px-4 text-muted">{sentence}</p>
       {children}
     </section>
   );
@@ -368,7 +368,7 @@ function InsightsPanel({
         type="button"
         aria-expanded={open}
         onClick={() => setOpen(!open)}
-        className="flex h-7 shrink-0 cursor-pointer items-center justify-between px-3 font-medium hover:bg-background"
+        className="flex h-9 shrink-0 cursor-pointer items-center justify-between px-4 font-medium hover:bg-background"
       >
         <span>Insights</span>
         <span aria-hidden className="font-normal text-muted">
@@ -376,7 +376,8 @@ function InsightsPanel({
         </span>
       </button>
       {open && (
-        <div className="min-h-0 flex-1 overflow-y-auto border-t border-border pb-3">
+        // The first section's own line sits directly under the header, so it has no gap.
+        <div className="min-h-0 flex-1 overflow-y-auto pb-4 [&>section:first-child>h3]:mt-0">
           <InsightGroup
             title="Nothing imports"
             count={insights.nothingImports.length}
@@ -388,7 +389,7 @@ function InsightsPanel({
               actions={actions}
             />
             {insights.reachedAnotherWayCount > 0 && (
-              <p className="mt-1 px-3 text-muted">
+              <p className="mt-2 px-4 text-muted">
                 Not listed: {insights.reachedAnotherWayCount} pages, routes, config, tests and other files
                 reached without an import.
               </p>
@@ -412,10 +413,10 @@ function InsightsPanel({
             sentence={INSIGHT_SENTENCES.cycles}
           >
             {insights.cycles.map(({ loop, groupSize }) => (
-              <div key={loop[0]} className="mt-1">
+              <div key={loop[0]} className="mt-2">
                 {/* The whole group can't be read through, so one real loop stands in for it. */}
                 {groupSize > loop.length && (
-                  <p className="px-3 text-muted tabular-nums">
+                  <p className="px-4 text-muted tabular-nums">
                     One loop among {groupSize} files that all reach each other.
                   </p>
                 )}

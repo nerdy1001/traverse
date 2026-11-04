@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "parse": "node parser/cli.ts"
+    "parse": "node parser/cli.ts",
+    "analyse": "node --env-file=.env.local pipeline/cli.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.9.23",
@@ -17,6 +18,7 @@
     "next": "16.4.3",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "tar": "^7.5.22",
     "ts-morph": "^28.0.0"
   },
   "devDependencies": {

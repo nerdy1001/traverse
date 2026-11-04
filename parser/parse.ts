@@ -17,7 +17,7 @@ import type {
   SkippedFile,
   UnresolvedReason,
 } from "./types.ts";
-import { walkRepository } from "./walk.ts";
+import { walkRepository, type WalkResult } from "./walk.ts";
 
 // Past this a file is almost always generated or bundled, and it would dominate
 // parsing time. It is reported as skipped, so imports of it are reported too.
@@ -54,13 +54,26 @@ function byPath<T extends { path: string }>(a: T, b: T): number {
   return a.path < b.path ? -1 : a.path > b.path ? 1 : 0;
 }
 
-/** Takes a directory, returns data. How the repository got onto disk isn't its concern. */
-export function parseRepository(directory: string): ParseResult {
+/** Which files a repository has and which of them are worth parsing. */
+export interface Selection {
+  root: string;
+  walk: WalkResult;
+}
+
+export function selectFiles(directory: string): Selection {
   if (!statSync(directory, { throwIfNoEntry: false })?.isDirectory()) {
     throw new Error(`Not a directory: ${directory}`);
   }
   const root = realpathSync.native(directory).replaceAll("\\", "/");
-  const walk = walkRepository(root);
+  return { root, walk: walkRepository(root) };
+}
+
+/** Takes a directory, returns data. How the repository got onto disk isn't its concern. */
+export function parseRepository(directory: string): ParseResult {
+  return parseSelection(selectFiles(directory));
+}
+
+export function parseSelection({ root, walk }: Selection): ParseResult {
   const skipped: SkippedFile[] = [...walk.skipped];
 
   const project = new Project({

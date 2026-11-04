@@ -15,7 +15,6 @@ const BOX_PADDING = 24;
 /** Holds the count line. The same for every node, so it never implies importance. */
 const MIN_WIDTH = 124;
 const ROW_NUMBERS_WIDTH = 64;
-const SCROLLBAR_WIDTH = 12;
 
 const MIN_FOLDER_HEIGHT = 40;
 const MAX_FOLDER_HEIGHT = 96;
@@ -229,7 +228,7 @@ export function buildBoxes(
 
     const rows = held.map(({ path, fanIn, fanOut }) => ({ path, label: labelFor(path), fanIn, fanOut }));
     const overflows = rows.length > VISIBLE_ROWS;
-    const rowsWidth = ROW_NUMBERS_WIDTH + (overflows ? SCROLLBAR_WIDTH : 0);
+    const rowsWidth = ROW_NUMBERS_WIDTH;
     return {
       ...shared,
       kind: "panel",

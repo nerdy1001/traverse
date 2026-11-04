@@ -22,6 +22,10 @@ export function MapWorkspace({
       rail={<CategoryRail files={files} map={map} />}
       map={<MapCanvas files={files} edges={edges} map={map} />}
       detail={<DetailPane files={files} edges={edges} facts={facts} map={map} />}
+      railOpen={map.railOpen}
+      detailOpen={map.detailOpen}
+      onToggleRail={map.actions.toggleRail}
+      onToggleDetail={map.actions.toggleDetail}
     />
   );
 }

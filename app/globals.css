@@ -102,6 +102,16 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Every scroller still scrolls, by wheel, trackpad, touch and keyboard. Only the bar goes.
+   Two rules because Firefox only reads the first and older Safari only the second. */
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 /* React Flow's credit stays, in the app's own greys rather than its light theme. */
 .react-flow__attribution {
   background: transparent;

@@ -7,7 +7,7 @@ export function InviteForm() {
   const [state, action, pending] = useActionState(inviteMember, null);
 
   return (
-    <form action={action} className="flex items-center gap-1.5">
+    <form action={action} className="flex items-center gap-2">
       {state && "error" in state && <span role="alert">{state.error}</span>}
       {state && "sent" in state && <span className="text-muted">Invited {state.sent}</span>}
       <input
@@ -16,12 +16,12 @@ export function InviteForm() {
         required
         placeholder="email to invite"
         aria-label="Email to invite"
-        className="w-40 rounded border border-border bg-background px-2 py-1 placeholder:text-muted"
+        className="h-9 w-44 rounded border border-border bg-background px-3 placeholder:text-muted"
       />
       <button
         type="submit"
         disabled={pending}
-        className="cursor-pointer rounded border border-border px-2 py-1 disabled:text-muted"
+        className="h-9 cursor-pointer rounded border border-border px-3 disabled:text-muted"
       >
         Invite
       </button>

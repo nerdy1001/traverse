@@ -48,19 +48,22 @@ export interface Edge {
   kinds: ImportKind[];
 }
 
-export interface SkippedFile {
+// The coverage report is stored as JSON. These are type aliases rather than
+// interfaces because only an alias is checked against the JSON column type, which
+// proves at compile time that the report survives the round trip.
+export type SkippedFile = {
   path: string;
   reason: SkipReason;
   detail: string;
-}
+};
 
 /** A directory the walk did not enter, so its files are not counted as found. */
-export interface ExcludedDirectory {
+export type ExcludedDirectory = {
   path: string;
   reason: string;
-}
+};
 
-export interface ImportCounts {
+export type ImportCounts = {
   /** Always resolved + external + excluded + unresolved. */
   seen: number;
   resolved: number;
@@ -69,23 +72,23 @@ export interface ImportCounts {
   unresolved: number;
   excludedBy: Record<ExcludedReason, number>;
   unresolvedBy: Record<UnresolvedReason, number>;
-}
+};
 
-export interface ImportExample {
+export type ImportExample = {
   from: string;
   line: number;
   kind: ImportKind;
   specifier: string;
   reason: UnresolvedReason;
   detail: string;
-}
+};
 
-export interface ConfigProblem {
+export type ConfigProblem = {
   path: string;
   message: string;
-}
+};
 
-export interface Coverage {
+export type Coverage = {
   /** Always found = parsed + skipped. */
   files: {
     found: number;
@@ -101,7 +104,7 @@ export interface Coverage {
   unresolvedExamples: Record<UnresolvedReason, ImportExample[]>;
   /** A broken tsconfig or package.json loses aliases, so it has to be visible. */
   configProblems: ConfigProblem[];
-}
+};
 
 export interface ParseResult {
   schemaVersion: 1;
