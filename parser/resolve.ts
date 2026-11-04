@@ -464,5 +464,5 @@ export function createResolver(input: ResolverInput) {
     return unresolvedBare(specifier, fromDirectory, configs);
   };
 
-  return { resolve, problems };
+  return { resolve, problems, packages };
 }

@@ -4,14 +4,14 @@ import type { ParseResult } from "../../parser/types.ts";
 export const parseResult: ParseResult = {
   "schemaVersion": 1,
   "repository": {
-    "name": "excalidraw"
+    "name": "excalidraw_excalidraw"
   },
-  "adapter": "none",
+  "adapter": "react",
   "files": [
     {
       "path": ".lintstagedrc.js",
       "folder": ".",
-      "role": "generic",
+      "role": "config",
       "lines": 14,
       "hash": "529f13f34b64f697ede3c60611ed3b4312eeb65bd97b1d451d03b40b5cde86d2",
       "fanIn": 0,
@@ -20,7 +20,7 @@ export const parseResult: ParseResult = {
     {
       "path": "dev-docs/babel.config.js",
       "folder": "dev-docs",
-      "role": "generic",
+      "role": "config",
       "lines": 3,
       "hash": "543f91b48879d760be7a7c722f9fa482e471d6c197418ce6f77d1c058e28914d",
       "fanIn": 0,
@@ -29,7 +29,7 @@ export const parseResult: ParseResult = {
     {
       "path": "dev-docs/docusaurus.config.js",
       "folder": "dev-docs",
-      "role": "generic",
+      "role": "config",
       "lines": 178,
       "hash": "9b55059ee4e201e33ec59468a7d55cd6cada7ad594aa6ef382b94f08aef19d34",
       "fanIn": 0,
@@ -47,7 +47,7 @@ export const parseResult: ParseResult = {
     {
       "path": "dev-docs/src/components/Highlight.js",
       "folder": "dev-docs/src/components",
-      "role": "generic",
+      "role": "component",
       "lines": 15,
       "hash": "abb7bfb8fffab4234da8f38452c926914a16a3d245f707599413e3da066e1da3",
       "fanIn": 0,
@@ -56,7 +56,7 @@ export const parseResult: ParseResult = {
     {
       "path": "dev-docs/src/components/Homepage/index.js",
       "folder": "dev-docs/src/components/Homepage",
-      "role": "generic",
+      "role": "component",
       "lines": 63,
       "hash": "9b362c11b3d70039af468262ac5ae64aefba3b3ce497cd6f90eaf108cdebab67",
       "fanIn": 0,
@@ -65,7 +65,7 @@ export const parseResult: ParseResult = {
     {
       "path": "dev-docs/src/components/Homepage/index.tsx",
       "folder": "dev-docs/src/components/Homepage",
-      "role": "generic",
+      "role": "component",
       "lines": 71,
       "hash": "4de05f5986dbe870fc587ef5406d3fee424b0ce1b66d94dcb550ef3d975b1e2d",
       "fanIn": 0,
@@ -83,7 +83,7 @@ export const parseResult: ParseResult = {
     {
       "path": "dev-docs/src/pages/index.tsx",
       "folder": "dev-docs/src/pages",
-      "role": "generic",
+      "role": "page",
       "lines": 36,
       "hash": "d36efd879e72ec3b0af71ca44c7007437b17c1af087ca9c5f588a91e361d2d96",
       "fanIn": 0,
@@ -110,7 +110,7 @@ export const parseResult: ParseResult = {
     {
       "path": "examples/with-nextjs/next.config.js",
       "folder": "examples/with-nextjs",
-      "role": "generic",
+      "role": "config",
       "lines": 12,
       "hash": "9e2516116ce70e858596c53a42965d6d9ac5ff6b84c42ffb1a89c7771ce71894",
       "fanIn": 0,
@@ -218,7 +218,7 @@ export const parseResult: ParseResult = {
     {
       "path": "examples/with-script-in-browser/vite.config.mts",
       "folder": "examples/with-script-in-browser",
-      "role": "generic",
+      "role": "config",
       "lines": 19,
       "hash": "e3439fad99e3c65326f7e63fdde1368050a061c34b7bd94c441fec032ce7ec23",
       "fanIn": 0,
@@ -227,7 +227,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/App.tsx",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "component",
       "lines": 1331,
       "hash": "994b9c4386738b31bf9ba4f157e1b87dda8e49523bd95c471bab9a493b441039",
       "fanIn": 2,
@@ -236,7 +236,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/CustomStats.tsx",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "component",
       "lines": 91,
       "hash": "314ed62ea3f867417a60034f4f88f08dc34e1f5b5fbd56fe6a502e71ab7bbaf6",
       "fanIn": 1,
@@ -245,7 +245,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/ExcalidrawPlusIframeExport.tsx",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "component",
       "lines": 224,
       "hash": "9c02e40c103002696aa3f7a7f3e127ab60e0fd0d724f2f19a016784696fa1038",
       "fanIn": 1,
@@ -263,7 +263,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/app-language/LanguageList.tsx",
       "folder": "excalidraw-app/app-language",
-      "role": "generic",
+      "role": "component",
       "lines": 27,
       "hash": "2bae2dc5f212158a79edd1e593ce4a95766b31f8cef4c01891f0f98cad5304a4",
       "fanIn": 2,
@@ -308,7 +308,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/collab/Collab.tsx",
       "folder": "excalidraw-app/collab",
-      "role": "generic",
+      "role": "component",
       "lines": 1106,
       "hash": "4c309a23c2490e9c0ce16d67cf5e605c8a49637fbb645d0f40d026883b68f99f",
       "fanIn": 3,
@@ -317,7 +317,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/collab/CollabError.tsx",
       "folder": "excalidraw-app/collab",
-      "role": "generic",
+      "role": "component",
       "lines": 55,
       "hash": "811e4d233b78f012ba65866ed62cf6097144357d16b794520ea5c24e0671380a",
       "fanIn": 2,
@@ -326,7 +326,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/collab/Portal.tsx",
       "folder": "excalidraw-app/collab",
-      "role": "generic",
+      "role": "component",
       "lines": 257,
       "hash": "8e954a48319fdedd9d82604a4c642a424b33e49713e30721feaa5e95b4f57fc2",
       "fanIn": 2,
@@ -335,7 +335,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/AI.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 186,
       "hash": "8c72d6eed09c97eaddb4263ef58ae246a249f31146640b7641006c27df68f975",
       "fanIn": 1,
@@ -344,7 +344,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/AppFooter.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 26,
       "hash": "8af9c68c75de399dd3129a3331e61f7f65856e1eb5e3afc97126d5526cfc637e",
       "fanIn": 1,
@@ -353,7 +353,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/AppMainMenu.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 89,
       "hash": "300686fdcbfa968153f38fb35e205abd0fb61f3cc248c69ce91cbb3b21d5935e",
       "fanIn": 1,
@@ -362,7 +362,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/AppSidebar.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 131,
       "hash": "e2948e68d48d4e7853698b1a31eaf7c2da973b7b129290e5e7c3fc6ec59b8b97",
       "fanIn": 1,
@@ -371,7 +371,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/AppWelcomeScreen.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 82,
       "hash": "c3019f266bd3f93b36562dc9e04e3e0d26b4254459660a3b05a57649455d86d6",
       "fanIn": 1,
@@ -380,7 +380,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/DebugCanvas.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 566,
       "hash": "b0e7c0c3f4e128e5cfa94aefaec1d07d0ae42245c0ab6891404e6fca44fd3c41",
       "fanIn": 3,
@@ -389,7 +389,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/EncryptedIcon.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 21,
       "hash": "dc6e7d240f4c9426482e59ddcf2d34eb91766c8f3684f09d4556b74bd60beab6",
       "fanIn": 1,
@@ -398,7 +398,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/ExcalidrawPlusPromoBanner.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 36,
       "hash": "29d84aebe4e0d5671d56b69aa2dd522d886a65ebdafed9bd611a08afdd0d0288",
       "fanIn": 1,
@@ -407,7 +407,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/ExportToExcalidrawPlus.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 131,
       "hash": "6eba2300c418edebcc244e5750305d883b0ee2c648d931cccffa9faa4c327fbd",
       "fanIn": 1,
@@ -416,7 +416,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/components/TopErrorBoundary.tsx",
       "folder": "excalidraw-app/components",
-      "role": "generic",
+      "role": "component",
       "lines": 146,
       "hash": "6e8696189449799e34388aebe206417774d107523dc3bf45a211ecf767ce6a36",
       "fanIn": 1,
@@ -533,7 +533,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/global.d.ts",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "declaration",
       "lines": 6,
       "hash": "341ca8622896b6c256caa69ae3ef3da7c0001d6db2d2db47d23499df1391f764",
       "fanIn": 0,
@@ -542,7 +542,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/index.tsx",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "component",
       "lines": 20,
       "hash": "5f571de93f579c07ae38445a99835ca5c9b8128bac223d7f3036ddc1fac91d14",
       "fanIn": 0,
@@ -560,7 +560,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/share/QRCode.tsx",
       "folder": "excalidraw-app/share",
-      "role": "generic",
+      "role": "component",
       "lines": 56,
       "hash": "7f5f9a4bd271360d2e36d04b489c68d5e054b02b6f96f0f74c2b5f226143f366",
       "fanIn": 1,
@@ -569,7 +569,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/share/ShareDialog.tsx",
       "folder": "excalidraw-app/share",
-      "role": "generic",
+      "role": "component",
       "lines": 293,
       "hash": "9c2ed14f2bc3974005df034f27512a87451dfe94dcdf82fb3713f657885c7517",
       "fanIn": 1,
@@ -587,7 +587,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/tests/LanguageList.test.tsx",
       "folder": "excalidraw-app/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 59,
       "hash": "b59b3d064810a74dc0c736e7a3b393b672b5ff4d351e93a4a88363dcd5a857ed",
       "fanIn": 0,
@@ -596,7 +596,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/tests/MobileMenu.test.tsx",
       "folder": "excalidraw-app/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 39,
       "hash": "ffed4f66e777ebf305cedd05af79d0f74da5ceffdecd2049781e44664db9c2a6",
       "fanIn": 0,
@@ -605,7 +605,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/tests/collab.test.tsx",
       "folder": "excalidraw-app/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 252,
       "hash": "6f63de466dbfd6a0bd0ffa7b35bf3a09dfb359b9fa63b2b9dfa16cbb14c1888d",
       "fanIn": 0,
@@ -614,7 +614,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/tests/firebase.test.ts",
       "folder": "excalidraw-app/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 22,
       "hash": "c403f2179f8520fb0b00f41844bd9d60e91e98d8becc511637167cf5da2e49a0",
       "fanIn": 0,
@@ -623,7 +623,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/useHandleAppTheme.ts",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "hook",
       "lines": 51,
       "hash": "80f569258cb9c8931f8bcd728b253b76d4391bee131939c7c88ca181844f9f5f",
       "fanIn": 1,
@@ -632,7 +632,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/vite-env.d.ts",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "declaration",
       "lines": 49,
       "hash": "8ccc1e340ac9df8ff15d442d342b768a60d11de59cf33af26646a18949f2ad0b",
       "fanIn": 0,
@@ -641,7 +641,7 @@ export const parseResult: ParseResult = {
     {
       "path": "excalidraw-app/vite.config.mts",
       "folder": "excalidraw-app",
-      "role": "generic",
+      "role": "config",
       "lines": 493,
       "hash": "58e5af28af49f167c7c4bc177e514ac28bed9faee72f9d79e56677e5ae19f49c",
       "fanIn": 1,
@@ -659,7 +659,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/global.d.ts",
       "folder": "packages/common",
-      "role": "generic",
+      "role": "declaration",
       "lines": 3,
       "hash": "4bbb7cd08392b521ff7ba7db4387162fc15aa6af1f400ff6c9e460485b2457f5",
       "fanIn": 0,
@@ -668,7 +668,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/src/appEventBus.test.ts",
       "folder": "packages/common/src",
-      "role": "generic",
+      "role": "test",
       "lines": 74,
       "hash": "51c3685ff36526caa6bdedb184456b5f6342e9b3b732568b6f8772e7171bbf83",
       "fanIn": 0,
@@ -704,7 +704,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/src/colors.test.ts",
       "folder": "packages/common/src",
-      "role": "generic",
+      "role": "test",
       "lines": 305,
       "hash": "5303cc44725a7637d110f85809e6ee82b71c2d8c3bab49e0254dd5928f893c5d",
       "fanIn": 0,
@@ -830,7 +830,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/src/utils.test.ts",
       "folder": "packages/common/src",
-      "role": "generic",
+      "role": "test",
       "lines": 204,
       "hash": "e9f168d5433e4ddeb0beb46b272f645832b314c131c1c247e2dc27efbf1a92db",
       "fanIn": 0,
@@ -857,7 +857,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/tests/binary-heap.test.ts",
       "folder": "packages/common/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 109,
       "hash": "9f5a12e78f1cbf8687af23c94693cf3c7546eb521f7ef8a3da3e743107617719",
       "fanIn": 0,
@@ -866,7 +866,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/tests/keys.test.ts",
       "folder": "packages/common/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 271,
       "hash": "a814594423144051e79a28977756099aad861e5a229e3f0c8611a98043200cf1",
       "fanIn": 0,
@@ -875,7 +875,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/tests/queue.test.ts",
       "folder": "packages/common/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 62,
       "hash": "ae55ba72fc5fcdcd1259d69d10483add230f3ded8365e1eed274c058a48904bc",
       "fanIn": 0,
@@ -884,7 +884,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/common/tests/url.test.tsx",
       "folder": "packages/common/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 31,
       "hash": "e5f6ef1848db912c7de488d8755fa4c32eaf3d1d96c09b93746cd748d85d16d7",
       "fanIn": 0,
@@ -893,7 +893,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/global.d.ts",
       "folder": "packages/element",
-      "role": "generic",
+      "role": "declaration",
       "lines": 3,
       "hash": "4bbb7cd08392b521ff7ba7db4387162fc15aa6af1f400ff6c9e460485b2457f5",
       "fanIn": 0,
@@ -911,7 +911,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/src/__tests__/flowchart.test.ts",
       "folder": "packages/element/src/__tests__",
-      "role": "generic",
+      "role": "test",
       "lines": 60,
       "hash": "6876299a4710ecf7304dab6be7902cd566e01dc604ab2239bf3d17cfbffee538",
       "fanIn": 0,
@@ -920,7 +920,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/src/__tests__/stickyNote.test.ts",
       "folder": "packages/element/src/__tests__",
-      "role": "generic",
+      "role": "test",
       "lines": 1166,
       "hash": "a8c0034288e967ba0c04368208800fd8cc6974fca2d6efea56f19fa456a23d04",
       "fanIn": 0,
@@ -929,7 +929,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/src/__tests__/transform.test.ts",
       "folder": "packages/element/src/__tests__",
-      "role": "generic",
+      "role": "test",
       "lines": 2104,
       "hash": "cadba39eb84c214d39cd48bd850dd45f8d91e4e9f5f64d3b936cac1c3c070952",
       "fanIn": 0,
@@ -1424,7 +1424,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/align.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1097,
       "hash": "650723fe31e401c989768fb24b831eb75343e4ee772babf2d85d2eae1918fbb1",
       "fanIn": 0,
@@ -1433,7 +1433,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/binding.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1153,
       "hash": "d2b6303310e09ef9fa32734d89ed5b01d3da1e84e95ebd5c047b0aaa8ab03052",
       "fanIn": 0,
@@ -1442,7 +1442,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/bounds.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 378,
       "hash": "81e03f18598af09fa4e474dc1d2ad069bad4af4decb949296fe05f13d914e3d1",
       "fanIn": 0,
@@ -1451,7 +1451,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/bucketFill.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 2272,
       "hash": "9481a8e9c67b3ffbcddabfcf38f42b1cbe8ab669679d644e4db3ad62e74946a3",
       "fanIn": 0,
@@ -1460,7 +1460,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/collision.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 945,
       "hash": "a44c16a0820c8935dd0f3743f6b5bf194feaa203b638a78bfa8d2fd0d10b8be1",
       "fanIn": 0,
@@ -1469,7 +1469,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/cropElement.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 568,
       "hash": "7998469df5a00337894fa969119759061a2d04309c95631505406ded03776454",
       "fanIn": 0,
@@ -1478,7 +1478,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/delta.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 853,
       "hash": "5b8363ee495a57e91428c6a9e27a71372b25ef060fbf71878180ab3d445a3647",
       "fanIn": 0,
@@ -1487,7 +1487,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/distribute.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 128,
       "hash": "f782b12c049cdbcb17a6ab40388876da943d395284e66c1f8d3d2a65482143ab",
       "fanIn": 0,
@@ -1496,7 +1496,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/dragElements.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 228,
       "hash": "19c9d050aff3cef1ef2809d081c8192ad71675b8d1ac0ae60dc741bf06310c1e",
       "fanIn": 0,
@@ -1505,7 +1505,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/duplicate.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1297,
       "hash": "1522ab22fd6c259df98b4af0386cc8c45f2c602f30008b02228e57841b827a8a",
       "fanIn": 0,
@@ -1514,7 +1514,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/elbowArrow.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 693,
       "hash": "345067d36f60a12340e5eb1599435671b5672bfc94897ceb42ca2ebe64525971",
       "fanIn": 0,
@@ -1523,7 +1523,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/embeddable.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 273,
       "hash": "5aeb45fa1769f30b7f86ea4671ee3a430b84b79c6a4b8d84b7b8f5c12f55c09c",
       "fanIn": 0,
@@ -1532,7 +1532,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/flowchart.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 821,
       "hash": "f296ee5a6957f36202a42d63211972f298be514c3cf0fd01c3b5436c2aa20e97",
       "fanIn": 0,
@@ -1541,7 +1541,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/fractionalIndex.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 877,
       "hash": "5dea660d9c9336d314c144b8c0302c8abd149b16b871dade2e28bda864a29e3d",
       "fanIn": 0,
@@ -1550,7 +1550,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/frame.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1748,
       "hash": "2bb02c7c3a4dac07d29a1c78e70566a57f9dddb0758459c716558409c3e690c3",
       "fanIn": 0,
@@ -1559,7 +1559,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/linearElementEditor.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 2100,
       "hash": "9154fc9b156b61a3f1fa5d563910fc0233489b029a0485c17ca7730ddfd4b17f",
       "fanIn": 0,
@@ -1568,7 +1568,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/newElement.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 52,
       "hash": "d785d26fcca4c341dcc06a7c6735bdf7e2107bb5a73cbcb032b53d4f8ef1baf0",
       "fanIn": 0,
@@ -1577,7 +1577,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/recognizeShape.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 327,
       "hash": "5b5f7c1d1fb9a163a14f05a7ec986bdb701506c709d5bde68653fbd2f36051a0",
       "fanIn": 0,
@@ -1586,7 +1586,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/renderEnvironmentCaches.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 83,
       "hash": "82ad8698b7d168b9815926efbcec7df25e4d68f532c84c8d1c9ea069cec007b3",
       "fanIn": 0,
@@ -1595,7 +1595,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/resize.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1572,
       "hash": "52becc84c41bca6b77dc9690618018684a87c65224f2f56003bb15c6e5a0766c",
       "fanIn": 0,
@@ -1604,7 +1604,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/selection.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 35,
       "hash": "551ff71ded44bdab4beafa5ef895bfa2236cabeae45d19f35f63d0ed05ee1606",
       "fanIn": 0,
@@ -1613,7 +1613,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/shape.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 80,
       "hash": "be8da3ae42bf34bda244b2f68698db3f3f368d22eed86e4822a75967a0894892",
       "fanIn": 0,
@@ -1622,7 +1622,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/sizeHelpers.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 58,
       "hash": "cc4911f7a9804ba6defb12cdce0cdcd18973ccae60397e6c9b854b36da2dd0e1",
       "fanIn": 0,
@@ -1631,7 +1631,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/sortElements.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 446,
       "hash": "8286b65b3c74f50121eb04d3119325735cf1bd1ac632f7f1e44b41d027daceaa",
       "fanIn": 0,
@@ -1640,7 +1640,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/textElement.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 379,
       "hash": "5799fa0657f854606d4ddb0a99e5f9d57caa3a025751adc60478ddfe5bc0f42e",
       "fanIn": 0,
@@ -1649,7 +1649,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/textWrapping.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 703,
       "hash": "9912e764c5ed9abb3b65b38137de99ac6dab10e7cf600c7faf6484565f507890",
       "fanIn": 0,
@@ -1658,7 +1658,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/typeChecks.test.ts",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 115,
       "hash": "0b3614b94bc809774c5379a260959ee2c6a7ad561f4e5ec9702dd8404cb5b33f",
       "fanIn": 0,
@@ -1667,7 +1667,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/element/tests/zindex.test.tsx",
       "folder": "packages/element/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1698,
       "hash": "610d2dc3380960a8b1cb791b3392d619781fa6070568a8c88ad0a8ee47489989",
       "fanIn": 0,
@@ -1685,7 +1685,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionAlign.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 274,
       "hash": "e285baf237001ee9723fd3e3c3cc01942e67cc5a53155c248a65a3925477113e",
       "fanIn": 3,
@@ -1694,7 +1694,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionBoundText.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 449,
       "hash": "61d402a1619fe3dc3b5051b3c6b558f500c53856d295f5529a708c135b227d27",
       "fanIn": 4,
@@ -1703,7 +1703,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionCanvas.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 469,
       "hash": "8806f99e6f8258096adced4e7e3d23b80feb5af1704b24128d76079de8e0cdb7",
       "fanIn": 4,
@@ -1712,7 +1712,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionClipboard.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 291,
       "hash": "fd02f7dd17eb772a5d0cfd80ee296d2bc3f0790e41f58057e9baf726b01c9f47",
       "fanIn": 3,
@@ -1721,7 +1721,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionCropEditor.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 59,
       "hash": "1bbe7890bfdabc8905049f90cd3867e34f139eba94d31a58afcdedc6604c8f5c",
       "fanIn": 1,
@@ -1730,7 +1730,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionDeleteSelected.test.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "test",
       "lines": 278,
       "hash": "9d93ab9f21523abc2726a4c9a95551f4d3e1ecdfeee974b776bed1d6dc689684",
       "fanIn": 0,
@@ -1739,7 +1739,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionDeleteSelected.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 343,
       "hash": "eddda97183535f14a3352ac9195127fcd25d8cd8be94606b5472120c30648b47",
       "fanIn": 3,
@@ -1757,7 +1757,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionDistribute.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 132,
       "hash": "be3ab5b7040d18a4daaa6b7580c50c3bb671030daa1fc86f922469b6013e64a2",
       "fanIn": 1,
@@ -1766,7 +1766,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionDuplicateSelection.test.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "test",
       "lines": 531,
       "hash": "3634c7193339c8789a05045dbf7f9d87cc277eb37bb3dcc9dbcb42ccb5b64eaa",
       "fanIn": 0,
@@ -1775,7 +1775,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionDuplicateSelection.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 142,
       "hash": "1c34ed15a1075e2682e1ebe395a79e4e79d0a36737048c2962c8b4d548cf7edc",
       "fanIn": 3,
@@ -1793,7 +1793,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionElementLock.test.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "test",
       "lines": 70,
       "hash": "d5cf783c2692c74c8add0e069af158dfa8e1c998a5dc941c8bc0292daaa1caff",
       "fanIn": 0,
@@ -1811,7 +1811,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionExport.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 462,
       "hash": "e23c3ff540df6fbfdd4e2508478cb16fa9869457197891fe6438614e77e4719a",
       "fanIn": 5,
@@ -1820,7 +1820,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionFinalize.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 440,
       "hash": "af26581c8a8cf4cebb15c4901f7685e957cb78ae1723b0d44fc813023a01f748",
       "fanIn": 1,
@@ -1829,7 +1829,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionFlip.test.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "test",
       "lines": 211,
       "hash": "f8a27790715158308caa82f512e75c9857ff54b3fd6a7cd5af8068a7ed4caacb",
       "fanIn": 0,
@@ -1856,7 +1856,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionGroup.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 324,
       "hash": "d8c92ba266655802e40b22d4758143a92127b6beb1591fcc39954c9c21395692",
       "fanIn": 1,
@@ -1865,7 +1865,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionHistory.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 154,
       "hash": "61078c67fd75bebb84a9c57d273d5113362a161ce299e7c153b11146ca28518f",
       "fanIn": 3,
@@ -1874,7 +1874,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionLinearEditor.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 212,
       "hash": "4257ed9db48bafd519eb30f47fa9beb34eeb338193cc8d01374b9c6cc70d04ac",
       "fanIn": 1,
@@ -1883,7 +1883,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionLink.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 65,
       "hash": "83db7a4e99323a9303359ba1df4431afe9a62cdb937cdb2cc52bfd443dd48e7b",
       "fanIn": 1,
@@ -1892,7 +1892,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionMenu.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 35,
       "hash": "544905f9beb8e33d35245ba114b87ffa6e16c9810fd3c0efc4867fb015ea5cbf",
       "fanIn": 1,
@@ -1901,7 +1901,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionNavigate.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 151,
       "hash": "550b388b3c35dc493b1e73189243509b4fab684633b3a042261b1719c72166bb",
       "fanIn": 1,
@@ -1910,7 +1910,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionProperties.test.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "test",
       "lines": 255,
       "hash": "52827700cb9f35fa1fc2118e659a223d44c45e779f9085a41e3dc4738c99346b",
       "fanIn": 0,
@@ -1919,7 +1919,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionProperties.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 2322,
       "hash": "0fe8177b5fd59019728d562ade54dacf6573b118699a95d57fcb69be4deb6230",
       "fanIn": 6,
@@ -1955,7 +1955,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleArrowBinding.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 26,
       "hash": "35eaa4ff7cb327833007078c6863c783881f4e9e90c0d16f178a9621ccfb7cc4",
       "fanIn": 2,
@@ -1964,7 +1964,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleGridMode.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 34,
       "hash": "4632f18ce365c8798a2b9f2d219d88a6eec420d82cd0565cd9d4d5eb5421964c",
       "fanIn": 1,
@@ -1973,7 +1973,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleMidpointSnapping.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 23,
       "hash": "d4edd3205f47f7b4b4f138d6bd2bc00a1abe20bea3653d92be33b6f4d029745e",
       "fanIn": 1,
@@ -1982,7 +1982,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleObjectsSnapMode.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 34,
       "hash": "59d53c2b4bb4b30f1f11974ab18eaf72d03e9fecf8166bb2a9b9ade23f6ec1f6",
       "fanIn": 1,
@@ -2000,7 +2000,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleShapeSwitch.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 35,
       "hash": "c4f78fe7f7065af52f0bde562ccbed3d847dd08b716852f9dd70e1b73f84f701",
       "fanIn": 1,
@@ -2009,7 +2009,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleShowHints.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 28,
       "hash": "2cb043bad6badd3407cb4465c16c2786b8b60fd1112517027427e54e0e42a141",
       "fanIn": 1,
@@ -2018,7 +2018,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleStats.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 28,
       "hash": "2ceaa7bb2e958c89bf3d1c3c5e3061ed02e1e34650db450c232419b44c452e11",
       "fanIn": 1,
@@ -2027,7 +2027,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleViewMode.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 36,
       "hash": "d6c9c7ee5c4822f0abba09771150656476b360ab8ef309a14673745560786d66",
       "fanIn": 4,
@@ -2045,7 +2045,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionToggleZenMode.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 36,
       "hash": "ab1b683396e8bab0cedd66cafd0a2d4231efb2072a8fe1c085f5357ad7eeae81",
       "fanIn": 1,
@@ -2054,7 +2054,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/actionZindex.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 156,
       "hash": "1926de13f1dc4d09b32082e81ff09d97b045568cc2a45bd357fd59aa94d31693",
       "fanIn": 1,
@@ -2081,7 +2081,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/actions/manager.tsx",
       "folder": "packages/excalidraw/actions",
-      "role": "generic",
+      "role": "component",
       "lines": 246,
       "hash": "fd9740dc54aae851b8759e3c7fb7c8dff40e9668309a5f44c5a7b94a4a3b3031",
       "fanIn": 10,
@@ -2144,7 +2144,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/charts.test.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "test",
       "lines": 1166,
       "hash": "4d3084d44e6848fc0232fc28c30240f39711e7978243d6cc46eba2a0dec6055f",
       "fanIn": 0,
@@ -2234,7 +2234,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/clipboard.test.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "test",
       "lines": 158,
       "hash": "0e7b102338a80fd6e483f84495bbdac77ef9363ba1c6f1eef352c4f576067628",
       "fanIn": 0,
@@ -2252,7 +2252,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Actions.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 942,
       "hash": "7a174738df8cde4700f5729d7a6deca49ea17c9990913859d6de541372556f2c",
       "fanIn": 4,
@@ -2261,7 +2261,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ActiveConfirmDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 36,
       "hash": "8e639176b657d583bd2403bd9c5afeeb32e1f51ac7c7661d7f954b65afb0a66d",
       "fanIn": 4,
@@ -2270,7 +2270,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.arrowText.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 235,
       "hash": "db73314a54d895d7e74fbd0278fd7d4f407c885d5a670b7214ffc3c05ea4b104",
       "fanIn": 1,
@@ -2279,7 +2279,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.bucketFill.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 301,
       "hash": "161f2436c1c9b39e5a4254e58e6f202822ae0cb9f9ced5b6c6025b1d444fab37",
       "fanIn": 1,
@@ -2288,7 +2288,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.clipboard.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 638,
       "hash": "75c6fd03b8b2cba62b4246f78db65de5c0777ed5d5e0ab9949478f3ce75e2a60",
       "fanIn": 1,
@@ -2297,7 +2297,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.cursor.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 243,
       "hash": "b8c1d0f848e49d4bb5ab50f9a20ea7d0fba1a6366e61c8d3f1510a29fd9c1fec",
       "fanIn": 1,
@@ -2306,7 +2306,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.drawshape.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 263,
       "hash": "00ffad850a7b27c1e06e60b3faf91f3c287974428d5e442694b26fd6a9aee760",
       "fanIn": 1,
@@ -2315,7 +2315,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.duplicate.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 546,
       "hash": "0aaeae593cda2cc707d91a38b81ed5644da41c2b1b5d9527e98e06587dac05ee",
       "fanIn": 1,
@@ -2324,7 +2324,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.flowchart.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 198,
       "hash": "cd6842d63815f8e4b26ef5df9abbf5d7256d4d5e8c5e722fad8039a8c99aa33a",
       "fanIn": 1,
@@ -2333,7 +2333,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.host.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 234,
       "hash": "950104fd5043f6ff7946ac5a175fa0cb4bd21c23984b367d98813f2cdd7aef2d",
       "fanIn": 1,
@@ -2342,7 +2342,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.modifiers.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 82,
       "hash": "17f6cc5b1afc59d8759434cc6c8d36b5ffdb2ae99d0b9021a1a1c138ad2c9370",
       "fanIn": 1,
@@ -2351,7 +2351,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.pan.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 288,
       "hash": "4c778f7b2649f8f1fee49744db3bc27a23e65b67f2d28f70d5cadc04f81acb57",
       "fanIn": 1,
@@ -2360,7 +2360,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.selection.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 756,
       "hash": "79dd9e9733f1792f940e18001441952228bb5e6fb22edbb4aede561944466eff",
       "fanIn": 14,
@@ -2369,7 +2369,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.selectionTool.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 1557,
       "hash": "b13be06e10bc0864b1279fb1818286e58ddf179e27485147118f9f56a6db589b",
       "fanIn": 1,
@@ -2378,7 +2378,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.text.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 916,
       "hash": "5966da8ebbb773047222b5824f9e50389bdb9ba27172752b1061b29eb030dee8",
       "fanIn": 1,
@@ -2387,7 +2387,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.textTool.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 455,
       "hash": "56b08f892c104e99d5a9fb6d38e72554c5dfb0780c833c40e24971a37542dcce",
       "fanIn": 1,
@@ -2396,7 +2396,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.toolDrag.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 246,
       "hash": "dc9b9273401d3840208e8365a77c07847b2e008dd4bb0136f24db185874e11b1",
       "fanIn": 1,
@@ -2405,7 +2405,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 11498,
       "hash": "e71aa4bc8563aa2e4c4ca17465bd60760cc8d8ac29253c3a70350675ce87376d",
       "fanIn": 98,
@@ -2414,7 +2414,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.viewport.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 950,
       "hash": "65243ac41ecb4566e76ce5ca2b117fc20f775df6affdc4f06e8056a897021b85",
       "fanIn": 2,
@@ -2423,7 +2423,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.wheel.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 178,
       "hash": "988f43a2e9e836e7e06335ecfc6928fb2c1203324f92a8d98132af175139c60f",
       "fanIn": 1,
@@ -2432,7 +2432,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/App.wrap.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 399,
       "hash": "6fe5a54bcfce2f881901107dd6900d1c8ceaf49fba3d74c81dd3c71fc05a3428",
       "fanIn": 1,
@@ -2441,7 +2441,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/AppStateObserver.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 208,
       "hash": "0cc33d338dc0a73d1d471190ce3834de108a81e7a2187d4b3f99cf62ad3bbdd3",
       "fanIn": 2,
@@ -2450,7 +2450,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Avatar.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 42,
       "hash": "02ac9f340e99424ec202e0c155beb321c0dfcbd169ad30a92614856ea554f3e6",
       "fanIn": 1,
@@ -2459,7 +2459,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/BraveMeasureTextError.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 43,
       "hash": "bf9dfbde39cd28a612054956d7df3df28bc66fa3e46632470cffe188637773cf",
       "fanIn": 1,
@@ -2468,7 +2468,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Button.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 46,
       "hash": "9a3941579cdcdb6f1ec42ff00a62787418a544b471a372392831c798d28a2920",
       "fanIn": 8,
@@ -2477,7 +2477,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ButtonIconCycle.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 30,
       "hash": "0d7ee1db979caaf76542206a0dcec3bc4b82bd5f26e8aa8c4935199f699312db",
       "fanIn": 0,
@@ -2486,7 +2486,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ButtonSeparator.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 10,
       "hash": "a73d0efd4cf13535b51c57b16613cc20ce0b81f9ff8f7c27f48c631a6d813941",
       "fanIn": 2,
@@ -2495,7 +2495,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Card.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 38,
       "hash": "9744a32f0a7ce040b2f9989f019304d8d7953db78ed866d23e33ee9cf42ced4f",
       "fanIn": 2,
@@ -2504,7 +2504,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/CheckboxItem.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 37,
       "hash": "e3ca7216b663a9139e7d66c43c31cf8c298d66826a20d039c2bb34d541ad0ca9",
       "fanIn": 2,
@@ -2513,7 +2513,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/ColorInput.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 155,
       "hash": "2a6f9cc465bd3d40054624f6f01f20188be57f255bbaf34c107447ed3de2efa1",
       "fanIn": 1,
@@ -2522,7 +2522,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/ColorPicker.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 547,
       "hash": "86ec65fa9771a9551e87c220aad6698591eaa96945f0064601a4722c74919be8",
       "fanIn": 2,
@@ -2531,7 +2531,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/CustomColorList.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 77,
       "hash": "b8db3cb082f460521dad6f787a90fdb443291bcf8422686316a9b4fc63e19b4b",
       "fanIn": 1,
@@ -2540,7 +2540,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/HotkeyLabel.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 27,
       "hash": "6cdac82730ea1d1e4f045cf14e6428eff10a29e271b0da7ebc966b81de470b59",
       "fanIn": 3,
@@ -2549,7 +2549,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/Picker.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 233,
       "hash": "3d506d2441007b99d2b64f0d1d9d387d256bb7e5e6f75ca7f19adfc3610c36d4",
       "fanIn": 1,
@@ -2558,7 +2558,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/PickerColorList.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 132,
       "hash": "df60048bf1d976a0299bfcc58ae0645bfd23dfee8229b587e3f992577f282b7b",
       "fanIn": 1,
@@ -2567,7 +2567,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/PickerHeading.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 7,
       "hash": "1ef55ff853c4a6341bcde195ecc643e57372ba3a8e0133471e1d5d941d390d71",
       "fanIn": 2,
@@ -2576,7 +2576,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/ShadeList.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 137,
       "hash": "04981566c63a3f6dc9308da2bec8b557508e6ccb7dce0e7c12052dacd6d8711d",
       "fanIn": 1,
@@ -2585,7 +2585,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/TopPicks.tsx",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 132,
       "hash": "daa7b920c523cd3b585c46faf99c04fea9bc6c99e92f0bb8247c2bac3a03ee4d",
       "fanIn": 1,
@@ -2594,7 +2594,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/colorPickerUtils.ts",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 107,
       "hash": "fb1feada0307c789fe0d61a09d319995228498ecf813c9e23e11104a6a1c0349",
       "fanIn": 9,
@@ -2603,7 +2603,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/colorTopPicksDnD.ts",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 68,
       "hash": "eeb7c5b84698645460779be8395d7826b98cc2d4062663693f328e8ec2f31bcc",
       "fanIn": 7,
@@ -2612,7 +2612,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ColorPicker/keyboardNavHandlers.ts",
       "folder": "packages/excalidraw/components/ColorPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 318,
       "hash": "29ee525be5b54ced228416610940e3c0783ccb799e5bb8c5cd09985225958eb9",
       "fanIn": 2,
@@ -2621,7 +2621,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/CommandPalette/CommandPalette.tsx",
       "folder": "packages/excalidraw/components/CommandPalette",
-      "role": "generic",
+      "role": "component",
       "lines": 1045,
       "hash": "63c891a606c72ba5d3cb2f114b4f5cb951e0f6848f8c4d25811f60734e78742c",
       "fanIn": 3,
@@ -2630,7 +2630,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/CommandPalette/defaultCommandPaletteItems.ts",
       "folder": "packages/excalidraw/components/CommandPalette",
-      "role": "generic",
+      "role": "component",
       "lines": 1,
       "hash": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
       "fanIn": 1,
@@ -2639,7 +2639,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/CommandPalette/types.ts",
       "folder": "packages/excalidraw/components/CommandPalette",
-      "role": "generic",
+      "role": "component",
       "lines": 25,
       "hash": "0a9c27fc3a2957795473b11ab218b9be73d3260d7704ce8de0c231fc1734a427",
       "fanIn": 1,
@@ -2648,7 +2648,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ConfirmDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 81,
       "hash": "dcca7936efe5d2a94f627044f2f1b1914237be7b811caea49c03357863792542",
       "fanIn": 2,
@@ -2657,7 +2657,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ContextMenu.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 132,
       "hash": "6ae9e734ac67fa2333d2bca8f88fb00e0baee57bf599010c0ff90940ee2c348f",
       "fanIn": 2,
@@ -2666,7 +2666,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ConvertElementTypePopup.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 970,
       "hash": "dd1e5cca99bb4b37a8db85ca519aa48d1b25f0894ed2456bef46e66317b369b7",
       "fanIn": 4,
@@ -2675,7 +2675,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/CursorHint.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 209,
       "hash": "4dd1b753618aeee305b5dc880cafcade30fd624d4cd19d154a207552cbcd2a41",
       "fanIn": 2,
@@ -2684,7 +2684,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/DarkModeToggle.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 55,
       "hash": "df256a6a8ec39a3785117f9fc3db244c3b943287f2e96f829a456c527ea97857",
       "fanIn": 1,
@@ -2693,7 +2693,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/DefaultSidebar.test.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "test",
       "lines": 147,
       "hash": "4e647024cca100080470df9ca46d3ff63f3101707a713e93fff4e45b2b5b95b3",
       "fanIn": 0,
@@ -2702,7 +2702,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/DefaultSidebar.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 127,
       "hash": "9e45fd6173ad3f8d1849862083eaed363bd7302072605c385cbc391af4ec9db8",
       "fanIn": 2,
@@ -2711,7 +2711,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/DiagramToCodePlugin/DiagramToCodePlugin.tsx",
       "folder": "packages/excalidraw/components/DiagramToCodePlugin",
-      "role": "generic",
+      "role": "component",
       "lines": 19,
       "hash": "b2f45453d6bbec6b9943f07f9c99597870d32c17b4d0ae13bd47c9a227717aff",
       "fanIn": 1,
@@ -2720,7 +2720,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Dialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 137,
       "hash": "ef4b3eea3d298e701d019e462cc52bb399faf37dd986bf556654a898300de3d4",
       "fanIn": 13,
@@ -2729,7 +2729,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/DialogActionButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 49,
       "hash": "358db12b0cf033b19beb283cefa9642c83791ce52fe8f45371e1ee3bfbc353a5",
       "fanIn": 3,
@@ -2738,7 +2738,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ElementCanvasButtons.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 69,
       "hash": "59541d78ca4168a404ea4e0a30b71871af7bffbc50c9b91f3386356c33073ab6",
       "fanIn": 1,
@@ -2747,7 +2747,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ElementLinkDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 180,
       "hash": "373b8b4e0866000e3172f0454fd1179470887131b6b8bf678eaebf45eb94c2b0",
       "fanIn": 1,
@@ -2756,7 +2756,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Ellipsify.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 18,
       "hash": "734abdacbc30331c18768831dc8321be8388cec23cb004398774e2cdf76f6c07",
       "fanIn": 4,
@@ -2765,7 +2765,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ErrorDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 41,
       "hash": "137b045feb239bc038ed9c26309aadcd3c5c4e58ae236af1774e83cd40d3a611",
       "fanIn": 3,
@@ -2774,7 +2774,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ExcalidrawLogo.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 69,
       "hash": "5a659c3f3bd718a4035ea239c57cd417d891afe618cd6a7d17ff6425fe826b49",
       "fanIn": 2,
@@ -2783,7 +2783,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/EyeDropper.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 284,
       "hash": "d026d9c58ed4627665b562addffea7f5c68d8917399417a9338de609eb9c3658",
       "fanIn": 8,
@@ -2792,7 +2792,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FileDropOverlay.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 188,
       "hash": "7bc9f13640a3975cf0d4179c6506e11091daba742844b9cc12faf32862be8add",
       "fanIn": 1,
@@ -2801,7 +2801,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FilledButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 119,
       "hash": "ab8fef8c317ee610dfdcb5060d746b96a39f3d5ea60ab85e1e4e90f52636ee85",
       "fanIn": 8,
@@ -2810,7 +2810,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FixedSideContainer.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 26,
       "hash": "80a3220a173a43c3d3ffa67d9b9dc9d9b8ff1ea6937f031dbcd47ccc0d7f4c12",
       "fanIn": 2,
@@ -2819,7 +2819,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FontPicker/FontPicker.test.tsx",
       "folder": "packages/excalidraw/components/FontPicker",
-      "role": "generic",
+      "role": "test",
       "lines": 224,
       "hash": "c96bd319e0b512302e97b80acf95589d0b20b073aa9c1b076ad7b93cd4ec2c3d",
       "fanIn": 0,
@@ -2828,7 +2828,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FontPicker/FontPicker.tsx",
       "folder": "packages/excalidraw/components/FontPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 303,
       "hash": "79166665d88d1ce370b62d7f1b7095671880ffa75b0996abba5b5f2e6ed81ef7",
       "fanIn": 2,
@@ -2837,7 +2837,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FontPicker/FontPickerList.tsx",
       "folder": "packages/excalidraw/components/FontPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 435,
       "hash": "78b34fdaa78fabcbb0e604466baed6caed72d5ce1c8ce6a85fffad9c25776f35",
       "fanIn": 2,
@@ -2846,7 +2846,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FontPicker/FontPickerTrigger.tsx",
       "folder": "packages/excalidraw/components/FontPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 59,
       "hash": "60314afe1f5c16d7b34fb359aab349e694a1543bb3ab2ed9cf491e41f603a992",
       "fanIn": 1,
@@ -2855,7 +2855,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FontPicker/fontTopPicksDnD.ts",
       "folder": "packages/excalidraw/components/FontPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 110,
       "hash": "a7b545b6fd140e7cd763e4dc8dd73eb7cdc560d980d3e95e08c9975f0762541e",
       "fanIn": 2,
@@ -2864,7 +2864,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/FontPicker/keyboardNavHandlers.ts",
       "folder": "packages/excalidraw/components/FontPicker",
-      "role": "generic",
+      "role": "component",
       "lines": 68,
       "hash": "711fb20a512a4ccfdba8c225625c55bb755565436ad2bf32f756e1f984098a1e",
       "fanIn": 1,
@@ -2873,7 +2873,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/HelpButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 23,
       "hash": "df53e3785905aca2901aeb2960ef4087bb0195085b70cdf8ad842aa04eb63cea",
       "fanIn": 1,
@@ -2882,7 +2882,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/HelpDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 525,
       "hash": "bb165d313f1a6b8139e309a4acf9a1a45bd26bf23cb80d5a8afc7352e928dbfe",
       "fanIn": 1,
@@ -2891,7 +2891,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/HintViewer.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 334,
       "hash": "c9b0dd80bb721980d9706e68e60a9645b7b167de84a7a032339da3755e84cdb9",
       "fanIn": 1,
@@ -2900,7 +2900,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/IconButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 202,
       "hash": "81552c381884d308632585e205efae8eb1faa292c1eaad4ac2d7f3f31499c41a",
       "fanIn": 29,
@@ -2909,7 +2909,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/IconPicker.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 333,
       "hash": "49b29e1db12bdd49e35efa00236266bd601e5de80c43d252d6eab8530f1420ab",
       "fanIn": 1,
@@ -2918,7 +2918,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ImageExportDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 431,
       "hash": "45b3b9f2bdd4b44179789b2bc48fb35bff292d02ab1557c9b6a8e9a05a4587d2",
       "fanIn": 1,
@@ -2927,7 +2927,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/InitializeApp.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 31,
       "hash": "46d7ff04b6b4eee789fb1cc261a036c70ff930646051ec43c8a81d75a3a0f34e",
       "fanIn": 1,
@@ -2936,7 +2936,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/InlineIcon.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 26,
       "hash": "637ebb11f13b7ee369279edf3257222592351bf2077446463a921e27d1ab5979",
       "fanIn": 5,
@@ -2945,7 +2945,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Island.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 43,
       "hash": "36df66e016bfb0a352adc1730e3aefa6b970ace818bbfbb278b303c380245a13",
       "fanIn": 11,
@@ -2954,7 +2954,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/JSONExportDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 142,
       "hash": "3b377ae4ab2588180dd4e090cb8a49e4eb750fd9ed5e8d18700d8384758bfb62",
       "fanIn": 1,
@@ -2963,7 +2963,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LaserPointerButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 29,
       "hash": "0f5c5add7317e01ffac0c223e841d26271d74e35b848c03de203ac124c614341",
       "fanIn": 1,
@@ -2972,7 +2972,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LayerUI.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 758,
       "hash": "32bbc7da2b827fa87b2b6931f8ed9825884e90a8c4ddfc00ef52fe9e32fb48f4",
       "fanIn": 1,
@@ -2981,7 +2981,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LibraryMenu.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 349,
       "hash": "8f5728a1f5a292f29b3fb4cd5367ee3caaac977a5cb92b795e0e6f345248a5bb",
       "fanIn": 4,
@@ -2990,7 +2990,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LibraryMenuBrowseButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 33,
       "hash": "521458da79b67ba278b67597c1d374f75825230540a657cdb1f778ea5247df0e",
       "fanIn": 1,
@@ -2999,7 +2999,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LibraryMenuControlButtons.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 35,
       "hash": "386bcee444f0278a5374ebc9411025098d2e5cddf90551b27418d70b0b3ce89b",
       "fanIn": 2,
@@ -3008,7 +3008,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LibraryMenuHeaderContent.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 325,
       "hash": "ded5c319ed326b73029361a60334a987827885de944c7e7bc2c62715d8a28c76",
       "fanIn": 1,
@@ -3017,7 +3017,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LibraryMenuItems.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 461,
       "hash": "2da4db3ad326b0571dc33fab8102d7ea0d964557d15504876b4a1506d2918487",
       "fanIn": 1,
@@ -3026,7 +3026,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LibraryMenuSection.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 99,
       "hash": "07702745a565625ad9f761f5e2a0891b2baee6f87d93d30ffc3f4a54d07649c4",
       "fanIn": 1,
@@ -3035,7 +3035,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LibraryUnit.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 138,
       "hash": "848a8ba0df59c2cfb622c54e565885efaa0d2f9609b5e20ce2d94c5e3c703f0c",
       "fanIn": 1,
@@ -3044,7 +3044,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LinkButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 15,
       "hash": "acae5d0a5c2bd5f75e63d4b163ccf10544bdeead578d27eaac88b1a015c0865e",
       "fanIn": 1,
@@ -3053,7 +3053,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LoadingMessage.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 44,
       "hash": "7765923fa7127d51678e9b29b2c86b4c973cf384254ac5239f5a659da04b419f",
       "fanIn": 2,
@@ -3062,7 +3062,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/LockButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 28,
       "hash": "ff855c84e24d20abf03fb4fe47f6bd0c32a70258536ead0263ad367dedf414f0",
       "fanIn": 1,
@@ -3071,7 +3071,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/MagicButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 28,
       "hash": "121e916572f07305a0b4fedf5f0191853e3fbd69b04e6c75909d245a92879a14",
       "fanIn": 1,
@@ -3080,7 +3080,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/MobileMenu.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 204,
       "hash": "fda2de8492aaa374b5b1684b65e967d89bd7ed4be71b8b9737b4901512f39bbd",
       "fanIn": 1,
@@ -3089,7 +3089,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/MobileToolbar.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 376,
       "hash": "9ee65fcac6aa99375af1cda6c18b8a6e51d500e8b2360089e366d68e5b8dc690",
       "fanIn": 1,
@@ -3098,7 +3098,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Modal.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 72,
       "hash": "761fff19bd57d755342ed9865403265b42acb72937c36b26ab1da648cd519dc5",
       "fanIn": 1,
@@ -3107,7 +3107,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/OverwriteConfirm/OverwriteConfirm.tsx",
       "folder": "packages/excalidraw/components/OverwriteConfirm",
-      "role": "generic",
+      "role": "component",
       "lines": 75,
       "hash": "6ab61746f5a72c0278e1031103aae57743833e80527ed8b74dfd1860fed14c7e",
       "fanIn": 2,
@@ -3116,7 +3116,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/OverwriteConfirm/OverwriteConfirmActions.tsx",
       "folder": "packages/excalidraw/components/OverwriteConfirm",
-      "role": "generic",
+      "role": "component",
       "lines": 86,
       "hash": "08d603dbce022311296e873f496d7167943358dd051264f8fc7ca0c5bfa4cdb7",
       "fanIn": 1,
@@ -3125,7 +3125,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/OverwriteConfirm/OverwriteConfirmState.ts",
       "folder": "packages/excalidraw/components/OverwriteConfirm",
-      "role": "generic",
+      "role": "component",
       "lines": 46,
       "hash": "d943bd9597097f632fef54ac92cf23896fbcd2c3828909e7b092c440c0c16149",
       "fanIn": 3,
@@ -3134,7 +3134,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Paragraph.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 10,
       "hash": "7b9f6ccc13276e54be0560aea40ce42e889baed74d96ba8d9d58ced1a26beaba",
       "fanIn": 0,
@@ -3143,7 +3143,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/PasteChartDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 282,
       "hash": "f24ede7572ce72c26f2ff4a5a224170e59244826891251fb9784eb1df6f76b74",
       "fanIn": 1,
@@ -3152,7 +3152,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/PenModeButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 30,
       "hash": "d9e683c3e194c9fcaf60674603d640e65563cfeb97d30d629ab2298449b197c8",
       "fanIn": 3,
@@ -3161,7 +3161,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Popover.test.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "test",
       "lines": 75,
       "hash": "f0a703d788b73b0f4482d0862d189596992e645b5c921a19f8c446467518acef",
       "fanIn": 0,
@@ -3170,7 +3170,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Popover.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 155,
       "hash": "8a259a198b5da5987084007d0b49c2d87881b1de654b0dcbd48903a9c86cad42",
       "fanIn": 2,
@@ -3179,7 +3179,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ProjectName.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 57,
       "hash": "8e46a0de54017953de2f7a714a592b9b8e0709a3a9737498a34bb0883d9f438b",
       "fanIn": 1,
@@ -3188,7 +3188,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/PropertiesPopover.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 102,
       "hash": "e593fbf0b9adfe21108579475024c9c34431b0fde9bda558e8331fb693cd4fc2",
       "fanIn": 3,
@@ -3197,7 +3197,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/PublishLibrary.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 558,
       "hash": "820c6a31a1b4bae0d4f00110d1e239b087a62fef214ed956adce65618c03dbee",
       "fanIn": 1,
@@ -3206,7 +3206,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/QuickSearch.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 29,
       "hash": "766553f140ccd63718a4ee9edc993fffdc622b82615a0e41d159b694aa0af1ef",
       "fanIn": 2,
@@ -3215,7 +3215,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/RadioButton.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 35,
       "hash": "831c33feb9ef552f9fd21c48774f4aff4e5f30eecd4b455e716edd24d24966a7",
       "fanIn": 1,
@@ -3224,7 +3224,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/RadioGroup.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 46,
       "hash": "e204ba3ccda340f24a58b2f54071cedd72d7c6c28f9ffe334fcee8bed441fa06",
       "fanIn": 2,
@@ -3233,7 +3233,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/RadioSelection.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 59,
       "hash": "c334f705768f0330520525b6b591c2049eff3b6efd3a2422c9fd9d1d5559c66b",
       "fanIn": 1,
@@ -3242,7 +3242,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Range.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 59,
       "hash": "a52362f591664d3437cc9675db0ff9f877e63beb4f99ce318044f829f641ff8f",
       "fanIn": 1,
@@ -3251,7 +3251,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/SVGLayer.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 34,
       "hash": "05e6e1c450c988f9ed767c143de6abcbd0b0fa173dcea4c338768c005e4747e3",
       "fanIn": 1,
@@ -3260,7 +3260,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ScrollableList.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 24,
       "hash": "0b04e2c1a0a243a0fb6e93fae01e5190428b437d9ea3766eb64535d03b847a6e",
       "fanIn": 2,
@@ -3269,7 +3269,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/SearchMenu.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 887,
       "hash": "ed57ee578a7eab16d68932b9dec54e54420af5e7114c88ade18e62019afd6f28",
       "fanIn": 2,
@@ -3278,7 +3278,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Section.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 30,
       "hash": "870fd8707f917b5644812a77efe5491447aaf630a8efda482ef0d7191642f4bb",
       "fanIn": 2,
@@ -3287,7 +3287,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ShareableLinkDialog.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 80,
       "hash": "b2122146b6933a3ed2360493806b68cac862b7349aa829d6abdf5eb2c0848c23",
       "fanIn": 1,
@@ -3296,7 +3296,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/Sidebar.test.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "test",
       "lines": 396,
       "hash": "aca7d1dab34157a0b38269f99dd1cb55a73bbf378ebd24fa82054b3ac9fc2691",
       "fanIn": 0,
@@ -3305,7 +3305,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/Sidebar.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 233,
       "hash": "6dd6da5e524bbe07d68d939443386c08bfd1ae35b97cf09cd5cb99ed18be7193",
       "fanIn": 4,
@@ -3314,7 +3314,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/SidebarHeader.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 59,
       "hash": "e5f8f66ec32d2542bfdefda4bd5bc49584f3b4193404813b02e62881ccf61e2a",
       "fanIn": 1,
@@ -3323,7 +3323,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/SidebarTab.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 19,
       "hash": "d9afe4cc0196143dfd4623ea32445adbafbaa5a499cce798d58084bedf2e9213",
       "fanIn": 1,
@@ -3332,7 +3332,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/SidebarTabTrigger.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 27,
       "hash": "54cfccf06687d5b319841e52f7e53e482a0b13dac575061aa3e19ed8b531ea56",
       "fanIn": 1,
@@ -3341,7 +3341,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/SidebarTabTriggers.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 16,
       "hash": "97095ae86e36ba6c17316e248b0a41132b7e7df4b67dda507ae87a706703bb61",
       "fanIn": 1,
@@ -3350,7 +3350,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/SidebarTabs.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 37,
       "hash": "29d7097dc0c0619fceb3e17b12b46e18cd831ec065afde9ba7a0e58819f2834e",
       "fanIn": 1,
@@ -3359,7 +3359,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/SidebarTrigger.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 53,
       "hash": "06e367e11ef05fdded59f49b7651512a347a3d2e171665bf6717ebacbd87d14c",
       "fanIn": 1,
@@ -3368,7 +3368,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/common.ts",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 43,
       "hash": "6c000f18d3c508d222c2b68a7d568d15929752414851f2dd682f4c059cdc6e39",
       "fanIn": 4,
@@ -3377,7 +3377,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Sidebar/siderbar.test.helpers.tsx",
       "folder": "packages/excalidraw/components/Sidebar",
-      "role": "generic",
+      "role": "component",
       "lines": 43,
       "hash": "f38d471f63a6cd1df5a2176439edb8978ebacede2c023a928a6cc864e3d02c14",
       "fanIn": 2,
@@ -3386,7 +3386,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Spinner.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 43,
       "hash": "11e05b8f82eb13faae6dd6835e0063e33c5c5804f05e5375fc24c124322d9596",
       "fanIn": 11,
@@ -3395,7 +3395,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stack.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 62,
       "hash": "60a9c84b6aee5071d2ab50b471b3406465907bddeffb78498f4a9ad3f8badc1c",
       "fanIn": 7,
@@ -3404,7 +3404,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/Angle.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 107,
       "hash": "8f04e1e2f4553f532ebef707fe485ef1ac851f4c45c8b361c0f44ce2d9d31873",
       "fanIn": 1,
@@ -3413,7 +3413,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/CanvasGrid.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 70,
       "hash": "84fbce34a9b9799a76c32fd383d01d5953a9cc4c5c773e247d3c7cda333250b6",
       "fanIn": 1,
@@ -3422,7 +3422,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/Collapsible.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 50,
       "hash": "af0f21aec021eca107160bb6f07da6fae344c5b976e5f2d382fb3e1c1e833b2e",
       "fanIn": 2,
@@ -3431,7 +3431,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/Dimension.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 361,
       "hash": "840f4b4babb70f698a70876fef2f401a7513d25c1a21c1e820114d27bdd4c88e",
       "fanIn": 1,
@@ -3440,7 +3440,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/DragInput.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 411,
       "hash": "e216b8411814d6f6d7376ec14c3c65406bca6ba388208e7bebd8480fcffff88a",
       "fanIn": 9,
@@ -3449,7 +3449,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/FontSize.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 116,
       "hash": "f86b51cb1dd1201e1ad5c267fdd775f658d096f818fc198e3ef5703e4f95278b",
       "fanIn": 1,
@@ -3458,7 +3458,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/MultiAngle.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 135,
       "hash": "75d6dacc72f30c84de22ac0503137c0f66dfe2e912c6638242599ae22f32c2d8",
       "fanIn": 1,
@@ -3467,7 +3467,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/MultiDimension.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 523,
       "hash": "8de99e922a42e37f03ccff0842cf2b839905406255e8e3d16e2a92bb109a55f8",
       "fanIn": 1,
@@ -3476,7 +3476,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/MultiFontSize.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 170,
       "hash": "51aa2e292a89a4c6e61691befe529b0a278a6b58481bfcf20a290131913f3e98",
       "fanIn": 1,
@@ -3485,7 +3485,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/MultiPosition.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 280,
       "hash": "91605e117237de22665bfdac4e733f098e33358878b5e4276da7ce5e25e01b09",
       "fanIn": 1,
@@ -3494,7 +3494,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/Position.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 215,
       "hash": "bcb753c3a3cf2b7ae51336c18afde99ca1507efb7fed17b9d823044070ea2558",
       "fanIn": 1,
@@ -3503,7 +3503,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/index.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 447,
       "hash": "cb5cf2f23b22064072a1da0acc60ad5b0e84a01d80602a85b6b394361b1b503c",
       "fanIn": 2,
@@ -3512,7 +3512,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/stats.test.tsx",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "test",
       "lines": 927,
       "hash": "e1cfdb7f076b95624af2861192ad610eb01b6c7323db20d4fa1bf30eeb06adca",
       "fanIn": 0,
@@ -3521,7 +3521,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Stats/utils.ts",
       "folder": "packages/excalidraw/components/Stats",
-      "role": "generic",
+      "role": "component",
       "lines": 277,
       "hash": "de60f36bb6e9ae437008e2266337b7ed7945678b7b0ea08326ad5274effc2bfc",
       "fanIn": 12,
@@ -3530,7 +3530,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Switch.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 38,
       "hash": "557384314bb9fd9da2c415f00433053abb9c6a07a5b28a3269d21fdfc2d65b0c",
       "fanIn": 1,
@@ -3539,7 +3539,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/Chat/ChatHistoryMenu.tsx",
       "folder": "packages/excalidraw/components/TTDDialog/Chat",
-      "role": "generic",
+      "role": "component",
       "lines": 88,
       "hash": "a283582402c3dfabd65826ef65520ffbe032971e6b304e86e932bd5d7c2dc279",
       "fanIn": 1,
@@ -3548,7 +3548,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/Chat/ChatInterface.tsx",
       "folder": "packages/excalidraw/components/TTDDialog/Chat",
-      "role": "generic",
+      "role": "component",
       "lines": 191,
       "hash": "669d34b9fdab41ba36a4c1666f41730028b6167256febe6a880a6775ecb34214",
       "fanIn": 2,
@@ -3557,7 +3557,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/Chat/ChatMessage.tsx",
       "folder": "packages/excalidraw/components/TTDDialog/Chat",
-      "role": "generic",
+      "role": "component",
       "lines": 218,
       "hash": "ba7b775e33d49f6795ebf39c0cbd6fe75a95c04d05fd5d219629c4f2e172e54f",
       "fanIn": 2,
@@ -3566,7 +3566,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/Chat/TTDChatPanel.tsx",
       "folder": "packages/excalidraw/components/TTDDialog/Chat",
-      "role": "generic",
+      "role": "component",
       "lines": 161,
       "hash": "980b48b756b969e0b225d0e8cb345a8e9db49afc3a3a54f09b13c5a6a1ea35c9",
       "fanIn": 1,
@@ -3575,7 +3575,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/Chat/index.ts",
       "folder": "packages/excalidraw/components/TTDDialog/Chat",
-      "role": "generic",
+      "role": "component",
       "lines": 3,
       "hash": "f5c1b5e95f72fab1108a133e6f534db299cc2509c573e9b8bccfe42499824071",
       "fanIn": 2,
@@ -3584,7 +3584,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/Chat/useChatAgent.ts",
       "folder": "packages/excalidraw/components/TTDDialog/Chat",
-      "role": "generic",
+      "role": "hook",
       "lines": 79,
       "hash": "33c9057c08cf2d3c904163f6e66fcc50195902debca324abd33cacbfb0051e5e",
       "fanIn": 1,
@@ -3593,7 +3593,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/CodeMirrorEditor.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 239,
       "hash": "8f55b368a15decf62d169455c362531b063a00c09d25990dae1617d3575e5e19",
       "fanIn": 1,
@@ -3602,7 +3602,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/MermaidToExcalidraw.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 334,
       "hash": "3a341ca63337955b3f0ceacc8633206a6547880cd9ed1da08fd1bd4ede8cdaca",
       "fanIn": 1,
@@ -3611,7 +3611,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDContext.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 17,
       "hash": "b025df0868e481cd97a6dd16539fd15855aed1a4a52453eea1a4fe65932147b2",
       "fanIn": 7,
@@ -3620,7 +3620,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialog.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 222,
       "hash": "954951285afe6e72610dd2137142157bf5b4d300258f6852a356d92d97645a30",
       "fanIn": 2,
@@ -3629,7 +3629,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogInput.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 137,
       "hash": "9a44f3bbd2830d69e3a71cf8e40f056761564186977148d06657e3d91ed89c9c",
       "fanIn": 1,
@@ -3638,7 +3638,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogOutput.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 170,
       "hash": "b9ead07533152ccfc5b08bcfcdd54a4738e9ab93cdfa3b74d7bd120f0e1fa2ea",
       "fanIn": 2,
@@ -3647,7 +3647,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogPanel.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 124,
       "hash": "60f25a8e797ff16b14ea1f84dd40ee354ad513754966eda87644ffcb0721169c",
       "fanIn": 3,
@@ -3656,7 +3656,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogPanels.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 5,
       "hash": "ec80b122165047fb3fb2e79a1e5640d2ee7055b01d300c8ab7656c1f6589eac7",
       "fanIn": 1,
@@ -3665,7 +3665,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogSubmitShortcut.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 14,
       "hash": "bc56ffe1768548731aa97e1d9d375c1f528543fe1fb093522f12bf8baafb67a6",
       "fanIn": 1,
@@ -3674,7 +3674,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogTab.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 17,
       "hash": "d87cae5169ec4f50406431c028bef1ce6ae9cf60115a5ea249b4f32fa0fb91bb",
       "fanIn": 1,
@@ -3683,7 +3683,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogTabTrigger.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 21,
       "hash": "57e8149ade5f4fc246f7ecccd33526414cbf28ad64675fcead5bd4a12644eaf6",
       "fanIn": 1,
@@ -3692,7 +3692,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogTabTriggers.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 13,
       "hash": "f9a252f5adfaab2e5ad2c75b731cb15014f1048067437b0b8877830868776845",
       "fanIn": 1,
@@ -3701,7 +3701,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogTabs.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 58,
       "hash": "0a1b8d298bd08568e2c0a6fd4ad65db68262db8d16da18cda527b8881c6c6666",
       "fanIn": 1,
@@ -3710,7 +3710,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDDialogTrigger.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 36,
       "hash": "b338582bb684db39f256aa7cdc9cebb7e34506703a73b3f372bca16edf2475f6",
       "fanIn": 1,
@@ -3719,7 +3719,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDPreviewPanel.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 54,
       "hash": "bae1197e2595a2d872f7929d299d3973b2e883ef94a57c93568ec58ea33662af",
       "fanIn": 1,
@@ -3728,7 +3728,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TTDWelcomeMessage.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 11,
       "hash": "69edd01710eb1fd23d0803a5b59c26c9f9201238f1b415578c2fb0f5d0a8a7d6",
       "fanIn": 2,
@@ -3737,7 +3737,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/TextToDiagram.tsx",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 294,
       "hash": "265d54ec81d4ee328881220a431def23395566731c4aec3a3cb789f1c4fd72e4",
       "fanIn": 1,
@@ -3746,7 +3746,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/common.test.ts",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "test",
       "lines": 89,
       "hash": "11996207aa1f6db8f91ba8b5db665a6f1ceffde3160a1c3295f704713180826d",
       "fanIn": 0,
@@ -3755,7 +3755,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/common.ts",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 174,
       "hash": "51c744fff354ced787149c34bca341515514a55fd70477acfb2f4245076118a5",
       "fanIn": 4,
@@ -3764,7 +3764,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/hooks/useChatManagement.ts",
       "folder": "packages/excalidraw/components/TTDDialog/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 114,
       "hash": "b09d17e10e86157397e39da2d3885dbff7b26278f76bbd3ac1ecc1a476408224",
       "fanIn": 1,
@@ -3773,7 +3773,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/hooks/useMermaidRenderer.ts",
       "folder": "packages/excalidraw/components/TTDDialog/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 220,
       "hash": "89e0a034cb1f7e1e4fab26cac61ccc4fe221724772a34625b5274f4d26a433ed",
       "fanIn": 1,
@@ -3782,7 +3782,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/hooks/useTextGeneration.ts",
       "folder": "packages/excalidraw/components/TTDDialog/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 291,
       "hash": "08819d468d6c94969502b8dd91797feb825e943fed6729d2c1d8aa8858ff6215",
       "fanIn": 1,
@@ -3791,7 +3791,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/mermaid-lang-lite.ts",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 82,
       "hash": "c088b142d23bb1430fd7c5dd04612103a3c1118251eb123a3c72dfed193f749c",
       "fanIn": 1,
@@ -3800,7 +3800,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/types.ts",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "component",
       "lines": 137,
       "hash": "e92ff764e112eb2f9341f642b905c7f405ea68073175e2c7e8f009a5a2a5147c",
       "fanIn": 20,
@@ -3809,7 +3809,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/useTTDChatStorage.ts",
       "folder": "packages/excalidraw/components/TTDDialog",
-      "role": "generic",
+      "role": "hook",
       "lines": 192,
       "hash": "1d900166432aa67ed809153c93340718c607c79093360bbf3e138cd319cc8ede",
       "fanIn": 2,
@@ -3818,7 +3818,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/TTDStreamFetch.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "component",
       "lines": 225,
       "hash": "5634149fec0c46e0855542b83f90c9fda5169f3bc0c2b7b74c44e7384d923a24",
       "fanIn": 2,
@@ -3827,7 +3827,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/TTDstreamFetch.test.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "test",
       "lines": 497,
       "hash": "af668ae63f491f9e5a442bb0d384c7eb518b519552c619c9537437c74c547c84",
       "fanIn": 0,
@@ -3836,7 +3836,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/chat.test.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "test",
       "lines": 658,
       "hash": "a31fa43899ea78b9b8d62d9bf9d5de1515887b3a3a76c7dbc915e8210810a0ad",
       "fanIn": 0,
@@ -3845,7 +3845,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/chat.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "component",
       "lines": 92,
       "hash": "e334f3ab5d49f238370a25a4e14e5c6451b011a01f9b886a0082a0edfef94d32",
       "fanIn": 6,
@@ -3854,7 +3854,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/mermaidAutoFix.test.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "test",
       "lines": 368,
       "hash": "eaf8abf865a924fcbcd177384e6d9796ed7f875bfc57744cfc647087ad2a9769",
       "fanIn": 0,
@@ -3863,7 +3863,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/mermaidAutoFix.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "component",
       "lines": 625,
       "hash": "d098f3a858e9cc7b3295814e3fac35346a6d8328b64e88d05fb5f04978ae2e55",
       "fanIn": 2,
@@ -3872,7 +3872,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/mermaidError.test.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "test",
       "lines": 339,
       "hash": "c1bd0c587d9b7f280e3e785d9eb250c553f91dbb4d23d6aab8f16045ada73d48",
       "fanIn": 0,
@@ -3881,7 +3881,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/mermaidError.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "component",
       "lines": 408,
       "hash": "b5771ac67531fc5499345731f0cd96330ce0c024be505977d09c8933d2d1ba89",
       "fanIn": 7,
@@ -3890,7 +3890,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/mermaidValidation.test.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "test",
       "lines": 214,
       "hash": "ca734969c7f45a9e4f38c4e8c50aee890a61577201b3555a9a310476e0178e5e",
       "fanIn": 0,
@@ -3899,7 +3899,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TTDDialog/utils/mermaidValidation.ts",
       "folder": "packages/excalidraw/components/TTDDialog/utils",
-      "role": "generic",
+      "role": "component",
       "lines": 41,
       "hash": "7a5ddf9a71bc6bd578790b390dc5562b97d4c5e07d0f4fd9d206d04b4088e642",
       "fanIn": 2,
@@ -3908,7 +3908,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TextField.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 117,
       "hash": "d081fba68a5749cbb54518e969f22d98559ddb4144e015a6f7b2f1ff17c38c00",
       "fanIn": 6,
@@ -3917,7 +3917,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Toast.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 80,
       "hash": "815077f24ccf396f699e20ec4da0d4a0f51046473ff4e2ff96503f195d221d59",
       "fanIn": 2,
@@ -3926,7 +3926,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ToolPopover.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 114,
       "hash": "31f9a6bb18ab2c282708e663f483f3e7bcc04a27a21cba036de2282ddeaa552e",
       "fanIn": 2,
@@ -3935,7 +3935,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Toolbar.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 326,
       "hash": "562ee5b579ba23fe630092d4a751030cae4d8ff5417f45e6fef653ab29a28169",
       "fanIn": 1,
@@ -3944,7 +3944,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Tools.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 478,
       "hash": "4f3601bd5e0cc7950179ba1887e098f1b20879814f55bda646081fc2f0bf40b6",
       "fanIn": 9,
@@ -3953,7 +3953,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Tooltip.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 241,
       "hash": "0ccd81aa5349ac2411061e2ec35f3b7b04dce0baebf99efd348c6e29a54d2bae",
       "fanIn": 14,
@@ -3962,7 +3962,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TopPicksDnD/TopPicksContextMenu.tsx",
       "folder": "packages/excalidraw/components/TopPicksDnD",
-      "role": "generic",
+      "role": "component",
       "lines": 50,
       "hash": "c947385fcbd55df0e5d7594d9a32d89c7f08977b5779a1438c8c4c4304703650",
       "fanIn": 2,
@@ -3971,7 +3971,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TopPicksDnD/TopPicksTip.tsx",
       "folder": "packages/excalidraw/components/TopPicksDnD",
-      "role": "generic",
+      "role": "component",
       "lines": 60,
       "hash": "dbf97275cb4c89caa8f35aac47ce4eb412566a88142f14a0bb5ecd7cd032402b",
       "fanIn": 2,
@@ -3980,7 +3980,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/TopPicksDnD/topPicksDnD.tsx",
       "folder": "packages/excalidraw/components/TopPicksDnD",
-      "role": "generic",
+      "role": "component",
       "lines": 664,
       "hash": "914e015ff8901882c5b1eb968d20a6d95faac20de79bdf509f5b16f5eeef96e1",
       "fanIn": 4,
@@ -3989,7 +3989,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Trans.test.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "test",
       "lines": 73,
       "hash": "6fab29916af3d3f4d4da092a8d07485968815390b0ac2cd25292b8433d709b27",
       "fanIn": 0,
@@ -3998,7 +3998,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/Trans.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 171,
       "hash": "ef2b34b1fad510c25264199f8d541e644cb73ee5a404489c9f63031bac21b3f6",
       "fanIn": 9,
@@ -4007,7 +4007,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/UnlockPopup.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 91,
       "hash": "90766f5b20f8bdeb2625d9bf36579c11c4daf5ffea75810aed15827febd7ba4a",
       "fanIn": 1,
@@ -4016,7 +4016,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/UserList.test.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "test",
       "lines": 79,
       "hash": "a1e6b3d0c7f6e2f6ed7e486692ddce99df8cb24ca9eec042fdf3f04c91a2a28a",
       "fanIn": 0,
@@ -4025,7 +4025,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/UserList.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 360,
       "hash": "6f307f92478e308a58cacefbbf8c692c0ff37feef28290e3540266d130d24123",
       "fanIn": 3,
@@ -4034,7 +4034,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/ViewportStatusFrame/ViewportStatusFrame.tsx",
       "folder": "packages/excalidraw/components/ViewportStatusFrame",
-      "role": "generic",
+      "role": "component",
       "lines": 82,
       "hash": "2c051927cda33446d03865e1fe66857cab1161316f7fbc17af0bdf9701083cc3",
       "fanIn": 3,
@@ -4043,7 +4043,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/canvases/InteractiveCanvas.tsx",
       "folder": "packages/excalidraw/components/canvases",
-      "role": "generic",
+      "role": "component",
       "lines": 319,
       "hash": "ab8f4f32d16098fe02dc18c0f60b1c5c944c78f69a41561dde6968b634bbe882",
       "fanIn": 1,
@@ -4052,7 +4052,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/canvases/NewElementCanvas.tsx",
       "folder": "packages/excalidraw/components/canvases",
-      "role": "generic",
+      "role": "component",
       "lines": 63,
       "hash": "c2b07f6035a58b80cb03295a4801e13f64b9d317fa4f8ec2b58f268d9165de9e",
       "fanIn": 1,
@@ -4061,7 +4061,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/canvases/StaticCanvas.tsx",
       "folder": "packages/excalidraw/components/canvases",
-      "role": "generic",
+      "role": "component",
       "lines": 134,
       "hash": "b31ae1a666bebb10b338f1541c8687d19210f4b440b680ed04fcb66e56f82477",
       "fanIn": 1,
@@ -4070,7 +4070,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/canvases/index.tsx",
       "folder": "packages/excalidraw/components/canvases",
-      "role": "generic",
+      "role": "component",
       "lines": 4,
       "hash": "79b37d155ac1a90987e0baeb535b08b528a593ab814a425ffbe16e03590bf5d5",
       "fanIn": 1,
@@ -4079,7 +4079,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenu.test.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "test",
       "lines": 59,
       "hash": "1960dda97638853e2d26420506b105271410488d046e9ddc285abc1e0c0b424a",
       "fanIn": 0,
@@ -4088,7 +4088,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenu.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 70,
       "hash": "ea1256b7226d77692d352661a28ef2788a57f829727ccf0a85fac7ba3049c9a5",
       "fanIn": 6,
@@ -4097,7 +4097,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuContent.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 117,
       "hash": "24113cfb29edbfb0867ad4550e8d8ab3d201ea7434fe6b1ba4743752c4d0eb7d",
       "fanIn": 1,
@@ -4106,7 +4106,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuGroup.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 23,
       "hash": "63bc148b541301004c4a7ae6f7f76290c7c57bf06e48f4618b70680e4bdcc18c",
       "fanIn": 2,
@@ -4115,7 +4115,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuItem.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 119,
       "hash": "d0f9be9a278658961479133e7e2cdc75dac0313e91964399dfb9fd4639c32aa1",
       "fanIn": 4,
@@ -4124,7 +4124,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuItemCheckbox.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 15,
       "hash": "91bbd968e938578509a5f5080a6101f8a5f79867988bbbdc096c9c468c6367a6",
       "fanIn": 2,
@@ -4133,7 +4133,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuItemContent.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 34,
       "hash": "78dd1cbed86b8b217f2088fef154d388ed5f200e21c3228d935f6d581d17c74a",
       "fanIn": 4,
@@ -4142,7 +4142,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuItemContentRadio.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 55,
       "hash": "0565a91a9ed553834295a4c27a33ad6f597ca3e20c5646c298a70add83b13d03",
       "fanIn": 1,
@@ -4151,7 +4151,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuItemCustom.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 25,
       "hash": "973715699bf64c2549799b352bc9290e91030bece11d44b41c80ab0700ad7805",
       "fanIn": 1,
@@ -4160,7 +4160,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuItemLink.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 59,
       "hash": "1ed58227e93c644e2ff9da32e91ce9fc82a4c8d459b7039c34e999439d41b415",
       "fanIn": 2,
@@ -4169,7 +4169,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuSeparator.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 15,
       "hash": "e04b15777e628b61a268cd2ab3142111edf14b27d3d395fd3fc1b172d8fc0f3c",
       "fanIn": 1,
@@ -4178,7 +4178,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuSub.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 26,
       "hash": "3a61888cbb9fc00f34ca8f6d20b85bddb09a55174a21df63e081d19a6f93ba9e",
       "fanIn": 3,
@@ -4187,7 +4187,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuSubContent.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 71,
       "hash": "22dd0aa8b48ffffedb78256be785213ca47d687e855bea9f66b0f7c6b5622a16",
       "fanIn": 1,
@@ -4196,7 +4196,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuSubTrigger.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 38,
       "hash": "99c76c475d4f3977c80b5e4c6ff2e9cbdb35ad7ab5d4c008131ee6bd4e4c3fc4",
       "fanIn": 1,
@@ -4205,7 +4205,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/DropdownMenuTrigger.tsx",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 42,
       "hash": "2f362d31c31cdd95ab2a1cf83a8ff4676367d65682fd3bfb9ff355e9fda35470",
       "fanIn": 1,
@@ -4214,7 +4214,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/common.ts",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 27,
       "hash": "e2310d70a572a6154fed2621107aa30c9b4d21d64ce60adff16f4d9fbe95c4a8",
       "fanIn": 5,
@@ -4223,7 +4223,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/dropdownMenu/dropdownMenuUtils.ts",
       "folder": "packages/excalidraw/components/dropdownMenu",
-      "role": "generic",
+      "role": "component",
       "lines": 27,
       "hash": "842afc5757355475a74c7900ace28c1ce355e3d5076700ca8ba72fea1771f2e0",
       "fanIn": 2,
@@ -4232,7 +4232,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/footer/Footer.tsx",
       "folder": "packages/excalidraw/components/footer",
-      "role": "generic",
+      "role": "component",
       "lines": 91,
       "hash": "b3c47cfc68a42807c2805363ff2a8fb413b5cd51d9039dfe3684c96e1b41d475",
       "fanIn": 1,
@@ -4241,7 +4241,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/footer/FooterCenter.tsx",
       "folder": "packages/excalidraw/components/footer",
-      "role": "generic",
+      "role": "component",
       "lines": 26,
       "hash": "2853e42e1f3380f536247d3785beba5d5fea1df49375d1a4f7734988c9a6f185",
       "fanIn": 1,
@@ -4250,7 +4250,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/hoc/withInternalFallback.test.tsx",
       "folder": "packages/excalidraw/components/hoc",
-      "role": "generic",
+      "role": "test",
       "lines": 102,
       "hash": "fa28e869d693002f886b628e0bf98f96caeef41b170b2f24d4c57e6ffbf94697",
       "fanIn": 0,
@@ -4259,7 +4259,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/hoc/withInternalFallback.tsx",
       "folder": "packages/excalidraw/components/hoc",
-      "role": "generic",
+      "role": "component",
       "lines": 76,
       "hash": "23031b076c2ced6ef8c6556d3b7005674bfb2ce1ffcee9841d6b711282481de6",
       "fanIn": 4,
@@ -4268,7 +4268,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/hyperlink/Hyperlink.tsx",
       "folder": "packages/excalidraw/components/hyperlink",
-      "role": "generic",
+      "role": "component",
       "lines": 595,
       "hash": "09f9b4730e1c4bb5dcc225a157cf4bf85388c94d7cfb87d00a77c64ee9dfc20c",
       "fanIn": 4,
@@ -4277,7 +4277,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/hyperlink/helpers.ts",
       "folder": "packages/excalidraw/components/hyperlink",
-      "role": "generic",
+      "role": "component",
       "lines": 205,
       "hash": "97530b02f14e3b46956e09bc6516df0b4efea47f3c26baf93383a63527665b77",
       "fanIn": 5,
@@ -4286,7 +4286,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/icons.tsx",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 2593,
       "hash": "1d263db1690b510571bf737b2f1733ad4579ffcc54f9a519c4db3ec9ff109cfd",
       "fanIn": 102,
@@ -4295,7 +4295,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/live-collaboration/LiveCollaborationTrigger.tsx",
       "folder": "packages/excalidraw/components/live-collaboration",
-      "role": "generic",
+      "role": "component",
       "lines": 48,
       "hash": "88b35e65c8a23481b233bb4b78ed6585963ce7152fcf5db23ddc0522c4e847b2",
       "fanIn": 1,
@@ -4304,7 +4304,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/main-menu/DefaultItems.tsx",
       "folder": "packages/excalidraw/components/main-menu",
-      "role": "generic",
+      "role": "component",
       "lines": 707,
       "hash": "11ffeb744f9cf969e46081580e5d662dc58b8e976155dc4ee2a9e9f68d77f257",
       "fanIn": 1,
@@ -4313,7 +4313,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/main-menu/MainMenu.tsx",
       "folder": "packages/excalidraw/components/main-menu",
-      "role": "generic",
+      "role": "component",
       "lines": 95,
       "hash": "66adfcb89a2dfb3cf202ed2af17261f7ec3730121cc7b7c5d41d6c0142fa8443",
       "fanIn": 2,
@@ -4322,7 +4322,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/positionElementBesideCursor.test.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "test",
       "lines": 59,
       "hash": "bf98fb5288ac5ef72cf1e740753073738b67b1988db107253a91e563cf772917",
       "fanIn": 0,
@@ -4331,7 +4331,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/positionElementBesideCursor.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 65,
       "hash": "1dea4e4773e0505d0fc98b349de5d4b11e56784264d8641c535b8833db6dfc6a",
       "fanIn": 3,
@@ -4340,7 +4340,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/shapeActionPredicates.ts",
       "folder": "packages/excalidraw/components",
-      "role": "generic",
+      "role": "component",
       "lines": 191,
       "hash": "23ef2f2b37d2d83e1589e7bdc75656a426978364f695b16ff6ef7ff8c02a5a8e",
       "fanIn": 3,
@@ -4349,7 +4349,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/welcome-screen/WelcomeScreen.Center.tsx",
       "folder": "packages/excalidraw/components/welcome-screen",
-      "role": "generic",
+      "role": "component",
       "lines": 196,
       "hash": "9fa1264bdd8ea2ba677f98c74aebb598be298662b53c1bfc5196e8c148c72518",
       "fanIn": 1,
@@ -4358,7 +4358,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/welcome-screen/WelcomeScreen.Hints.tsx",
       "folder": "packages/excalidraw/components/welcome-screen",
-      "role": "generic",
+      "role": "component",
       "lines": 52,
       "hash": "117fb3971a3e02df8a9c927a31f0906e716add63f73acd69d3ba6c0456ca1622",
       "fanIn": 1,
@@ -4367,7 +4367,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/components/welcome-screen/WelcomeScreen.tsx",
       "folder": "packages/excalidraw/components/welcome-screen",
-      "role": "generic",
+      "role": "component",
       "lines": 26,
       "hash": "c1d0cc2e769ba83a8d99d27be0f2f58723abdbfa83009f8aaec43ef7b9b7631f",
       "fanIn": 1,
@@ -4376,7 +4376,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/context/tunnels.ts",
       "folder": "packages/excalidraw/context",
-      "role": "generic",
+      "role": "context",
       "lines": 45,
       "hash": "6e77a6f6d39afc1904b8aca175e6994d8e44f4bd9b21033aa5f23ae3d5b38cde",
       "fanIn": 13,
@@ -4385,7 +4385,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/context/ui-appState.ts",
       "folder": "packages/excalidraw/context",
-      "role": "generic",
+      "role": "context",
       "lines": 6,
       "hash": "90e846534e2a6bf24e9ca8e7e31b5e5dfef4b8ee80910141c1831f0f3dcdf1f5",
       "fanIn": 22,
@@ -4394,7 +4394,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/css.d.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "declaration",
       "lines": 10,
       "hash": "25639fb7a82fed12a3cb9498444e78bb2e407c450dad484d76d44457896ccd5a",
       "fanIn": 5,
@@ -4484,7 +4484,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/data/library.test.ts",
       "folder": "packages/excalidraw/data",
-      "role": "generic",
+      "role": "test",
       "lines": 105,
       "hash": "d1ffd98b9d5668c129ae2e3fa7134fa9f9c4b7346f92d849af6702aa404ceaa3",
       "fanIn": 0,
@@ -4718,7 +4718,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/global.d.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "declaration",
       "lines": 113,
       "hash": "d7679fa3bf5d6b64bc2a526070ad97f0d653e22579c6d9056b3ce94e53750814",
       "fanIn": 6,
@@ -4736,7 +4736,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useAppStateValue.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 172,
       "hash": "89ffb06e6035564b2e8c0bb5cde4c7db5b64719d549390c40281a0ae419b9f13",
       "fanIn": 3,
@@ -4745,7 +4745,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useCallbackRefState.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 7,
       "hash": "e792287b2eba5f8892bf7ddb39ba1bc2fa9faf1d6fa50de306cb5573fe56dfb3",
       "fanIn": 2,
@@ -4754,7 +4754,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useCopiedIndicator.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 27,
       "hash": "e36a5eb305ed362d8ade46f22d03b8f68f6fc0e5e6136c81d85e9d6b9c25142f",
       "fanIn": 3,
@@ -4763,7 +4763,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useCreatePortalContainer.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 68,
       "hash": "4633eec21787dd7462d222c50599c8a827c0def3db8e166e96444032ad5cefe1",
       "fanIn": 2,
@@ -4772,7 +4772,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useEmitter.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 22,
       "hash": "4b4479f7d4eb9607310c3a3a3c48aa90c5c995be3813f562e720ce6100a10898",
       "fanIn": 1,
@@ -4781,7 +4781,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useLibraryItemSvg.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 99,
       "hash": "581ebba98ad0aa6ec654f2766a60729fc301a0e3c9f82350e4d7951d669ad709",
       "fanIn": 6,
@@ -4790,7 +4790,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useOutsideClick.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 93,
       "hash": "3dc8197a864a61338c7b75aeeb8863a65db213152c4e9637c74d7f94341f885c",
       "fanIn": 3,
@@ -4799,7 +4799,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useScrollPosition.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 33,
       "hash": "4ced7a6cbe4e8902b4e8499c6c742d7a8a0fe4e81a588ff7e4c67935a9d7bdc4",
       "fanIn": 1,
@@ -4808,7 +4808,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useStable.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 7,
       "hash": "618d97ba6196d8cb0ca0ce43ba959f0dfbc8afb632875793269ffb8f4e7ac518",
       "fanIn": 4,
@@ -4817,7 +4817,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useStableCallback.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 18,
       "hash": "8a417249192da76e2b1533b52b50fa477cc6ffd8005bfae35d955cbcc976a0f9",
       "fanIn": 1,
@@ -4826,7 +4826,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useTextEditorFocus.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 124,
       "hash": "e0b818f7a47115c10cc2ba43636166e73517694d89ac7dfc279af0715464712d",
       "fanIn": 3,
@@ -4835,7 +4835,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/hooks/useTransition.ts",
       "folder": "packages/excalidraw/hooks",
-      "role": "generic",
+      "role": "hook",
       "lines": 9,
       "hash": "c65961a7cb1c48d49f01ca9ded6a29aa1b8c93d35ab6c859e63265cb7bbd1a76",
       "fanIn": 1,
@@ -4862,7 +4862,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/index.tsx",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "component",
       "lines": 562,
       "hash": "8a3218f932b2aa396b0bc3616bf43ade4eabfac8a3ee231788fa7673daf69132",
       "fanIn": 97,
@@ -4898,7 +4898,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/mermaid.test.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "test",
       "lines": 18,
       "hash": "8ba65e75be6b1133119c67dbe06b8d6e70cad9bcc8bbc357fdb97b7922d7a100",
       "fanIn": 0,
@@ -4925,7 +4925,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/pwacompat.d.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "declaration",
       "lines": 1,
       "hash": "f8a7ec5b298ce49bd0e4fd5dd47880768ecb156a790c5d5c37a2baca65060e82",
       "fanIn": 0,
@@ -4934,7 +4934,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/react-app-env.d.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "declaration",
       "lines": 1,
       "hash": "57eda4c4c04a1dca45c62857326882ce9cc948c4b52973c0e3c3b7e4c3fa3990",
       "fanIn": 0,
@@ -4970,7 +4970,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/renderer/helpers.test.ts",
       "folder": "packages/excalidraw/renderer",
-      "role": "generic",
+      "role": "test",
       "lines": 90,
       "hash": "fa9e7fc11eece7e724d3574d831328709aa13473537efc7d5a2323f95a773c7f",
       "fanIn": 0,
@@ -5195,7 +5195,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/App.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 46,
       "hash": "17b5c38ca50279106575eb5e5526149066a6310b336f11568b1fa61a6e42ded0",
       "fanIn": 0,
@@ -5204,7 +5204,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/MermaidToExcalidraw.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 172,
       "hash": "ef9c094851bf155992f6d4f93df784c791fed5ed60d064d004ce5d03bc249aa9",
       "fanIn": 0,
@@ -5213,7 +5213,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/actionStyles.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 182,
       "hash": "12cc4bb60c1085a48aea551432e0017fa989e718b841a6f9a5e3376bb0846f61",
       "fanIn": 0,
@@ -5222,7 +5222,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/animation.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 167,
       "hash": "af007dba9878431795c39735388172c36ef48220bba2142030f2f735dab60324",
       "fanIn": 0,
@@ -5231,7 +5231,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/appState.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 88,
       "hash": "228d3c33bc429a034b4ba953644e71d37cbe2d34f767ab446b14bb1ff185a2f9",
       "fanIn": 0,
@@ -5240,7 +5240,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/appStateHooks.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 111,
       "hash": "ed00bc94bbfe44624db600c2a7401d55e70150a680c0f80548071d5e7e8c6b65",
       "fanIn": 0,
@@ -5249,7 +5249,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/arrowBinding.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 653,
       "hash": "a1878e1df3469c852e3de982948648e82c93bac4bb12f8a09b463c5d3e0893b4",
       "fanIn": 0,
@@ -5258,7 +5258,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/arrowEndpointTextBinding.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 984,
       "hash": "562ad12cbbb5ddbba3931d9c4391a48c780534fa9bfab0a045a64289bc772523",
       "fanIn": 0,
@@ -5267,7 +5267,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/bucketFill.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 839,
       "hash": "80ee3236508162a26872c53a92adbabafe8b2929bef53658703bb243bd8959aa",
       "fanIn": 0,
@@ -5276,7 +5276,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/charts.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 164,
       "hash": "6412dc303fd73ee85982e21bba4aa02656f23699199c12c001053fcf1af87882",
       "fanIn": 0,
@@ -5285,7 +5285,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/clients.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 39,
       "hash": "db2757973657f3ce5de3992b709219805cffab6bbc137f48169467ddd7e0ab20",
       "fanIn": 0,
@@ -5294,7 +5294,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/clipboard.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 941,
       "hash": "e5ff12a92b78959e8bc251be8ae1e3ffed6431953312d8cb12ead1e0d78372eb",
       "fanIn": 0,
@@ -5303,7 +5303,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/colorInput.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 386,
       "hash": "7ed07087484930a61daa98f127514c4f2315be5cc961abda80e279a637c4e7e2",
       "fanIn": 0,
@@ -5312,7 +5312,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/colorPickerHotkeys.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 128,
       "hash": "bf5119686ff96d7f0efe30315d92fb8b508784bc36d3d6566ec1c4a22e93bbb8",
       "fanIn": 0,
@@ -5321,7 +5321,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/colorTargets.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 130,
       "hash": "1a94fc2094a8cc9afa36ac539ed52dbcf6d36218d56321fd309b3b257be02b7c",
       "fanIn": 0,
@@ -5330,7 +5330,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/colorTopPicks.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 51,
       "hash": "a41547462a43e66189d4bf646e831fe6f52da8f544685944c9a0c58e9b135963",
       "fanIn": 0,
@@ -5339,7 +5339,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/contextmenu.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 628,
       "hash": "f82d7345072e97b462eb8522d6ae3a178d19edd3c2b3a3e1ca2ec56679f3007e",
       "fanIn": 0,
@@ -5348,7 +5348,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/convertElementType.binding.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 90,
       "hash": "add7766a9b004f3c48713f9b4137186977c662ba80a7be25b9d4377619b7d2a8",
       "fanIn": 0,
@@ -5357,7 +5357,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/convertElementType.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 46,
       "hash": "a065d37f14192917ad42505f987d69cfda84914d75f70b2dbf4f3f393e2f09a0",
       "fanIn": 0,
@@ -5366,7 +5366,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/created.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 167,
       "hash": "3ea3b99c86d467318cb47f1ef07d31c7c292608a367659450396a436246bcf9b",
       "fanIn": 0,
@@ -5375,7 +5375,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/crossDocument.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 335,
       "hash": "0199bd851d267408e94d91bf319a80a53fb8073363d3271be73d40cc6844c8f8",
       "fanIn": 0,
@@ -5384,7 +5384,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/cursorHint.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 215,
       "hash": "b6cbf9149cc22d309e69ac78ff111482151c6a6769d5590285f030d480249a1d",
       "fanIn": 0,
@@ -5393,7 +5393,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/data/reconcile.test.ts",
       "folder": "packages/excalidraw/tests/data",
-      "role": "generic",
+      "role": "test",
       "lines": 386,
       "hash": "2dc053c6212ffc52579b946f73aeecebc01af154239e1a59e226c3929a9b984c",
       "fanIn": 0,
@@ -5402,7 +5402,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/data/restore.test.ts",
       "folder": "packages/excalidraw/tests/data",
-      "role": "generic",
+      "role": "test",
       "lines": 1659,
       "hash": "2c41ed983ce10672f7aec07817b7bcd5c0690b868153189d19c5bd8f89eb6bfb",
       "fanIn": 0,
@@ -5411,7 +5411,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/dragCreate.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 600,
       "hash": "f3db67c1e56aa52ff62b65f71f3bbdb2e727be0c587f4661d803b675b30a6a7b",
       "fanIn": 0,
@@ -5420,7 +5420,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/drawShape.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 858,
       "hash": "821fdff0c1e72585b085dcfc4911690410414eaf05136cf5197979e41d84c67b",
       "fanIn": 0,
@@ -5429,7 +5429,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/elementLocking.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 390,
       "hash": "7ecfd4ba889f58806754d391226330cb82e6f89d91b7437264e5a4491eb4242e",
       "fanIn": 0,
@@ -5438,7 +5438,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/embeddable.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 75,
       "hash": "1bbe4d78095a0b04f3b277f14211d61765d372137ac33047d3f37c022281ca14",
       "fanIn": 0,
@@ -5447,7 +5447,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/excalidraw.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 500,
       "hash": "431c00a02e0ecbd4244d180a4ddf2608ec0d1b9de1d5e703382cb40f7ae628c4",
       "fanIn": 0,
@@ -5456,7 +5456,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/export.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 264,
       "hash": "084cbf7648744c75817ab0ee669a4d2b54c114e8a796a013607b26b0c136b21b",
       "fanIn": 0,
@@ -5465,7 +5465,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/eyeDropper.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 124,
       "hash": "505f89035ca307ffc7630648a0006265a5ac59b2986b09e1acca5a7d7b33b2c6",
       "fanIn": 0,
@@ -5474,7 +5474,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/fileDrop.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 330,
       "hash": "a10c4de1e89e7c916ee5df8e44c747b7ac73c37748541280cdc2c71b157a129f",
       "fanIn": 0,
@@ -5483,7 +5483,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/fitToContent.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 412,
       "hash": "ebf39dba7324567575c943b6bc9697a45400ea4f9cd4ff59e54fe7e028eebf19",
       "fanIn": 0,
@@ -5492,7 +5492,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/fixtures/constants.ts",
       "folder": "packages/excalidraw/tests/fixtures",
-      "role": "generic",
+      "role": "test",
       "lines": 9,
       "hash": "aa8df1fac67f0f7f4a604a3ecd24060ae7c7c5622fdea23f90e2db1e145c823b",
       "fanIn": 3,
@@ -5501,7 +5501,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/fixtures/diagramFixture.ts",
       "folder": "packages/excalidraw/tests/fixtures",
-      "role": "generic",
+      "role": "test",
       "lines": 51,
       "hash": "706555054419a958ac7bd6169b8a27960ed36913235a74cc16ca1071d5c61804",
       "fanIn": 1,
@@ -5510,7 +5510,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/fixtures/elementFixture.ts",
       "folder": "packages/excalidraw/tests/fixtures",
-      "role": "generic",
+      "role": "test",
       "lines": 72,
       "hash": "fa3a50ed780c64e7f2e19bf50258d2259a67951e294d5f4cc578565ce0d2c42b",
       "fanIn": 2,
@@ -5519,7 +5519,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/flip.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 920,
       "hash": "49eff17bd348c342b465872b74bcdd6f8a0ea0f7a3d74a2c2b53ee065117ddb7",
       "fanIn": 0,
@@ -5528,7 +5528,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/fontTopPicks.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 56,
       "hash": "2089b2f66654f4e9c3ce6674dc1013688e15d5c4b690249a26cbc393600eb553",
       "fanIn": 0,
@@ -5537,7 +5537,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/freedrawMode.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 60,
       "hash": "43c2c6a9b4a88849de895641cfd37e2beffa7eebc78540f7cd0b9c74d9c68d0a",
       "fanIn": 0,
@@ -5546,7 +5546,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/helpers/api.ts",
       "folder": "packages/excalidraw/tests/helpers",
-      "role": "generic",
+      "role": "test",
       "lines": 580,
       "hash": "c982523abb11522dc32111c7b80de8348a2299adb6f43e919c73bfe1dcb52291",
       "fanIn": 82,
@@ -5555,7 +5555,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/helpers/colorize.ts",
       "folder": "packages/excalidraw/tests/helpers",
-      "role": "generic",
+      "role": "test",
       "lines": 2,
       "hash": "ff08f4355d67f47e766bb115ce94461ba162c123f9cff3feb10461bed86d27fb",
       "fanIn": 1,
@@ -5564,7 +5564,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/helpers/constants.ts",
       "folder": "packages/excalidraw/tests/helpers",
-      "role": "generic",
+      "role": "test",
       "lines": 6,
       "hash": "a3f85d7239ef9d0f03c06df6f467f84ed133880aec9674c8a431cc4b634eb089",
       "fanIn": 2,
@@ -5573,7 +5573,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/helpers/mocks.ts",
       "folder": "packages/excalidraw/tests/helpers",
-      "role": "generic",
+      "role": "test",
       "lines": 111,
       "hash": "5d66d7641b2282792b2645630dbf4a5fd15668b4217ed20c7f546f22652d0814",
       "fanIn": 7,
@@ -5582,7 +5582,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/helpers/polyfills.ts",
       "folder": "packages/excalidraw/tests/helpers",
-      "role": "generic",
+      "role": "test",
       "lines": 135,
       "hash": "250cb6620ac581d8ad4eb9f05c38c457b53e67b74ffcb91463e6be97d2d6de7b",
       "fanIn": 1,
@@ -5591,7 +5591,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/helpers/ui.ts",
       "folder": "packages/excalidraw/tests/helpers",
-      "role": "generic",
+      "role": "test",
       "lines": 700,
       "hash": "4bd2537e19101df4b051808dfb802df4e12574960374d4f922480c5afc2f5b8b",
       "fanIn": 57,
@@ -5600,7 +5600,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/history.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 5308,
       "hash": "cdf36824cf636a0074ca9db7ecfe503c61ad1650758b2fe865ff910e29492ef4",
       "fanIn": 0,
@@ -5609,7 +5609,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/hostAbstraction.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 508,
       "hash": "5a1320306c1333e8c9c3c7410b24085f45094e7c640138999656ba68d765d3c1",
       "fanIn": 0,
@@ -5618,7 +5618,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/image.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 176,
       "hash": "e5606f3ed3999098a77ff04da8bd3f277265195ef1d07e2f63e07182182df44c",
       "fanIn": 1,
@@ -5627,7 +5627,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/interactivity.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1648,
       "hash": "3afaaefcb2fc5ebe149db979b12e5cea65ebe2b25bae25dea5123e813df0dd44",
       "fanIn": 0,
@@ -5636,7 +5636,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/laser.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 286,
       "hash": "a13a843cb56a74414f4ecb03aa4141a3ab5c51721915bf5cf5cc3e0efdd78167",
       "fanIn": 0,
@@ -5645,7 +5645,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/lasso.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 2222,
       "hash": "8936a6875d5c33e75d6b0836dd0345ab24ebd27dc1a95321d7d161eda882cbd6",
       "fanIn": 0,
@@ -5654,7 +5654,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/library.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 443,
       "hash": "a242e789d7282b7ece2dd2fbab6bb1cbc0bddb9fa9d5a59e3b59669bc5aeccd3",
       "fanIn": 0,
@@ -5663,7 +5663,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/move.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 217,
       "hash": "5370d73520861e19293d077ceeb06f22a29e42b606fa2d7a54ca0165c73dcfb8",
       "fanIn": 0,
@@ -5672,7 +5672,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/multiPointCreate.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 227,
       "hash": "27c96f52688390fb8fe0d34c62009d0d49fce16fe83a8510662a0976987bf779",
       "fanIn": 0,
@@ -5681,7 +5681,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/onDuplicate.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 816,
       "hash": "a368172a60af0a5480e7de5b76f79c39ea6610315489ee4006bf8d62aa51a627",
       "fanIn": 0,
@@ -5690,7 +5690,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/packages/events.test.tsx",
       "folder": "packages/excalidraw/tests/packages",
-      "role": "generic",
+      "role": "test",
       "lines": 149,
       "hash": "fa7d66b6f51e8a709273812ebb09c18e069e060694e3db5dfdf8e680aa1d137e",
       "fanIn": 0,
@@ -5699,7 +5699,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/pan.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 216,
       "hash": "61aea2e4071efbc33ce554f47a8b6c86a0491d146dc67f69fc885024d24a4676",
       "fanIn": 0,
@@ -5708,7 +5708,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/pixelSnap.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 380,
       "hash": "26356dadf579e0afb5acaac01df5290ed6a310447d457946031381dd088ae140",
       "fanIn": 0,
@@ -5717,7 +5717,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/queries/dom.ts",
       "folder": "packages/excalidraw/tests/queries",
-      "role": "generic",
+      "role": "test",
       "lines": 37,
       "hash": "c1745adfc34dde6c526e44a022e2b461864709046a7f8fa0bb9a6a1ab8fc7570",
       "fanIn": 19,
@@ -5726,7 +5726,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/queries/toolQueries.ts",
       "folder": "packages/excalidraw/tests/queries",
-      "role": "generic",
+      "role": "test",
       "lines": 33,
       "hash": "54fa76d2ab3f9a252e1a8737c59329e0db498baffd9ed436e0a68dd94370f0bb",
       "fanIn": 1,
@@ -5735,7 +5735,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/regressionTests.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1200,
       "hash": "1740fe0332a11e355fdef43b1f5e6f221059756c231a091ddec28f02b3ed6ecc",
       "fanIn": 0,
@@ -5744,7 +5744,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/renderCaches.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 291,
       "hash": "09bf416183d768138fdae89b4e585354b35cc6d11779ee367df36d39e6eb4c62",
       "fanIn": 0,
@@ -5753,7 +5753,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/renderEnvironmentLabels.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 229,
       "hash": "59c02aab460e4a2a61cf729b998ae4cf97461dae5bb258d3d2f62d048fdaa4e9",
       "fanIn": 0,
@@ -5762,7 +5762,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/renderOverrides.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1304,
       "hash": "c0dca79f58d283d40a434761cf39b538b5f8ab07745379927ab94e81dee306e5",
       "fanIn": 0,
@@ -5771,7 +5771,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/rotate.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 85,
       "hash": "b426399f21fc0ec3a9aab7fd7ff1465cc427ddc28cf386d78001a227626cfdbd",
       "fanIn": 0,
@@ -5780,7 +5780,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/scene/export.test.ts",
       "folder": "packages/excalidraw/tests/scene",
-      "role": "generic",
+      "role": "test",
       "lines": 1100,
       "hash": "6b95ead53d7991ba611f7777910e2f2fc8e55825d9e574a1e85b8cb756db9a74",
       "fanIn": 0,
@@ -5789,7 +5789,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/scroll.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 168,
       "hash": "b71f8f4e2c42c5d8cec1efb82fb5edb26890b434a3765a82cea1f4c2fc7e4907",
       "fanIn": 0,
@@ -5798,7 +5798,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/scrollConstraints.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1324,
       "hash": "ed03720c5fe277ed334759c4590213afe45e2108d8eb9848477a6d02c962058c",
       "fanIn": 0,
@@ -5807,7 +5807,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/search.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 197,
       "hash": "b6fd39faed82a15dc2a5fd795b3b4d1a3fa6ebf25ea830487b1da803f58f98c2",
       "fanIn": 0,
@@ -5816,7 +5816,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/selection.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 2031,
       "hash": "dc801b3bde33255b490b59ab753e417e21abfc0098939363ef3cb1c615c9f43c",
       "fanIn": 0,
@@ -5825,7 +5825,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/shortcuts.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 34,
       "hash": "de9f7af3a7e5a0c5c44bc818da34e6ee8f8ab3a437cc1307f5f1093449b43a41",
       "fanIn": 0,
@@ -5834,7 +5834,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/stickyNotes.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 1179,
       "hash": "52e3a52ec2cfc0853d0155df272576dbfbbeec0565452c59e9ccf7bb96fd6122",
       "fanIn": 0,
@@ -5843,7 +5843,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/test-utils.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 493,
       "hash": "a39e3ac551e15e3ac2176082ac58ff7caf86e15303ff2c000a150250a3058ef7",
       "fanIn": 85,
@@ -5852,7 +5852,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/tool.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 388,
       "hash": "120cd1c957ae6682e76775887393816f8d8a6c4968995351f37f74aa16931c54",
       "fanIn": 0,
@@ -5861,7 +5861,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/toolDrag.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 163,
       "hash": "e3db6537ae2647ba9887b10d822e021692dc8039a4c5b25af115e4ce75897220",
       "fanIn": 0,
@@ -5870,7 +5870,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/tooltip.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 252,
       "hash": "952a31e12524c59b8ee6452c68f7e400519ce25fc0a32653f7fc3b4dee8b878e",
       "fanIn": 0,
@@ -5879,7 +5879,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/viewMode.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 190,
       "hash": "897d8ed3a6f23bd8d4762f3a200c8d0fc6596baec71ea498f6699a7cbc170f07",
       "fanIn": 0,
@@ -5888,7 +5888,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/viewport.test.ts",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 76,
       "hash": "687dbe16edd2009e32563b867ddda9f811b71c523c4a2f660bc0a6d6fed22414",
       "fanIn": 0,
@@ -5897,7 +5897,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/wheel.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 445,
       "hash": "6a159ad4e6f2e5d57d5778468627ae80e03c48b0c6504bc91b4dd6b009306dfc",
       "fanIn": 0,
@@ -5906,7 +5906,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/tests/wrap.test.tsx",
       "folder": "packages/excalidraw/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 569,
       "hash": "18adb26cf14c430d7b197df22858da5ace153ceeb723fc242a8fb0d0b7bb4003",
       "fanIn": 0,
@@ -5942,7 +5942,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/vite-env.d.ts",
       "folder": "packages/excalidraw",
-      "role": "generic",
+      "role": "declaration",
       "lines": 60,
       "hash": "72ebb8cb009923c4f378f04123ce878a46520b9da7c6a82e3779687c2d13fbfd",
       "fanIn": 0,
@@ -5960,7 +5960,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/wysiwyg/textWysiwyg.test.tsx",
       "folder": "packages/excalidraw/wysiwyg",
-      "role": "generic",
+      "role": "test",
       "lines": 3597,
       "hash": "83f9112cda33af72c3abb1fc9c671c07dcdf4c8b3def22cc9348946e57249def",
       "fanIn": 0,
@@ -5969,7 +5969,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/excalidraw/wysiwyg/textWysiwyg.tsx",
       "folder": "packages/excalidraw/wysiwyg",
-      "role": "generic",
+      "role": "component",
       "lines": 1333,
       "hash": "2103a65baf937d5b3ceb71e16791e16ede789d1377e804d706e8873b9b3e46c6",
       "fanIn": 2,
@@ -5978,7 +5978,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/fractional-indexing/global.d.ts",
       "folder": "packages/fractional-indexing",
-      "role": "generic",
+      "role": "declaration",
       "lines": 0,
       "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "fanIn": 0,
@@ -5996,7 +5996,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/laser-pointer/global.d.ts",
       "folder": "packages/laser-pointer",
-      "role": "generic",
+      "role": "declaration",
       "lines": 0,
       "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "fanIn": 0,
@@ -6041,7 +6041,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/global.d.ts",
       "folder": "packages/math",
-      "role": "generic",
+      "role": "declaration",
       "lines": 3,
       "hash": "4bbb7cd08392b521ff7ba7db4387162fc15aa6af1f400ff6c9e460485b2457f5",
       "fanIn": 0,
@@ -6194,7 +6194,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/curve.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 105,
       "hash": "e24a02eb4ca3043660a41046dbaab7ec0b52dd6afbd1b66e0ea322eb6c205ec2",
       "fanIn": 0,
@@ -6203,7 +6203,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/ellipse.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 157,
       "hash": "27381c49791af4c3d74c2b498c6ab4d0183715b51547ccec8f745a2680398bf7",
       "fanIn": 0,
@@ -6212,7 +6212,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/line.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 31,
       "hash": "c4b6f3b61d4d7a8bbaac70dc29ca8d87ec31a0cdec3533b74f5b88f089914d41",
       "fanIn": 0,
@@ -6221,7 +6221,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/pca.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 200,
       "hash": "ae43e1355f235da9e982c98d7adeea085ad87d3a3a3f4f8bc83620f4fbd7254f",
       "fanIn": 0,
@@ -6230,7 +6230,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/point.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 25,
       "hash": "047e7018156bc7ab5b451fd0d8c82b4e097cfe75ddf83ce47139693f09292f86",
       "fanIn": 0,
@@ -6239,7 +6239,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/polygon.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 120,
       "hash": "68a64ded4c05b1659ff756d02d237e54b943e6e92df08fd215f7b6ba7f42136a",
       "fanIn": 0,
@@ -6248,7 +6248,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/range.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 51,
       "hash": "d72c6622eab834fb379f14bed558aad680bce8ccaeda2000dc5c0faa25bf1996",
       "fanIn": 0,
@@ -6257,7 +6257,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/segment.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 45,
       "hash": "3da882879b62d89cd88189490631db994d43fefbd9a32747ae17360542335dda",
       "fanIn": 0,
@@ -6266,7 +6266,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/math/tests/vector.test.ts",
       "folder": "packages/math/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 12,
       "hash": "d99016a3da2533a5ace6b13220d2eaa7443396692b66d541214795b58a90ff03",
       "fanIn": 0,
@@ -6275,7 +6275,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/utils/global.d.ts",
       "folder": "packages/utils",
-      "role": "generic",
+      "role": "declaration",
       "lines": 3,
       "hash": "4bbb7cd08392b521ff7ba7db4387162fc15aa6af1f400ff6c9e460485b2457f5",
       "fanIn": 0,
@@ -6311,7 +6311,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/utils/tests/export.test.ts",
       "folder": "packages/utils/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 354,
       "hash": "3c869fdd9f1f5b3a8d3203378cc6d72f7ee3415b921e26d5680ba7460c88eae1",
       "fanIn": 0,
@@ -6320,7 +6320,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/utils/tests/geometry.test.ts",
       "folder": "packages/utils/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 146,
       "hash": "e8df1cd5256daa77e3e3dac79392c374fd196b4f9868259792ade4a8e2942824",
       "fanIn": 0,
@@ -6329,7 +6329,7 @@ export const parseResult: ParseResult = {
     {
       "path": "packages/utils/tests/utils.unmocked.test.ts",
       "folder": "packages/utils/tests",
-      "role": "generic",
+      "role": "test",
       "lines": 75,
       "hash": "23ea9e471476b48356ba4b95ab3655fe7363560fa7dcee16bc5d99aed43b4ba5",
       "fanIn": 0,
@@ -6464,7 +6464,7 @@ export const parseResult: ParseResult = {
     {
       "path": "scripts/stats/vite.config.mts",
       "folder": "scripts/stats",
-      "role": "generic",
+      "role": "config",
       "lines": 17,
       "hash": "ded41548e27e4b897df9ae53818a6aee6eb656fd266d1c113d377ef6ec1904ef",
       "fanIn": 0,
@@ -6500,7 +6500,7 @@ export const parseResult: ParseResult = {
     {
       "path": "setupTests.ts",
       "folder": ".",
-      "role": "generic",
+      "role": "test",
       "lines": 149,
       "hash": "0dbfeb664c659c34d89a5542023fff6b9eaceb385165a8fa9712e7e72d6a5295",
       "fanIn": 0,
@@ -6509,7 +6509,7 @@ export const parseResult: ParseResult = {
     {
       "path": "vitest.config.mts",
       "folder": ".",
-      "role": "generic",
+      "role": "config",
       "lines": 100,
       "hash": "be32b1c9e8dcf0233985b38ee9a6d4d3dae9f9f31bda80db766d63f08d088a30",
       "fanIn": 0,
@@ -32929,6 +32929,7 @@ export const parseResult: ParseResult = {
       ]
     }
   ],
+  "routes": [],
   "coverage": {
     "files": {
       "found": 1306,
@@ -35865,10 +35866,6 @@ export const parseResult: ParseResult = {
         "reason": "hidden directory"
       },
       {
-        "path": ".git",
-        "reason": "hidden directory"
-      },
-      {
         "path": ".github",
         "reason": "hidden directory"
       },
@@ -36264,6 +36261,7 @@ export const parseResult: ParseResult = {
         "path": "dev-docs/tsconfig.json",
         "message": "File '@tsconfig/docusaurus/tsconfig.json' not found."
       }
-    ]
+    ],
+    "omittedRoutes": []
   }
 };

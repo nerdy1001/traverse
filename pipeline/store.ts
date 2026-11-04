@@ -19,7 +19,8 @@ async function insertInChunks<T>(rows: readonly T[], insert: (chunk: T[]) => Pro
 }
 
 /**
- * Replaces this analysis's files and edges. Not atomic across chunks, and it doesn't
+ * Replaces this analysis's files and everything hanging off them, since clearing the
+ * files cascades to edges, roles and routes. Not atomic across chunks, and it doesn't
  * need to be: nothing reads them until the run writes "complete", and every run
  * starts by clearing whatever an earlier one left behind.
  */
@@ -50,6 +51,31 @@ export async function storeResult(
       content_hash: file.hash,
     })),
     (chunk) => writer.from("files").insert(chunk),
+  );
+
+  // No row for generic: nothing assigned that, so there's nothing whose source to record.
+  await insertInChunks(
+    result.files
+      .filter(({ role }) => role !== "generic")
+      .map((file) => ({
+        organization_id: organizationId,
+        file_id: idOf(file.path),
+        role: file.role,
+        source: "convention",
+      })),
+    (chunk) => writer.from("file_roles").insert(chunk),
+  );
+
+  await insertInChunks(
+    result.routes.map((route) => ({
+      organization_id: organizationId,
+      analysis_id: analysisId,
+      file_id: idOf(route.path),
+      method: route.method,
+      pattern: route.pattern,
+      line: route.line,
+    })),
+    (chunk) => writer.from("routes").insert(chunk),
   );
 
   // The parser gives one edge per pair with its kinds; the table has one row per kind.

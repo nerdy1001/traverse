@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { readFileSync, realpathSync, statSync } from "node:fs";
 import { basename, posix } from "node:path";
 import { Project, type SourceFile } from "ts-morph";
-import { selectAdapter } from "./adapter.ts";
+import { selectAdapter } from "./adapters/index.ts";
 import { computeFan, dedupeEdges } from "./graph.ts";
 import { readImports } from "./imports.ts";
 import { createResolver } from "./resolve.ts";
@@ -50,8 +50,12 @@ function countLines(text: string): number {
   return text.endsWith("\n") ? breaks : breaks + 1;
 }
 
+function compare(a: string, b: string): number {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+
 function byPath<T extends { path: string }>(a: T, b: T): number {
-  return a.path < b.path ? -1 : a.path > b.path ? 1 : 0;
+  return compare(a.path, b.path);
 }
 
 /** Which files a repository has and which of them are worth parsing. */
@@ -172,12 +176,17 @@ export function parseSelection({ root, walk }: Selection): ParseResult {
   }
 
   const edges = dedupeEdges(connections);
-  const adapter = selectAdapter(parsed.map(({ path }) => path));
+  const repository = {
+    files: parsed.map(({ path, source }) => ({ path, source: source.compilerNode })),
+    packages: [...resolver.packages].map(([directory, { dependencies }]) => ({ directory, dependencies })),
+  };
+  const adapter = selectAdapter(repository);
+  const reading = adapter.read(repository);
   const fan = computeFan(parsed.map(({ path }) => path), edges);
-  const files: FileNode[] = parsed.map(({ path, lines, hash }) => ({
+  const files: FileNode[] = parsed.map(({ path, lines, hash, source }) => ({
     path,
     folder: posix.dirname(path),
-    role: adapter.roleOf(path),
+    role: reading.roleOf({ path, source: source.compilerNode }),
     lines,
     hash,
     fanIn: fan.get(path)?.fanIn ?? 0,
@@ -207,7 +216,11 @@ export function parseSelection({ root, walk }: Selection): ParseResult {
     importsByKind: byKind,
     unresolvedExamples: examples,
     configProblems: resolver.problems.sort(byPath),
+    omittedRoutes: reading.omittedRoutes.sort((a, b) => byPath(a, b) || a.line - b.line),
   };
+
+  // Literal arrays can state the same path twice. It's still one route.
+  const routes = [...new Map(reading.routes.map((route) => [`${route.path}\0${route.method}\0${route.pattern}`, route])).values()];
 
   return {
     schemaVersion: 1,
@@ -215,6 +228,7 @@ export function parseSelection({ root, walk }: Selection): ParseResult {
     adapter: adapter.name,
     files,
     edges,
+    routes: routes.sort((a, b) => compare(a.pattern, b.pattern) || compare(a.method, b.method) || byPath(a, b)),
     coverage,
   };
 }

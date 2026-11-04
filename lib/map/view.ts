@@ -14,7 +14,7 @@ const LABEL_CHAR_WIDTH = 7.2;
 const BOX_PADDING = 24;
 /** Holds the count line. The same for every node, so it never implies importance. */
 const MIN_WIDTH = 124;
-const ROW_NUMBERS_WIDTH = 64;
+const ROW_NUMBERS_WIDTH = 88;
 
 const MIN_FOLDER_HEIGHT = 40;
 const MAX_FOLDER_HEIGHT = 96;

@@ -2,7 +2,6 @@
 // derived from the parser's file and edge lists like everything else on the map.
 
 import type { Edge, FileNode } from "../../parser/types.ts";
-import { categoryOf, UNIDENTIFIED } from "./categories.ts";
 
 /** A ranking, not a listing: past this it stops saying what the repository leans on. */
 const MOST_IMPORTED_SHOWN = 10;
@@ -35,7 +34,7 @@ export function summariseRepository(files: readonly FileNode[]): RepositorySumma
     nothingImports: files
       .filter(({ fanIn }) => fanIn === 0)
       .sort((a, b) => b.fanOut - a.fanOut || compare(a.path, b.path)),
-    unidentifiedCount: files.filter(({ path }) => categoryOf(path) === UNIDENTIFIED).length,
+    unidentifiedCount: files.filter(({ role }) => role === "generic").length,
   };
 }
 

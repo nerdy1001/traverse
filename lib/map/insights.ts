@@ -2,8 +2,8 @@
 // no total anywhere: a count of findings would read as a grade.
 
 import type { Edge, FileNode } from "../../parser/types.ts";
-import { categoryOf, UNIDENTIFIED } from "./categories.ts";
 import { type Cycle, findCycles } from "./graph.ts";
+import { ROLES } from "./taxonomy.ts";
 
 /** A round number, so what's listed doesn't shift with the rest of the repository. */
 const LONG_FILE_LINES = 1000;
@@ -43,9 +43,9 @@ export function findInsights(files: readonly FileNode[], edges: readonly Edge[])
   // A file importing itself still isn't imported by anything else.
   const imported = new Set(edges.filter(({ from, to }) => from !== to).map(({ to }) => to));
   const unimported = files.filter(({ path }) => !imported.has(path));
-  // A framework, test runner or compiler reaches everything a convention identifies.
-  // The import graph was never going to show that, so absence here says nothing.
-  const nothingImports = unimported.filter(({ path }) => categoryOf(path) === UNIDENTIFIED);
+  // A framework, test runner or compiler reaches some of these by convention. The
+  // import graph was never going to show that, so absence there says nothing.
+  const nothingImports = unimported.filter(({ role }) => !ROLES[role].reachedWithoutImport);
 
   const floor = files.length > 0 ? unusualFanInFloor(files) : 0;
   return {

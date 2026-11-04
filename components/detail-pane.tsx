@@ -1,20 +1,24 @@
 "use client";
 
 import { type ReactNode, useMemo, useState } from "react";
-import { categoryOf, countByCategory } from "@/lib/map/categories";
+import { countByCategory } from "@/lib/map/categories";
 import type { FoldedNode } from "@/lib/map/fold";
 import { walk, type WalkDirection } from "@/lib/map/graph";
 import { findInsights, INSIGHT_SENTENCES } from "@/lib/map/insights";
 import { indexNeighbours, summariseRepository } from "@/lib/map/summary";
+import { frameworkLabel, ROLES } from "@/lib/map/taxonomy";
 import type { Selection } from "@/lib/map/view";
 import type { Edge, FileNode } from "@/parser/types";
+import { ImportCount, type ImportDirection } from "./import-count";
 import type { MapActions, MapState } from "./use-map-state";
 
 /** What the repository summary shows beyond the file and edge lists. */
 export interface RepositoryFacts {
   name: string;
+  /** The adapter's name, which is what the taxonomy is keyed by. */
   framework: string;
   skippedCount: number;
+  routeCount: number;
 }
 
 type Tab = "structure" | "explanation";
@@ -34,12 +38,13 @@ function FilePath({ path }: { path: string }) {
 
 interface PathRowsProps {
   rows: readonly { path: string; count?: number }[];
-  countClass?: string;
+  /** Set when the counts are imports. Otherwise they're plain numbers, like line counts. */
+  direction?: ImportDirection;
   isLit(path: string): boolean;
   actions: MapActions;
 }
 
-function PathRows({ rows, countClass, isLit, actions }: PathRowsProps) {
+function PathRows({ rows, direction, isLit, actions }: PathRowsProps) {
   return (
     <ul>
       {rows.map(({ path, count }) => (
@@ -53,7 +58,12 @@ function PathRows({ rows, countClass, isLit, actions }: PathRowsProps) {
             className={`flex h-7 w-full cursor-pointer items-center gap-2 px-4 text-left hover:bg-background ${isLit(path) ? litClass : ""}`}
           >
             <FilePath path={path} />
-            {count !== undefined && <span className={`text-[10px] tabular-nums ${countClass}`}>{count}</span>}
+            {count !== undefined &&
+              (direction ? (
+                <ImportCount direction={direction} count={count} className="text-[10px]" />
+              ) : (
+                <span className="text-[10px] text-muted tabular-nums">{count}</span>
+              ))}
           </button>
         </li>
       ))}
@@ -61,16 +71,16 @@ function PathRows({ rows, countClass, isLit, actions }: PathRowsProps) {
   );
 }
 
-function SectionHeading({ title, note }: { title: string; note?: string }) {
+function SectionHeading({ title, note }: { title: string; note?: ReactNode }) {
   return (
     <h3 className="mt-4 mb-1.5 flex items-baseline justify-between gap-2 border-t border-border px-4 pt-3 font-medium">
       <span>{title}</span>
-      {note && <span className="font-normal text-muted tabular-nums">{note}</span>}
+      {note !== undefined && <span className="font-normal text-muted tabular-nums">{note}</span>}
     </h3>
   );
 }
 
-type Fact = [label: string, value: string | number];
+type Fact = [label: string, value: ReactNode];
 
 function Facts({ facts }: { facts: readonly Fact[] }) {
   return (
@@ -106,13 +116,12 @@ function RepositoryView({
       <h2 className="truncate px-4 pt-4 pb-3 font-mono font-medium">{facts.name}</h2>
       <Facts
         facts={[
-          ["Framework", facts.framework === "none" ? "none detected" : facts.framework],
+          ["Framework", frameworkLabel(facts.framework)],
           ["Files", files.length],
           ...skipped,
           // One per connected pair of files, so this adds up with every file's own counts.
           ["Imports", edges.length],
-          // Nothing extracts routes yet. Zero would claim they were looked for.
-          ["Routes", "not extracted"],
+          ["Routes", facts.routeCount],
           ["No convention identified", summary.unidentifiedCount],
         ]}
       />
@@ -122,7 +131,7 @@ function RepositoryView({
       />
       <PathRows
         rows={summary.mostImported.map(({ path, fanIn }) => ({ path, count: fanIn }))}
-        countClass="text-incoming"
+        direction="incoming"
         isLit={isLit}
         actions={actions}
       />
@@ -130,7 +139,7 @@ function RepositoryView({
       <p className="mb-2 px-4 text-muted">Where reading starts. Ranked by how much each one imports.</p>
       <PathRows
         rows={summary.nothingImports.map(({ path, fanOut }) => ({ path, count: fanOut }))}
-        countClass="text-outgoing"
+        direction="outgoing"
         isLit={isLit}
         actions={actions}
       />
@@ -174,7 +183,11 @@ function WalkResult({
     <>
       <p className="mt-3 flex justify-between gap-2 px-4 text-muted">
         <span>{note}</span>
-        <span className="tabular-nums">{reached.length}</span>
+        <ImportCount
+          direction={direction === "dependents" ? "incoming" : "outgoing"}
+          count={reached.length}
+          subject="walk"
+        />
       </p>
       {depths.map((depth) => {
         const rows = reached.filter((entry) => entry.depth === depth);
@@ -214,7 +227,7 @@ function FileStructure({
     <>
       <Facts
         facts={[
-          ["Kind", categoryOf(file.path)],
+          ["Kind", ROLES[file.role].name],
           ["Lines", file.lines],
         ]}
       />
@@ -241,33 +254,43 @@ function FileStructure({
         />
       )}
       {/* Counted from the rows below rather than read from elsewhere, so they can't disagree. */}
-      <SectionHeading title="Depends on" note={String(dependsOn.length)} />
+      <SectionHeading title="Depends on" note={<ImportCount direction="outgoing" count={dependsOn.length} />} />
       <PathRows rows={dependsOn.map((path) => ({ path }))} isLit={isLit} actions={actions} />
-      <SectionHeading title="Depended on by" note={String(dependents.length)} />
+      <SectionHeading title="Depended on by" note={<ImportCount direction="incoming" count={dependents.length} />} />
       <PathRows rows={dependents.map((path) => ({ path }))} isLit={isLit} actions={actions} />
     </>
   );
 }
 
-function FolderStructure({ node, held }: { node: FoldedNode; held: readonly FileNode[] }) {
+function FolderStructure({
+  node,
+  held,
+  framework,
+}: {
+  node: FoldedNode;
+  held: readonly FileNode[];
+  framework: string;
+}) {
   return (
     <>
       <Facts
         facts={[
           ["Files", node.files.length],
-          ["Files outside importing it", node.fanIn],
-          ["Files outside it imports", node.fanOut],
+          ["Files outside importing it", <ImportCount key="in" direction="incoming" count={node.fanIn} subject="folder" />],
+          ["Files outside it imports", <ImportCount key="out" direction="outgoing" count={node.fanOut} subject="folder" />],
         ]}
       />
       <SectionHeading title="Kinds of file" />
       <ul>
-        {countByCategory(held).map(({ name, swatch, count }) => (
-          <li key={name} className="flex h-7 items-center gap-2 px-4">
-            <span aria-hidden className={`size-2 shrink-0 rounded-[1px] ${swatch}`} />
-            <span className="min-w-0 flex-1 truncate">{name}</span>
-            <span className="text-muted tabular-nums">{count}</span>
-          </li>
-        ))}
+        {countByCategory(held, framework)
+          .filter(({ count }) => count > 0)
+          .map(({ role, name, swatch, count }) => (
+            <li key={role} className="flex h-7 items-center gap-2 px-4">
+              <span aria-hidden className={`size-2 shrink-0 rounded-[1px] ${swatch}`} />
+              <span className="min-w-0 flex-1 truncate">{name}</span>
+              <span className="text-muted tabular-nums">{count}</span>
+            </li>
+          ))}
       </ul>
     </>
   );
@@ -402,7 +425,7 @@ function InsightsPanel({
           >
             <PathRows
               rows={insights.unusuallyImported.map(({ path, fanIn }) => ({ path, count: fanIn }))}
-              countClass="text-incoming"
+              direction="incoming"
               isLit={isLit}
               actions={actions}
             />
@@ -422,7 +445,6 @@ function InsightsPanel({
                 )}
                 <PathRows
                   rows={loop.map((path, step) => ({ path, count: step + 1 }))}
-                  countClass="text-muted"
                   isLit={isLit}
                   actions={actions}
                 />
@@ -432,7 +454,6 @@ function InsightsPanel({
           <InsightGroup title="Long files" count={insights.long.length} sentence={INSIGHT_SENTENCES.long}>
             <PathRows
               rows={insights.long.map(({ path, lines }) => ({ path, count: lines }))}
-              countClass="text-muted"
               isLit={isLit}
               actions={actions}
             />
@@ -508,7 +529,7 @@ export function DetailPane({
         isTitleLit={hovered?.kind === "folder" && hovered.directory === node.directory}
         {...shared}
       >
-        <FolderStructure node={node} held={held} />
+        <FolderStructure node={node} held={held} framework={facts.framework} />
       </Tabbed>
     );
   };
