@@ -10,6 +10,7 @@ import { indexNeighbours, summariseRepository } from "@/lib/map/summary";
 import { frameworkLabel, ROLES } from "@/lib/map/taxonomy";
 import type { Selection } from "@/lib/map/view";
 import type { Edge, FileNode } from "@/parser/types";
+import { AskPanel, useConversation } from "./ask-panel";
 import { ExplanationPanel, type ExplainContext, type ExplainState } from "./explanation-panel";
 import { ImportCount, type ImportDirection } from "./import-count";
 import type { MapActions, MapState } from "./use-map-state";
@@ -24,6 +25,10 @@ export interface RepositoryFacts {
 }
 
 type Tab = "structure" | "explanation";
+
+// A mode of the whole pane rather than a third tab: a question about the repository
+// isn't about the selection, and a tab would vanish whenever nothing was selected.
+type Mode = "overview" | "ask";
 
 const litClass = "bg-background outline outline-accent -outline-offset-1";
 
@@ -492,6 +497,9 @@ export function DetailPane({
 }) {
   // Held here rather than per selection, so it survives the selection changing.
   const [tab, setTab] = useState<Tab>("structure");
+  // Leaving Ask returns to whatever is selected, because the selection never changed.
+  const [mode, setMode] = useState<Mode>("overview");
+  const conversation = useConversation(explain?.analysisId ?? null);
   // Likewise: an explanation already fetched is still there when the selection comes back.
   const [explained, setExplained] = useState<ReadonlyMap<string, ExplainState>>(() => new Map());
   const paths = useMemo(() => files.map(({ path }) => path), [files]);
@@ -591,11 +599,46 @@ export function DetailPane({
     );
   };
 
+  const modes: [Mode, string][] = [
+    ["overview", "Overview"],
+    ["ask", "Ask"],
+  ];
+  const selectedPath =
+    selection === null ? null : selection.kind === "file" ? selection.path : selection.directory;
+
   return (
     <div className="flex h-full flex-col">
-      <div className="min-h-0 flex-1">{selected()}</div>
-      {/* Stays mounted across selections: clicking a row to check it keeps the list open. */}
-      <InsightsPanel files={files} edges={edges} isLit={isLit} actions={actions} />
+      <div className="flex h-10 shrink-0 items-center border-b border-border px-3">
+        <div role="tablist" aria-label="Pane" className="flex h-7 rounded border border-border bg-background">
+          {modes.map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              aria-selected={mode === id}
+              onClick={() => setMode(id)}
+              className={`cursor-pointer px-2 ${mode === id ? "bg-surface" : "text-muted hover:text-foreground"}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+      {/* Both stay mounted, so switching keeps an open insights list and a half-typed question. */}
+      <div role="tabpanel" className={`min-h-0 flex-1 ${mode === "ask" ? "" : "hidden"}`}>
+        <AskPanel
+          conversation={conversation}
+          available={explain !== null}
+          selected={selectedPath}
+          paths={paths}
+          onPath={actions.revealFile}
+        />
+      </div>
+      <div role="tabpanel" className={`min-h-0 flex-1 flex-col ${mode === "overview" ? "flex" : "hidden"}`}>
+        <div className="min-h-0 flex-1">{selected()}</div>
+        {/* Stays mounted across selections: clicking a row to check it keeps the list open. */}
+        <InsightsPanel files={files} edges={edges} isLit={isLit} actions={actions} />
+      </div>
     </div>
   );
 }

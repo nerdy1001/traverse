@@ -6,7 +6,7 @@ import type { Edge } from "../../parser/types.ts";
 export type WalkDirection = "dependents" | "dependencies";
 
 /** Deeper returns most of the repository and stops being an answer. */
-const WALK_DEPTH = 2;
+export const WALK_DEPTH = 2;
 
 export interface Reached {
   path: string;
