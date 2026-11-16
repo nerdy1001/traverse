@@ -48,11 +48,11 @@ async function readAll<T>(
 export async function readStoredMap(
   client: DatabaseClient,
   analysisId: string,
-): Promise<{ files: FileNode[]; edges: Edge[]; routes: Route[] }> {
+): Promise<{ files: FileNode[]; edges: Edge[]; routes: Route[]; labelled: string[] }> {
   const fileRows = await readAll("files", (from, to) =>
     client
       .from("files")
-      .select("id, path, folder, line_count, content_hash, file_roles(role)", { count: "exact" })
+      .select("id, path, folder, line_count, content_hash, file_roles(role, source)", { count: "exact" })
       .eq("analysis_id", analysisId)
       .order("path")
       .range(from, to),
@@ -114,5 +114,9 @@ export async function readStoredMap(
     .map(({ method, pattern, line, files: file }) => ({ method, pattern, line, path: file.path }))
     .sort((a, b) => compare(a.pattern, b.pattern) || compare(a.method, b.method) || compare(a.path, b.path));
 
-  return { files, edges, routes };
+  // Kept beside the files rather than on them: which roles a model gave is the app's
+  // knowledge, not the parser's.
+  const labelled = files.filter(({ path }) => byPath.get(path)?.file_roles[0]?.source === "model").map(({ path }) => path);
+
+  return { files, edges, routes, labelled };
 }

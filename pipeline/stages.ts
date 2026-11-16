@@ -1,13 +1,14 @@
 // Read by the browser as well as the run, so nothing here may import the parser
 // or the database.
 
-export const STAGES = ["fetching", "selecting", "parsing", "storing"] as const;
+export const STAGES = ["fetching", "selecting", "parsing", "labelling", "storing"] as const;
 export type Stage = (typeof STAGES)[number];
 
 export const STAGE_LABELS: Record<Stage, string> = {
   fetching: "Fetching the archive",
   selecting: "Selecting files",
   parsing: "Parsing",
+  labelling: "Labelling unidentified files",
   storing: "Storing the map",
 };
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Edge, FileNode, OmittedRoute, Route } from "@/parser/types";
 import { CategoryRail } from "./category-rail";
 import { DetailPane, type RepositoryFacts } from "./detail-pane";
+import type { ExplainContext } from "./explanation-panel";
 import { MapCanvas } from "./map-canvas";
 import { MapShell } from "./map-shell";
 import { RouteTable } from "./route-table";
@@ -18,6 +19,8 @@ export function MapWorkspace({
   omittedRoutes,
   sourceBase,
   facts,
+  labelled,
+  explain,
 }: {
   files: readonly FileNode[];
   edges: readonly Edge[];
@@ -26,6 +29,10 @@ export function MapWorkspace({
   /** Where a file at the analysed commit can be read, when there's a commit to point at. */
   sourceBase: string | null;
   facts: RepositoryFacts;
+  /** Files whose role a model gave, because no convention identified them. */
+  labelled: ReadonlySet<string>;
+  /** Null where there's no stored analysis to explain from. */
+  explain: ExplainContext | null;
 }) {
   const map = useMapState(files, edges);
   const [view, setView] = useState<View>("map");
@@ -63,7 +70,7 @@ export function MapWorkspace({
           )}
         </>
       }
-      detail={<DetailPane files={files} edges={edges} facts={facts} map={map} />}
+      detail={<DetailPane files={files} edges={edges} labelled={labelled} facts={facts} explain={explain} map={map} />}
       railOpen={map.railOpen}
       detailOpen={map.detailOpen}
       onToggleRail={map.actions.toggleRail}

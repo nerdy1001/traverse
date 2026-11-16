@@ -6,6 +6,7 @@ import { CoverageBanner } from "@/components/coverage-banner";
 import { MapWorkspace } from "@/components/map-workspace";
 import { RerunButton } from "@/components/rerun-button";
 import { isCoverage } from "@/lib/map/coverage";
+import { tracingConfigured } from "@/ai/client";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { readStoredMap } from "@/pipeline/read-map";
 
@@ -58,7 +59,7 @@ async function StoredMap({ params }: { params: Promise<{ id: string }> }) {
     );
   }
 
-  const { files, edges, routes } = await readStoredMap(client, analysis.id);
+  const { files, edges, routes, labelled } = await readStoredMap(client, analysis.id);
 
   // A short read would draw a confidently wrong graph, so it fails instead.
   if (files.length !== analysis.coverage.files.parsed) {
@@ -76,6 +77,8 @@ async function StoredMap({ params }: { params: Promise<{ id: string }> }) {
           routes={routes}
           omittedRoutes={analysis.coverage.omittedRoutes}
           sourceBase={analysis.commit_sha && `https://github.com/${owner}/${name}/blob/${analysis.commit_sha}`}
+          labelled={new Set(labelled)}
+          explain={{ analysisId: analysis.id, tracing: tracingConfigured }}
           facts={{
             name: `${owner}/${name}`,
             framework: analysis.adapter ?? "none",

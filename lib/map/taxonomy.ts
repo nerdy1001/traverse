@@ -44,6 +44,7 @@ export const ROLES = {
   hook: { name: "Hooks", swatch: LAYER, reachedWithoutImport: false },
   context: { name: "Contexts", swatch: LAYER, reachedWithoutImport: false },
   store: { name: "Stores", swatch: LAYER, reachedWithoutImport: false },
+  util: { name: "Utilities", swatch: LAYER, reachedWithoutImport: false },
   generic: { name: "Generic", swatch: "bg-role-generic", reachedWithoutImport: false },
   config: { name: "Config", swatch: "bg-role-config", reachedWithoutImport: true },
   test: { name: "Tests", swatch: "bg-role-test", reachedWithoutImport: true },
@@ -54,13 +55,32 @@ export type Role = keyof typeof ROLES;
 
 const PLUMBING: readonly Role[] = ["generic", "config", "test", "declaration"];
 
+/**
+ * The only answers the model may give when labelling a file no convention identified.
+ * None is structural: pages, routes and controllers decide the route table and the
+ * entry-point colouring, so convention alone assigns those.
+ */
+export const MODEL_ROLES = ["service", "repository", "model", "util", "config", "component", "hook"] as const;
+export type ModelRole = (typeof MODEL_ROLES)[number];
+
+export function isModelRole(value: string): value is ModelRole {
+  return MODEL_ROLES.some((role) => role === value);
+}
+
+// A labelled file has to land in a category on every rail, or the counts stop adding
+// up. So each framework's own roles come first, then whichever labels it lacks.
+function withModelRoles(own: readonly Role[]): Role[] {
+  const missing = MODEL_ROLES.filter((role) => !own.includes(role) && !PLUMBING.includes(role));
+  return [...own, ...missing, ...PLUMBING];
+}
+
 // Reading order, and it stays fixed: routable surfaces, then the layers behind them,
 // then plumbing. Every role is always listed, so a category sits in the same place
 // across repositories of a framework whether or not this one has any.
 const FRAMEWORKS: Record<string, { label: string; roles: readonly Role[] }> = {
   nextjs: {
     label: "Next.js",
-    roles: [
+    roles: withModelRoles([
       "page-route",
       "api-endpoint",
       "server-action",
@@ -69,12 +89,11 @@ const FRAMEWORKS: Record<string, { label: string; roles: readonly Role[] }> = {
       "metadata",
       "component",
       "hook",
-      ...PLUMBING,
-    ],
+    ]),
   },
   nestjs: {
     label: "NestJS",
-    roles: [
+    roles: withModelRoles([
       "controller",
       "gateway",
       "resolver",
@@ -89,12 +108,11 @@ const FRAMEWORKS: Record<string, { label: string; roles: readonly Role[] }> = {
       "pipe",
       "filter",
       "class-middleware",
-      ...PLUMBING,
-    ],
+    ]),
   },
   express: {
     label: "Express",
-    roles: [
+    roles: withModelRoles([
       "route",
       "controller",
       "class-middleware",
@@ -104,14 +122,13 @@ const FRAMEWORKS: Record<string, { label: string; roles: readonly Role[] }> = {
       "model",
       "schema",
       "dto",
-      ...PLUMBING,
-    ],
+    ]),
   },
   react: {
     label: "React",
-    roles: ["page", "component", "hook", "context", "store", ...PLUMBING],
+    roles: withModelRoles(["page", "component", "hook", "context", "store"]),
   },
-  none: { label: "none detected", roles: PLUMBING },
+  none: { label: "none detected", roles: withModelRoles([]) },
 };
 
 function frameworkOf(adapter: string) {
