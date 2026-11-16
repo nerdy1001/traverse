@@ -33,11 +33,14 @@ export function RepositoryField() {
           aria-label="Public GitHub repository URL"
           aria-invalid={error !== null}
           aria-describedby={error ? "repository-error" : "repository-note"}
-          className="h-11 min-w-0 flex-1 rounded border border-border bg-background px-3 font-mono text-sm placeholder:text-muted focus:border-accent focus:outline-none"
+          // Stacked on phones, flex-1's zero basis would override the height and collapse
+          // the field to a single line, so it's switched off there. 16px text also stops
+          // iOS zooming in on focus.
+          className="h-11 min-w-0 flex-1 rounded border border-border bg-background px-3 font-mono text-sm placeholder:text-muted focus:border-accent focus:outline-none max-sm:h-14 max-sm:flex-none max-sm:px-4 max-sm:text-base"
         />
         <button
           type="submit"
-          className="h-11 shrink-0 cursor-pointer rounded bg-accent px-5 text-sm font-medium text-background hover:opacity-90"
+          className="h-11 shrink-0 cursor-pointer max-sm:h-14 max-sm:text-base rounded bg-accent px-5 text-sm font-medium text-background hover:opacity-90"
         >
           Analyse
         </button>
