@@ -88,6 +88,7 @@
   --color-accent: var(--accent);
   --color-incoming: var(--incoming);
   --color-outgoing: var(--outgoing);
+  --color-edge: var(--edge);
   --color-role-generic: var(--role-generic);
   --color-role-page: var(--role-page);
   --color-role-layout: var(--role-layout);

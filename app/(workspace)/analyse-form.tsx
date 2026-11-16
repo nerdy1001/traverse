@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { startAnalysis } from "./actions";
 
-export function AnalyseForm() {
+export function AnalyseForm({ defaultUrl }: { defaultUrl?: string }) {
   const [state, action, pending] = useActionState(startAnalysis, null);
 
   return (
@@ -13,6 +13,7 @@ export function AnalyseForm() {
           name="url"
           type="text"
           required
+          defaultValue={defaultUrl}
           autoComplete="off"
           spellCheck={false}
           placeholder="https://github.com/owner/name"

@@ -10,8 +10,10 @@ const CELL = "border-b border-border py-3 pr-6 align-top";
 const HEADING = "sticky top-0 border-b border-border bg-background py-2 pr-6 font-normal text-muted";
 
 // Everything here comes off the session token. Nothing asks Clerk at runtime.
-async function CurrentOrganization() {
+async function CurrentOrganization({ searchParams }: { searchParams: Promise<{ url?: string | string[] }> }) {
   const { orgId, sessionClaims } = await auth.protect();
+  // A URL carried in from the landing page, so it doesn't have to be pasted again.
+  const { url } = await searchParams;
 
   return (
     <>
@@ -19,7 +21,7 @@ async function CurrentOrganization() {
         {sessionClaims.org_name && <h1 className="font-medium">{sessionClaims.org_name}</h1>}
         <span className="truncate font-mono text-muted">{orgId}</span>
       </div>
-      {orgId && <AnalyseForm />}
+      {orgId && <AnalyseForm defaultUrl={typeof url === "string" ? url : undefined} />}
     </>
   );
 }
@@ -130,10 +132,10 @@ async function AnalysisList() {
   );
 }
 
-export default function DashboardPage() {
+export default function DashboardPage({ searchParams }: PageProps<"/dashboard">) {
   return (
     <Suspense>
-      <CurrentOrganization />
+      <CurrentOrganization searchParams={searchParams} />
       {/* Its own boundary, so the organization stays on screen during the read. */}
       <Suspense fallback={<p className="px-5 py-3 text-muted">Loading analyses…</p>}>
         <AnalysisList />

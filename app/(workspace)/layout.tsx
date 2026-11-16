@@ -2,7 +2,7 @@ import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { Suspense } from "react";
 import { InviteForm } from "./invite-form";
-import { ThemeControl } from "./theme-control";
+import { ThemeControl } from "@/components/theme-control";
 
 async function AdminInvite() {
   const { has } = await auth();

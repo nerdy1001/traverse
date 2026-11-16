@@ -1,0 +1,6 @@
+# managed-deepagents pins @langchain/core 1.3.2 but its loose ranges resolve to
+# deepagents and langgraph releases that want a newer core. These are the newest
+# releases that accept 1.3.2, so every package shares one core.
+overrides:
+  deepagents: 1.16.2
+  "@langchain/langgraph": 1.6.0
