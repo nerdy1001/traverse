@@ -355,6 +355,41 @@ export type Database = {
           },
         ]
       }
+      role_labels: {
+        Row: {
+          content_hash: string
+          created_at: string
+          id: string
+          model: string
+          organization_id: string
+          role: string
+        }
+        Insert: {
+          content_hash: string
+          created_at?: string
+          id?: string
+          model: string
+          organization_id: string
+          role: string
+        }
+        Update: {
+          content_hash?: string
+          created_at?: string
+          id?: string
+          model?: string
+          organization_id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "role_labels_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       routes: {
         Row: {
           analysis_id: string

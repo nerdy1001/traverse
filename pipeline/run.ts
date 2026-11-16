@@ -5,6 +5,7 @@ import { parseSelection, selectFiles } from "../parser/parse.ts";
 import { findViolations } from "../parser/verify.ts";
 import type { RepositoryName } from "./repository-url.ts";
 import { fetchArchive } from "./fetch-archive.ts";
+import { labelUnidentified } from "./label.ts";
 import { abandonedBefore, type Stage } from "./stages.ts";
 import { storeResult } from "./store.ts";
 import type { DatabaseClient } from "./writer.ts";
@@ -130,8 +131,14 @@ export async function executeRun(writer: DatabaseClient, target: RunTarget): Pro
     const violations = findViolations(result);
     if (violations.length > 0) throw new Error(`The parser's result is inconsistent: ${violations.join("; ")}`);
 
+    const unidentified = result.files.filter(({ role }) => role === "generic").length;
+    await enter("labelling", `Labelling ${unidentified} files no convention identified`);
+    const labelling = await labelUnidentified(writer, { organizationId, directory }, result, (done, total) =>
+      enter("labelling", `Labelled ${done} of ${total} files no convention identified`),
+    );
+
     await enter("storing", `Storing ${result.files.length} files and ${result.edges.length} connections`);
-    await storeResult(writer, { analysisId, organizationId }, result);
+    await storeResult(writer, { analysisId, organizationId }, result, labelling.roles);
 
     // Last and all together: "complete" is what makes the stored rows readable as a map.
     const finished = await writer

@@ -24,7 +24,8 @@ function compare(a: string, b: string): number {
   return a < b ? -1 : a > b ? 1 : 0;
 }
 
-export function summariseRepository(files: readonly FileNode[]): RepositorySummary {
+/** `labelled` holds the files a model gave a role to: still ones no convention identified. */
+export function summariseRepository(files: readonly FileNode[], labelled: ReadonlySet<string>): RepositorySummary {
   const imported = files.filter(({ fanIn }) => fanIn > 0);
   return {
     mostImported: imported
@@ -34,7 +35,7 @@ export function summariseRepository(files: readonly FileNode[]): RepositorySumma
     nothingImports: files
       .filter(({ fanIn }) => fanIn === 0)
       .sort((a, b) => b.fanOut - a.fanOut || compare(a.path, b.path)),
-    unidentifiedCount: files.filter(({ role }) => role === "generic").length,
+    unidentifiedCount: files.filter(({ path, role }) => role === "generic" || labelled.has(path)).length,
   };
 }
 

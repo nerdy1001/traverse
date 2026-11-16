@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import type { ModelRole } from "../lib/map/taxonomy.ts";
 import type { ImportKind, ParseResult } from "../parser/types.ts";
 import type { DatabaseClient } from "./writer.ts";
 
@@ -29,6 +30,8 @@ export async function storeResult(
   writer: DatabaseClient,
   { analysisId, organizationId }: { analysisId: string; organizationId: string },
   result: ParseResult,
+  /** Roles the model gave files no convention identified. Recorded as the model's. */
+  modelRoles: ReadonlyMap<string, ModelRole>,
 ): Promise<void> {
   const cleared = await writer.from("files").delete().eq("analysis_id", analysisId);
   if (cleared.error) throw new Error(`Could not clear the previous run: ${cleared.error.message}`);
@@ -55,15 +58,14 @@ export async function storeResult(
   );
 
   // No row for generic: nothing assigned that, so there's nothing whose source to record.
+  // A convention's role always wins; the model only ever fills in what convention left.
   await insertInChunks(
-    result.files
-      .filter(({ role }) => role !== "generic")
-      .map((file) => ({
-        organization_id: organizationId,
-        file_id: idOf(file.path),
-        role: file.role,
-        source: "convention",
-      })),
+    result.files.flatMap((file) => {
+      const base = { organization_id: organizationId, file_id: idOf(file.path) };
+      if (file.role !== "generic") return [{ ...base, role: file.role, source: "convention" }];
+      const labelled = modelRoles.get(file.path);
+      return labelled ? [{ ...base, role: labelled, source: "model" }] : [];
+    }),
     (chunk) => writer.from("file_roles").insert(chunk),
   );
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { type ReactNode, useMemo, useState } from "react";
+import { type ExplainRequest, type ExplainResponse, explainSelection } from "@/app/(workspace)/analyses/[id]/map/explain";
 import { countByCategory } from "@/lib/map/categories";
 import type { FoldedNode } from "@/lib/map/fold";
 import { walk, type WalkDirection } from "@/lib/map/graph";
@@ -9,6 +10,7 @@ import { indexNeighbours, summariseRepository } from "@/lib/map/summary";
 import { frameworkLabel, ROLES } from "@/lib/map/taxonomy";
 import type { Selection } from "@/lib/map/view";
 import type { Edge, FileNode } from "@/parser/types";
+import { ExplanationPanel, type ExplainContext, type ExplainState } from "./explanation-panel";
 import { ImportCount, type ImportDirection } from "./import-count";
 import type { MapActions, MapState } from "./use-map-state";
 
@@ -98,17 +100,19 @@ function Facts({ facts }: { facts: readonly Fact[] }) {
 function RepositoryView({
   files,
   edges,
+  labelled,
   facts,
   isLit,
   actions,
 }: {
   files: readonly FileNode[];
   edges: readonly Edge[];
+  labelled: ReadonlySet<string>;
   facts: RepositoryFacts;
   isLit(path: string): boolean;
   actions: MapActions;
 }) {
-  const summary = useMemo(() => summariseRepository(files), [files]);
+  const summary = useMemo(() => summariseRepository(files, labelled), [files, labelled]);
   // Only shown when true, and always counted rather than quietly dropped.
   const skipped: Fact[] = facts.skippedCount > 0 ? [["Files skipped", facts.skippedCount]] : [];
   return (
@@ -207,6 +211,7 @@ function WalkResult({
 
 function FileStructure({
   file,
+  labelled,
   edges,
   dependsOn,
   dependents,
@@ -214,6 +219,7 @@ function FileStructure({
   actions,
 }: {
   file: FileNode;
+  labelled: boolean;
   edges: readonly Edge[];
   dependsOn: readonly string[];
   dependents: readonly string[];
@@ -227,7 +233,8 @@ function FileStructure({
     <>
       <Facts
         facts={[
-          ["Kind", ROLES[file.role].name],
+          // Said every time, so a model's label is never mistaken for a convention's.
+          ["Kind", labelled ? `${ROLES[file.role].name}, labelled by model` : ROLES[file.role].name],
           ["Lines", file.lines],
         ]}
       />
@@ -302,6 +309,7 @@ function Tabbed({
   tab,
   onTab,
   selectionKey,
+  explanation,
   children,
 }: {
   title: string;
@@ -309,6 +317,7 @@ function Tabbed({
   tab: Tab;
   onTab(tab: Tab): void;
   selectionKey: string;
+  explanation: ReactNode;
   children: ReactNode;
 }) {
   const tabs: [Tab, string][] = [
@@ -339,11 +348,7 @@ function Tabbed({
       </div>
       {/* Keyed by the selection so a new one starts at the top of its lists. */}
       <div key={selectionKey} role="tabpanel" className="min-h-0 flex-1 overflow-y-auto py-4">
-        {tab === "structure" ? (
-          children
-        ) : (
-          <p className="px-4 text-muted">No explanation yet.</p>
-        )}
+        {tab === "structure" ? children : explanation}
       </div>
     </div>
   );
@@ -471,16 +476,54 @@ function selectionKeyOf(selection: Selection): string {
 export function DetailPane({
   files,
   edges,
+  labelled,
   facts,
+  explain,
   map: { folding, selection, hovered, actions },
 }: {
   files: readonly FileNode[];
   edges: readonly Edge[];
+  /** Files whose role a model gave, because no convention identified them. */
+  labelled: ReadonlySet<string>;
   facts: RepositoryFacts;
+  /** Null where there's no stored analysis to explain from. */
+  explain: ExplainContext | null;
   map: MapState;
 }) {
   // Held here rather than per selection, so it survives the selection changing.
   const [tab, setTab] = useState<Tab>("structure");
+  // Likewise: an explanation already fetched is still there when the selection comes back.
+  const [explained, setExplained] = useState<ReadonlyMap<string, ExplainState>>(() => new Map());
+  const paths = useMemo(() => files.map(({ path }) => path), [files]);
+
+  function record(key: string, state: ExplainState) {
+    setExplained((previous) => new Map(previous).set(key, state));
+  }
+  async function requestExplanation(key: string, request: ExplainRequest) {
+    record(key, { status: "pending" });
+    let response: ExplainResponse;
+    try {
+      response = await explainSelection(request);
+    } catch (error) {
+      response = { ok: false, error: error instanceof Error ? error.message : "The request failed." };
+    }
+    record(key, response.ok ? { status: "done", ...response } : { status: "failed", error: response.error });
+  }
+
+  function explanationFor(key: string, subject: ExplainRequest["kind"], request: (analysisId: string) => ExplainRequest) {
+    return (
+      <ExplanationPanel
+        context={explain}
+        state={explained.get(key)}
+        subject={subject}
+        paths={paths}
+        onExplain={() => {
+          if (explain) void requestExplanation(key, request(explain.analysisId));
+        }}
+        onPath={actions.revealFile}
+      />
+    );
+  }
 
   const fileByPath = useMemo(() => new Map(files.map((file) => [file.path, file])), [files]);
   const neighbours = useMemo(() => indexNeighbours(files, edges), [files, edges]);
@@ -497,19 +540,28 @@ export function DetailPane({
 
   const selected = () => {
     if (selection === null) {
-      return <RepositoryView files={files} edges={edges} facts={facts} isLit={isLit} actions={actions} />;
+      return (
+        <RepositoryView files={files} edges={edges} labelled={labelled} facts={facts} isLit={isLit} actions={actions} />
+      );
     }
 
-    const shared = { tab, onTab: setTab, selectionKey: selectionKeyOf(selection) };
+    const selectionKey = selectionKeyOf(selection);
+    const shared = { tab, onTab: setTab, selectionKey };
 
     if (selection.kind === "file") {
       const file = fileByPath.get(selection.path);
       const links = neighbours.get(selection.path);
       if (!file || !links) throw new Error(`Selected file ${selection.path} is not in the file list`);
       return (
-        <Tabbed title={file.path} isTitleLit={isLit(file.path)} {...shared}>
+        <Tabbed
+          title={file.path}
+          isTitleLit={isLit(file.path)}
+          explanation={explanationFor(selectionKey, "file", (analysisId) => ({ analysisId, kind: "file", path: file.path }))}
+          {...shared}
+        >
           <FileStructure
             file={file}
+            labelled={labelled.has(file.path)}
             edges={edges}
             dependsOn={links.dependsOn}
             dependents={links.dependents}
@@ -527,6 +579,11 @@ export function DetailPane({
       <Tabbed
         title={node.directory}
         isTitleLit={hovered?.kind === "folder" && hovered.directory === node.directory}
+        explanation={explanationFor(selectionKey, "folder", (analysisId) => ({
+          analysisId,
+          kind: "folder",
+          directory: node.directory,
+        }))}
         {...shared}
       >
         <FolderStructure node={node} held={held} framework={facts.framework} />

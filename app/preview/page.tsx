@@ -15,6 +15,8 @@ export default function PreviewPage() {
         routes={routes}
         omittedRoutes={coverage.omittedRoutes}
         sourceBase={null}
+        labelled={new Set()}
+        explain={null}
         facts={{
           name: repository.name,
           framework: adapter,
