@@ -29,7 +29,7 @@ export interface BatchLabels {
   cachedCount: number;
 }
 
-type Answer = ModelRole | "none";
+export type Answer = ModelRole | "none";
 
 const SYSTEM = `You label files of a TypeScript or JavaScript repository that no framework convention identified.
 
@@ -84,6 +84,48 @@ function describe(file: LabelCandidate, source: string): string {
 }
 
 /**
+ * The model's answers, path to role, with no cache either side. The labeller wraps this
+ * in its cache; the role-accuracy eval calls it bare, since a cached answer measures nothing.
+ */
+export async function askRoles(files: readonly LabelCandidate[], readSource: (path: string) => string): Promise<Map<string, Answer>> {
+  const paths = files.map(({ path }) => path);
+  const text = await complete("label roles: model", {
+    model: MODELS.label,
+    messages: [
+      { role: "system", content: SYSTEM },
+      { role: "user", content: files.map((file) => describe(file, readSource(file.path))).join("\n\n") },
+    ],
+    responseFormat: {
+      type: "json_schema",
+      json_schema: {
+        name: "file_roles",
+        strict: true,
+        schema: {
+          type: "object",
+          properties: {
+            labels: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  path: { type: "string", enum: paths },
+                  role: { type: "string", enum: [...MODEL_ROLES, "none"] },
+                },
+                required: ["path", "role"],
+                additionalProperties: false,
+              },
+            },
+          },
+          required: ["labels"],
+          additionalProperties: false,
+        },
+      },
+    },
+  });
+  return readAnswers(text, new Set(paths));
+}
+
+/**
  * One batch, one recorded run. Sources come through `readSource` rather than the input,
  * so the run records which files were asked about without carrying every file twice.
  */
@@ -120,42 +162,7 @@ export function labelBatch(
 
     const missing = files.filter(({ path }) => !answers.has(path));
     if (missing.length > 0) {
-      const paths = missing.map(({ path }) => path);
-      const text = await complete("label roles: model", {
-        model,
-        messages: [
-          { role: "system", content: SYSTEM },
-          { role: "user", content: missing.map((file) => describe(file, readSource(file.path))).join("\n\n") },
-        ],
-        responseFormat: {
-          type: "json_schema",
-          json_schema: {
-            name: "file_roles",
-            strict: true,
-            schema: {
-              type: "object",
-              properties: {
-                labels: {
-                  type: "array",
-                  items: {
-                    type: "object",
-                    properties: {
-                      path: { type: "string", enum: paths },
-                      role: { type: "string", enum: [...MODEL_ROLES, "none"] },
-                    },
-                    required: ["path", "role"],
-                    additionalProperties: false,
-                  },
-                },
-              },
-              required: ["labels"],
-              additionalProperties: false,
-            },
-          },
-        },
-      });
-
-      const given = readAnswers(text, new Set(paths));
+      const given = await askRoles(missing, readSource);
       const rows = new Map<string, { organization_id: string; content_hash: string; model: string; role: Answer }>();
       for (const file of missing) {
         const answer = given.get(file.path);

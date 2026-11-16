@@ -6,7 +6,7 @@
 
 import OpenAI from "openai";
 import { Client, RunTree } from "langsmith";
-import { withRunTree } from "langsmith/traceable";
+import { getCurrentRunTree, withRunTree } from "langsmith/traceable";
 import { wrapOpenAI } from "langsmith/wrappers/openai";
 import { env } from "../lib/env.ts";
 
@@ -33,6 +33,15 @@ if (!tracingConfigured) {
 // Handed to every run explicitly, so the same client that records a run is the one
 // flushed afterwards. A server action can return before a background batch is sent.
 const langsmith = tracingConfigured ? new Client() : undefined;
+
+/**
+ * For the evals, which can't run untraced: their datasets and experiments live in
+ * LangSmith. The same client, so an experiment's model calls land in its own runs.
+ */
+export function requireTracing(): Client {
+  if (!langsmith) throw new Error("The evals need LangSmith: set LANGSMITH_TRACING=true and LANGSMITH_API_KEY in .env.local.");
+  return langsmith;
+}
 
 // The stack is the OpenAI SDK; the model behind it is Claude, through Anthropic's
 // OpenAI-compatible endpoint. Usage comes back in OpenAI's shape, which is what the
@@ -70,6 +79,23 @@ export function traced<Input extends object, Output>(
       await langsmith.awaitPendingTraceBatches();
     }
   };
+}
+
+/**
+ * Scores the run currently in progress, so a live evaluator's result sits on the very
+ * trace it judged. Only call it inside `traced`. Nothing to score when tracing is off.
+ */
+export async function recordFeedback(key: string, { score, comment }: { score: number; comment: string }): Promise<void> {
+  if (!langsmith) return;
+  const run = getCurrentRunTree(true);
+  if (!run) throw new Error(`Feedback "${key}" was recorded outside a traced run.`);
+  // A score that can't be written mustn't cost the person the answer it scored. Said
+  // loudly, and the run is left unscored, which pnpm eval:paths still re-checks.
+  try {
+    await langsmith.createFeedback(run.id, key, { score, comment });
+  } catch (error) {
+    console.error(`Could not record "${key}" on run ${run.id}: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 type Messages = OpenAI.ChatCompletionMessageParam[];

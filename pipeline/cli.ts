@@ -1,6 +1,7 @@
 // Runs the whole pipeline from a terminal, against the real database.
 // Usage: pnpm analyse <repository url> <organization id>
 
+import "../lib/load-env.ts";
 import { parseRepositoryUrl } from "./repository-url.ts";
 import { findOrCreateAnalysis, runAnalysis } from "./run.ts";
 import { createWriterClient } from "./writer.ts";

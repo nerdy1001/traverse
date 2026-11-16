@@ -6,7 +6,8 @@ import { ROLES, type Role } from "../lib/map/taxonomy.ts";
 import { hashBytes, readFileAt } from "../pipeline/github-file.ts";
 import type { RepositoryName } from "../pipeline/repository-url.ts";
 import type { DatabaseClient } from "../pipeline/writer.ts";
-import { complete, MODELS, traced } from "./client.ts";
+import { complete, MODELS, recordFeedback, traced } from "./client.ts";
+import { findInventedPaths, INVENTED_PATHS, pathFeedback } from "./invented-paths.ts";
 
 export interface Neighbour {
   path: string;
@@ -62,7 +63,8 @@ const FORMATTING = `Formatting: plain paragraphs. You may use \`inline code\` fo
 
 const DESCRIBE_ONLY = `Describe; never evaluate. No judgements of quality, no problems, risks, smells, suggestions or improvements.`;
 
-const FILE_SYSTEM = `You explain one file of a TypeScript or JavaScript repository to a developer reading the codebase for the first time.
+/** Exported for the prompt-version eval, which runs it beside the prompt it replaced. */
+export const FILE_SYSTEM = `You explain one file of a TypeScript or JavaScript repository to a developer reading the codebase for the first time.
 
 You are given the file's source and the complete lists of the files it imports and the files that import it. A parser produced those lists and they are exact. Explain what the file does and the part it plays among those neighbours: what it takes from the files it imports, and what the files importing it rely on it for.
 
@@ -129,10 +131,35 @@ async function store(
   if (error && error.code !== "23505") throw new Error(`Could not store the explanation: ${error.message}`);
 }
 
+/** What the model is told about a file. Everything it may name is in here. */
+export type FileSubject = Pick<FileQuestion, "path" | "role" | "labelled" | "lines" | "imports" | "importedBy">;
+
+/** The paths a file explanation shows the model. Nothing else in the answer is a real path. */
+export function fileShownPaths(q: FileSubject): string[] {
+  return [q.path, ...q.imports.map(({ path }) => path), ...q.importedBy.map(({ path }) => path)];
+}
+
+/** Shared with the prompt-version eval, so both versions are asked the identical question. */
+export function fileMessage(q: FileSubject, source: string): string {
+  return [
+    `File: ${q.path}`,
+    `Kind: ${kindOf(q.role, q.labelled)}`,
+    `Lines: ${q.lines}`,
+    "",
+    listed("Imports", q.imports.map(({ path, role }) => `- ${path} (${kindOf(role)})`)),
+    "",
+    listed("Imported by", q.importedBy.map(({ path, role }) => `- ${path} (${kindOf(role)})`)),
+    "",
+    `<source path="${q.path}">`,
+    source,
+    "</source>",
+  ].join("\n");
+}
+
 export function explainFile(db: DatabaseClient, question: FileQuestion): Promise<Explanation> {
   return traced("explain file", async (q: FileQuestion): Promise<Explanation> => {
     const model = MODELS.explain;
-    const shownPaths = [q.path, ...q.imports.map(({ path }) => path), ...q.importedBy.map(({ path }) => path)];
+    const shownPaths = fileShownPaths(q);
     const key = { analysisId: q.analysisId, kind: "file", subject: q.path, contentHash: q.hash, model } as const;
 
     const hit = await readCached(db, key);
@@ -144,27 +171,15 @@ export function explainFile(db: DatabaseClient, question: FileQuestion): Promise
     if (hashBytes(bytes) !== q.hash) throw new Error(`${q.path} at the analysed commit doesn't match what was parsed.`);
     const source = new TextDecoder().decode(bytes);
 
-    const user = [
-      `File: ${q.path}`,
-      `Kind: ${kindOf(q.role, q.labelled)}`,
-      `Lines: ${q.lines}`,
-      "",
-      listed("Imports", q.imports.map(({ path, role }) => `- ${path} (${kindOf(role)})`)),
-      "",
-      listed("Imported by", q.importedBy.map(({ path, role }) => `- ${path} (${kindOf(role)})`)),
-      "",
-      `<source path="${q.path}">`,
-      source,
-      "</source>",
-    ].join("\n");
-
     const body = await complete("explain file: model", {
       model,
       messages: [
         { role: "system", content: FILE_SYSTEM },
-        { role: "user", content: user },
+        { role: "user", content: fileMessage(q, source) },
       ],
     });
+    // Scored live, on the run that produced it. A cache hit serves text already scored.
+    await recordFeedback(INVENTED_PATHS, pathFeedback(findInventedPaths(body, shownPaths, source), shownPaths.length));
     await store(db, {
       organization_id: q.organizationId,
       analysis_id: q.analysisId,
@@ -227,6 +242,7 @@ export function explainFolder(db: DatabaseClient, question: FolderQuestion): Pro
         { role: "user", content: user },
       ],
     });
+    await recordFeedback(INVENTED_PATHS, pathFeedback(findInventedPaths(body, shownPaths), shownPaths.length));
     await store(db, {
       organization_id: q.organizationId,
       analysis_id: q.analysisId,

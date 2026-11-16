@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "parse": "node parser/cli.ts",
-    "analyse": "node --env-file=.env.local pipeline/cli.ts"
+    "analyse": "node pipeline/cli.ts",
+    "eval:paths": "node evals/invented-paths.ts",
+    "eval:path-cases": "node evals/path-cases.ts",
+    "eval:roles": "node evals/roles.ts",
+    "eval:prompts": "node evals/prompts.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.9.23",
