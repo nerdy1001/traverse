@@ -10,6 +10,7 @@
     "parse": "node parser/cli.ts",
     "analyse": "node pipeline/cli.ts",
     "eval:paths": "node evals/invented-paths.ts",
+    "eval:path-cases": "node evals/path-cases.ts",
     "eval:roles": "node evals/roles.ts",
     "eval:prompts": "node evals/prompts.ts"
   },

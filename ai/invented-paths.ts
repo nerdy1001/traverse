@@ -17,12 +17,12 @@ export interface PathCheck {
 // Only the extensions the parser reads: a file it could have handed over. A `res.json`
 // or a `globals.css` isn't a node anyone could connect to, so it isn't checked by name.
 const SOURCE_EXTENSION = /\.(?:[cm]?[jt]sx?)$/;
-// Prose about a framework, not a file. Only the capitalised single-word form, so a
-// lowercase `next.js` written as a filename is still checked.
-const PRODUCT_NAME = /^[A-Z][A-Za-z0-9]*\.js$/;
-// What a path can be made of, including Next's `[id]` and `(group)` segments. A token
-// with anything else in it is code or prose that happens to contain a slash.
-const PATH_CHARACTERS = /^[\w.\-/@~[\]()+$]+$/;
+// Prose about a framework, not a file. A closed list, so `Dashboard.js` is still checked,
+// and only the capitalised form, so a lowercase `next.js` written as a filename is too.
+const PRODUCT_NAME = /^(?:Next|Node|Express|Nest|React|Vue|Nuxt|Ember|Backbone|Three|D3|Chart)\.js$/;
+// Anything a path can't be made of ends a candidate, so `lib/a.ts—which` or `"./a.ts"`
+// still yields the path. Brackets and parens stay in: Next's `[id]` and `(group)` segments.
+const NOT_PATH_CHARACTER = /[^\w.\-/@~[\]()+$]+/;
 
 function withoutExtension(path: string): string {
   return path.replace(SOURCE_EXTENSION, "");
@@ -94,9 +94,9 @@ export function findInventedPaths(body: string, shown: readonly string[], source
   };
 
   const invented = new Set<string>();
-  for (const raw of rest.replace(/\*\*/g, " ").split(/[\s`]+/)) {
+  for (const raw of rest.split(NOT_PATH_CHARACTER)) {
     const token = trim(raw);
-    if (token === "" || !PATH_CHARACTERS.test(token)) continue;
+    if (token === "") continue;
     // A call, not a file: `res.json()` or `require(...)`.
     if (/\w\(/.test(token)) continue;
     // A package, not a file in this repository.

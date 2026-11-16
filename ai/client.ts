@@ -89,7 +89,13 @@ export async function recordFeedback(key: string, { score, comment }: { score: n
   if (!langsmith) return;
   const run = getCurrentRunTree(true);
   if (!run) throw new Error(`Feedback "${key}" was recorded outside a traced run.`);
-  await langsmith.createFeedback(run.id, key, { score, comment });
+  // A score that can't be written mustn't cost the person the answer it scored. Said
+  // loudly, and the run is left unscored, which pnpm eval:paths still re-checks.
+  try {
+    await langsmith.createFeedback(run.id, key, { score, comment });
+  } catch (error) {
+    console.error(`Could not record "${key}" on run ${run.id}: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 type Messages = OpenAI.ChatCompletionMessageParam[];
