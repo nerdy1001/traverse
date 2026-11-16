@@ -26,7 +26,13 @@ export default clerkMiddleware(async (auth, req) => {
   // the page itself static, with nothing about the visitor read while rendering.
   if (req.nextUrl.pathname === "/") {
     const { isAuthenticated } = await auth();
-    if (isAuthenticated) return NextResponse.redirect(new URL("/dashboard", req.url));
+    if (isAuthenticated) {
+      // The root is prerendered and served from the CDN, which would otherwise keep
+      // this redirect and send every visitor, signed in or not, to the dashboard.
+      const response = NextResponse.redirect(new URL("/dashboard", req.url));
+      response.headers.set("Cache-Control", "private, no-store");
+      return response;
+    }
     return;
   }
 
@@ -40,5 +46,8 @@ export const config = {
   matcher: [
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     "/(api|trpc)(.*)",
+    // A production key routes Clerk's own requests through /__clerk, which the middleware
+    // proxies. That includes its .js bundles, which the first pattern skips.
+    "/__clerk/(.*)",
   ],
 };
