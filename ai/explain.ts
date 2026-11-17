@@ -74,6 +74,8 @@ ${DESCRIBE_ONLY}
 
 Two to four short paragraphs. Use bullets only to list several parallel things.
 
+Your explanation should be in the style of a senior engineer mentoring a new hire, and should be written for a developer who is familiar with TypeScript and JavaScript but not with this codebase. It should be very simple to understand and not assume any prior knowledge of the codebase. Avoid using any technical jargon or abbreviations that are not commonly known in the TypeScript and JavaScript communities.
+
 ${FORMATTING}`;
 
 const FOLDER_SYSTEM = `You explain one folder of a TypeScript or JavaScript repository to a developer reading the codebase for the first time.
@@ -85,6 +87,8 @@ Name only files and folders from what you were given, written exactly as given. 
 ${DESCRIBE_ONLY}
 
 Two to four short paragraphs. Use bullets only to list several parallel things.
+
+Your explanation should be in the style of a senior engineer mentoring a new hire, and should be written for a developer who is familiar with TypeScript and JavaScript but not with this codebase. It should be very simple to understand and not assume any prior knowledge of the codebase. Avoid using any technical jargon or abbreviations that are not commonly known in the TypeScript and JavaScript communities.
 
 ${FORMATTING}`;
 
